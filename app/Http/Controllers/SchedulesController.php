@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Horarios;
+use App\Schedules;
 use Illuminate\Http\Request;
 
-class HorariosController extends Controller
+class SchedulesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class HorariosController extends Controller
      */
     public function index()
     {
-         return (Horarios::all());
+         return (Schedules::all());
         //
     }
 
@@ -45,7 +45,7 @@ class HorariosController extends Controller
      * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function show(Horarios $horarios)
+    public function show(Schedules $schedules)
     {
         //
     }
@@ -56,7 +56,7 @@ class HorariosController extends Controller
      * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function edit(Horarios $horarios)
+    public function edit(Schedules $schedules)
     {
         //
     }
@@ -68,7 +68,7 @@ class HorariosController extends Controller
      * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Horarios $horarios)
+    public function update(Request $request, Schedules $schedules)
     {
         //
     }
@@ -79,7 +79,7 @@ class HorariosController extends Controller
      * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Horarios $horarios)
+    public function destroy(Schedules $schedules)
     {
         //
     }

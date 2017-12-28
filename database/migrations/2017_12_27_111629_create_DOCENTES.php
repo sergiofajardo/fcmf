@@ -13,16 +13,16 @@ class CreateDOCENTES extends Migration
      */
     public function up()
     {
-        Schema::create('DOCENTES', function (Blueprint $table) {
-            $table->increments('id_docente');
-            $table->string('nombres', 30)->nullable();
-            $table->string('apellidos', 30)->nullable();
-            $table->string('telefono', 10)->nullable();
-            $table->string('titulo', 40)->nullable();
-            $table->string('imagen', 300)->nullable();
-            $table->string('estado', 10)->nullable();
-            $table->string('usuario_creacion',20)->nullable();
-            $table->string('usuario_modificacion',20)->nullable();
+        Schema::create('teachers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 30)->nullable();
+            $table->string('last_name', 30)->nullable();
+            $table->string('phone', 10)->nullable();
+            $table->string('degree', 40)->nullable();
+            $table->string('image', 300)->nullable();
+            $table->string('state', 10)->nullable();
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
             
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ class CreateDOCENTES extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DOCENTES');
+        Schema::dropIfExists('teachers');
     }
 }

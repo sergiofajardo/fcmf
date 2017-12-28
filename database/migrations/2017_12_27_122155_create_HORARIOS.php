@@ -13,22 +13,22 @@ class CreateHORARIOS extends Migration
      */
     public function up()
     {
-        Schema::create('HORARIOS', function (Blueprint $table) {
-            $table->increments('id_horario');
-            $table->integer('id_espacio_fisico')->unsigned();
-            $table->integer('id_periodo_ciclo')->unsigned();
-            $table->integer('id_dia')->unsigned();
-            $table->integer('id_hora')->unsigned();
-            $table->integer('id_materia_paralelo')->unsigned();
-            $table->string('observacion',250)->nullable();
-            $table->string('estado',10)->nullable();
-            $table->string('usuario_creacion',20)->nullable();
-            $table->string('usuario_modificacion',20)->nullable();
-            $table->foreign('id_espacio_fisico')->references('id_espacio_fisico')->on('espacios_fisicos');
-            $table->foreign('id_periodo_ciclo')->references('id_periodo_ciclo')->on('periodo_ciclo');
-            $table->foreign('id_dia')->references('id_dia')->on('dias');
-            $table->foreign('id_hora')->references('id_hora')->on('horas');
-            $table->foreign('id_materia_paralelo')->references('id_materia_paralelo')->on('materia_paralelo');
+        Schema::create('schedules', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('physical_space_id')->unsigned();
+            $table->integer('period_cycle_id')->unsigned();
+            $table->integer('day_id')->unsigned();
+            $table->integer('hour_id')->unsigned();
+            $table->integer('subject_classroom_id')->unsigned();
+            $table->string('observation',250)->nullable();
+            $table->string('state',10)->nullable();
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
+            $table->foreign('physical_space_id')->references('id')->on('physical_spaces');
+            $table->foreign('period_cycle_id')->references('id')->on('period_cycles');
+            $table->foreign('day_id')->references('id')->on('days');
+            $table->foreign('hour_id')->references('id')->on('hours');
+            $table->foreign('subject_classroom_id')->references('id')->on('subject_classrooms');
             $table->timestamps();
         });
     }
@@ -40,6 +40,6 @@ class CreateHORARIOS extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('HORARIOS');
+        Schema::dropIfExists('schedules');
     }
 }

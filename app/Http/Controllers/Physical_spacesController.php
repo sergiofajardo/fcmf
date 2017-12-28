@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Espacios_Fisicos;
+use App\Physical_spaces;
 use Illuminate\Http\Request;
 
-class Espacios_FisicosController extends Controller
+class Physical_spacesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class Espacios_FisicosController extends Controller
     public function index()
     {
         //
-         return (Espacios_Fisicos::all());
+         return (Physical_spaces::all());
     }
 
     /**
@@ -45,7 +45,7 @@ class Espacios_FisicosController extends Controller
      * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function show(Espacios_Fisicos $espacios_Fisicos)
+    public function show(Physical_spaces $physical_spaces)
     {
         //
     }
@@ -56,7 +56,7 @@ class Espacios_FisicosController extends Controller
      * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Espacios_Fisicos $espacios_Fisicos)
+    public function edit(Physical_spaces $physical_spaces)
     {
         //
     }
@@ -68,7 +68,7 @@ class Espacios_FisicosController extends Controller
      * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Espacios_Fisicos $espacios_Fisicos)
+    public function update(Request $request, Physical_spaces $physical_spaces)
     {
         //
     }
@@ -79,7 +79,7 @@ class Espacios_FisicosController extends Controller
      * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Espacios_Fisicos $espacios_Fisicos)
+    public function destroy(Physical_spaces $physical_spaces)
     {
         //
     }

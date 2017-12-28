@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Facultades;
+use App\Subject_classrooms;
 use Illuminate\Http\Request;
 
-class FacultadController extends Controller
+class Subject_classroomsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class FacultadController extends Controller
      */
     public function index()
     {
-    
-        return (Facultades::all());
-
+        //
+         return (Subject_classrooms::all());
     }
 
     /**
@@ -43,26 +42,21 @@ class FacultadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Subject_classrooms $subject_classrooms)
     {
-        $facultad_ = Facultades::find($id);
-        if(!is_null($facultad_))
-            return view('facultad.mostrar' ,['facultad_show' => $facultad_->toarray()]);
-        else
-            return Response('no encontrado',404);
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Facultades $facultades)
+    public function edit(Subject_classrooms $subject_classrooms)
     {
         //
     }
@@ -71,10 +65,10 @@ class FacultadController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Facultades $facultades)
+    public function update(Request $request, Subject_classrooms $subject_classrooms)
     {
         //
     }
@@ -82,18 +76,11 @@ class FacultadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Facultades $facultades)
+    public function destroy(Subject_classrooms $subject_classrooms)
     {
         //
-    }
-
-    public function getVista(){
-        $facultades = Facultades::all();
-         if(!is_null($facultades))
-        return view('Facultad.facultad')->with(['facultades'=>$facultades]);
-
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Paralelos;
+use App\Teachers;
 use Illuminate\Http\Request;
 
-class ParalelosController extends Controller
+class DocentesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ParalelosController extends Controller
     public function index()
     {
         //
-         return (Paralelos::all());
+         return (Teachers::all());
     }
 
     /**
@@ -42,10 +42,10 @@ class ParalelosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function show(Paralelos $paralelos)
+    public function show(Teachers $teachers)
     {
         //
     }
@@ -53,10 +53,10 @@ class ParalelosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paralelos $paralelos)
+    public function edit(Teachers $teachers)
     {
         //
     }
@@ -65,10 +65,10 @@ class ParalelosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paralelos $paralelos)
+    public function update(Request $request, Teachers $teachers)
     {
         //
     }
@@ -76,10 +76,10 @@ class ParalelosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Paralelos $paralelos)
+    public function destroy(Teachers $teachers)
     {
         //
     }

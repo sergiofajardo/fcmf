@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Horas;
+use App\Hours;
 use Illuminate\Http\Request;
 
-class HorasController extends Controller
+class HoursController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class HorasController extends Controller
     public function index()
     {
         //
-         return (Horas::all());
+         return (Hours::all());
     }
 
     /**
@@ -45,7 +45,7 @@ class HorasController extends Controller
      * @param  \App\Horas  $horas
      * @return \Illuminate\Http\Response
      */
-    public function show(Horas $horas)
+    public function show(Hours $hours)
     {
         //
     }
@@ -56,7 +56,7 @@ class HorasController extends Controller
      * @param  \App\Horas  $horas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Horas $horas)
+    public function edit(Hours $hours)
     {
         //
     }
@@ -68,7 +68,7 @@ class HorasController extends Controller
      * @param  \App\Horas  $horas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Horas $horas)
+    public function update(Request $request, Hours $hours)
     {
         //
     }
@@ -79,7 +79,7 @@ class HorasController extends Controller
      * @param  \App\Horas  $horas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Horas $horas)
+    public function destroy(Hours $hours)
     {
         //
     }

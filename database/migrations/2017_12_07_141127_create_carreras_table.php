@@ -13,19 +13,19 @@ class CreateCarrerasTable extends Migration
      */
     public function up()
     {
-        Schema::create('carreras', function (Blueprint $table) {
-            $table->increments('id_carrera');
-            $table->string('carrera');
-             $table->integer('id_facultad')->unsigned();
-            $table->string('telefono',10);
-            $table->string('direccion',150);
-            $table->string('logo',300);
-            $table->string('usuario_creacion',50);
-            $table->string('usuario_modificacion',50);
-            $table->string('mision',300);
+        Schema::create('careers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+             $table->integer('faculty_id')->unsigned();
+            $table->string('phone',10);
+            $table->string('address',150);
+            $table->string('image',300);
+            $table->string('user_create',50);
+            $table->string('user_update',50);
+            $table->string('mission',300);
             $table->string('vision',300);
-            $table->string('estado',10)->nullable();
-            $table->foreign('id_facultad')->references('id_facultad')->on('facultades');
+            $table->string('state',10)->nullable();
+            $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ class CreateCarrerasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('careers');
     }
 }

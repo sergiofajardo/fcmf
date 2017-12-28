@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Carreras;
+use App\Careers;
 use Illuminate\Http\Request;
 
-class CarrerasController extends Controller
+class CareersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CarrerasController extends Controller
     public function index()
     {
         //
-         return (Carreras::all());
+         return (Careers::all());
     }
 
     /**
@@ -45,7 +45,7 @@ class CarrerasController extends Controller
      * @param  \App\Carreras  $carreras
      * @return \Illuminate\Http\Response
      */
-    public function show(Carreras $carreras)
+    public function show(Careers $careers)
     {
         //
     }
@@ -56,7 +56,7 @@ class CarrerasController extends Controller
      * @param  \App\Carreras  $carreras
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carreras $carreras)
+    public function edit(Careers $careers)
     {
         //
     }
@@ -68,7 +68,7 @@ class CarrerasController extends Controller
      * @param  \App\Carreras  $carreras
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carreras $carreras)
+    public function update(Request $request, Careers $careers)
     {
         //
     }
@@ -79,7 +79,7 @@ class CarrerasController extends Controller
      * @param  \App\Carreras  $carreras
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carreras $carreras)
+    public function destroy(Careers $careers)
     {
         //
     }

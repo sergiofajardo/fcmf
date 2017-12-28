@@ -13,15 +13,16 @@ class CreateEspaciosFisicos extends Migration
      */
     public function up()
     {
-        Schema::create('ESPACIOS_FISICOS', function (Blueprint $table) {
-            $table->increments('id_espacio_fisico');
-            $table->integer('id_facultad')->unsigned();
-            $table->string('tipo', 30)->nullable();
-            $table->string('ubicacion', 300)->nullable();
-            $table->string('estado',10)->nullable();
-            $table->string('usuario_creacion',20);
-            $table->string('usuario_modificacion',20);
-            $table->foreign('id_facultad')->references('id_facultad')->on('facultades');
+        Schema::create('physical_spaces', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('faculties_id')->unsigned();
+            $table->string('type', 30)->nullable();
+            $table->string('location', 300)->nullable();
+            $table->string('state',10)->nullable();
+            $table->string('user_create',20);
+            $table->string('user_update',20);
+            $table->string('name',40)->nullable();
+            $table->foreign('faculties_id')->references('id')->on('faculties');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateEspaciosFisicos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ESPACIOS_FISICOS');
+        Schema::dropIfExists('physical_spaces');
     }
 }

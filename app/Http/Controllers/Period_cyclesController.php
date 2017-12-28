@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Docentes;
+use App\Period_cycles;
 use Illuminate\Http\Request;
 
-class DocentesController extends Controller
+class Period_cyclesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class DocentesController extends Controller
     public function index()
     {
         //
-         return (Docentes::all());
     }
 
     /**
@@ -42,10 +41,10 @@ class DocentesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Docentes  $docentes
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function show(Docentes $docentes)
+    public function show(Period_cycles $period_cycles)
     {
         //
     }
@@ -53,10 +52,10 @@ class DocentesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Docentes  $docentes
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function edit(Docentes $docentes)
+    public function edit(Period_cycles $period_cycles)
     {
         //
     }
@@ -65,10 +64,10 @@ class DocentesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Docentes  $docentes
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Docentes $docentes)
+    public function update(Request $request, Period_cycles $period_cycles)
     {
         //
     }
@@ -76,10 +75,10 @@ class DocentesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Docentes  $docentes
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Docentes $docentes)
+    public function destroy(Period_cycles $period_cycles)
     {
         //
     }
