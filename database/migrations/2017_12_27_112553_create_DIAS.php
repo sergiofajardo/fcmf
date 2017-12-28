@@ -13,11 +13,11 @@ class CreateDIAS extends Migration
      */
     public function up()
     {
-        Schema::create('DIAS', function (Blueprint $table) {
-            $table->increments('id_dia');
-            $table->string('nombre',12)->nullable();
-            $table->string('usuario_creacion',20)->nullable();
-            $table->string('usuario_modificacion',20)->nullable();
+        Schema::create('days', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name',12)->nullable();
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateDIAS extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DIAS');
+        Schema::dropIfExists('days');
     }
 }

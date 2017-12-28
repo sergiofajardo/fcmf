@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Facultades;
+use App\Physical_spaces;
 use Illuminate\Http\Request;
 
-class FacultadController extends Controller
+class Physical_spacesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class FacultadController extends Controller
      */
     public function index()
     {
-    
-        return (Facultades::all());
-
+        //
+         return (Physical_spaces::all());
     }
 
     /**
@@ -43,26 +42,21 @@ class FacultadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $id_facultad)
+    public function show(Physical_spaces $physical_spaces)
     {
-        $facultad_ = Facultades::where('id_facultad', '=',$id_facultad->id_facultad)->get();
-        if(!is_null($facultad_))
-            return $facultad_;
-        else
-            return Response('no encontrado',404);
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Facultades $facultades)
+    public function edit(Physical_spaces $physical_spaces)
     {
         //
     }
@@ -71,10 +65,10 @@ class FacultadController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Facultades $facultades)
+    public function update(Request $request, Physical_spaces $physical_spaces)
     {
         //
     }
@@ -82,19 +76,11 @@ class FacultadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Facultades  $facultades
+     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Facultades $facultades)
+    public function destroy(Physical_spaces $physical_spaces)
     {
         //
-    }
-
-    public function getVista(){
-        $facultades = Facultades::all();
-         if(!is_null($facultades))
-        return view('Facultad.facultad')->with(['facultades'=>$facultades]);
-    else 
-        return Response('no existen facultades',404);
     }
 }

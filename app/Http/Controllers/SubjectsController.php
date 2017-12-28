@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Materias;
+use App\Subjects;
 use Illuminate\Http\Request;
 
-class MateriasController extends Controller
+class SubjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class MateriasController extends Controller
     public function index()
     {
         //
-         return (Materias::all());
+         return (Subjects::all());
     }
 
     /**
@@ -45,7 +45,7 @@ class MateriasController extends Controller
      * @param  \App\Materias  $materias
      * @return \Illuminate\Http\Response
      */
-    public function show(Materias $materias)
+    public function show(Subjects $subjects)
     {
         //
     }
@@ -56,7 +56,7 @@ class MateriasController extends Controller
      * @param  \App\Materias  $materias
      * @return \Illuminate\Http\Response
      */
-    public function edit(Materias $materias)
+    public function edit(Subjects $subjects)
     {
         //
     }
@@ -68,7 +68,7 @@ class MateriasController extends Controller
      * @param  \App\Materias  $materias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materias $materias)
+    public function update(Request $request, Subjects $subjects)
     {
         //
     }
@@ -79,7 +79,7 @@ class MateriasController extends Controller
      * @param  \App\Materias  $materias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Materias $materias)
+    public function destroy(Subjects $subjects)
     {
         //
     }

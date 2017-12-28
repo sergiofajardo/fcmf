@@ -13,15 +13,15 @@ class CreateMATERIAS extends Migration
      */
     public function up()
     {
-        Schema::create('MATERIAS', function (Blueprint $table) {
-            $table->increments('id_materia');
-            $table->integer('id_carrera')->unsigned();
-            $table->string('nivel',10)->nullable();
-            $table->string('estado',10)->nullable();
-            $table->string('nombre',50)->nullable();
-            $table->string('usuario_creacion',20)->nullable();
-            $table->string('usuario_modificacion',20)->nullable();
-            $table->foreign('id_carrera')->references('id_carrera')->on('carreras');
+        Schema::create('subjects', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('career_id')->unsigned();
+            $table->string('level',10)->nullable();
+            $table->string('state',10)->nullable();
+            $table->string('name',50)->nullable();
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
+            $table->foreign('career_id')->references('id')->on('careers');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateMATERIAS extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MATERIAS');
+        Schema::dropIfExists('subjects');
     }
 }

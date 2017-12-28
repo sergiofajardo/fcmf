@@ -13,12 +13,12 @@ class CreatePARALELO extends Migration
      */
     public function up()
     {
-        Schema::create('PARALELO', function (Blueprint $table) {
-            $table->increments('id_paralelo');
-            $table->string('codigo',10)->nullable();
-            $table->string('estado', 10)->nullable();
-            $table->string('usuario_creacion',20)->nullable();
-            $table->string('usuario_modificacion',20)->nullable();
+        Schema::create('classrooms', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code',10)->nullable();
+            $table->string('state', 10)->nullable();
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePARALELO extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('PARALELO');
+        Schema::dropIfExists('classrooms');
     }
 }

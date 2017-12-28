@@ -13,15 +13,15 @@ class CreateFacultadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('facultades', function (Blueprint $table) {
-            $table->increments('id_facultad');
-            $table->string('facultad',150)->unique();
-            $table->string('telefono',10)->nullable();
-            $table->string('direccion',150)->nullable();
-            $table->string('logo',300)->nullable();
-            $table->string('usuario_creacion',50)->nullable();
-            $table->string('usuario_modificacion',50)->nullable();
-            $table->string('mision',300)->nullable();
+        Schema::create('faculties', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name',150)->unique();
+            $table->string('phone',10)->nullable();
+            $table->string('address',150)->nullable();
+            $table->string('image',300)->nullable();
+            $table->string('user_create',50)->nullable();
+            $table->string('user_update',50)->nullable();
+            $table->string('mission',300)->nullable();
             $table->string('vision',300)->nullable();
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ class CreateFacultadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facultades');
+        Schema::dropIfExists('faculties');
     }
 }

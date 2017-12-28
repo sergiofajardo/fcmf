@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Materias_paralelos;
+use App\Period_cycles;
 use Illuminate\Http\Request;
 
-class Materias_paralelosController extends Controller
+class Period_cyclesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class Materias_paralelosController extends Controller
     public function index()
     {
         //
-         return (Materias_paralelos::all());
     }
 
     /**
@@ -42,10 +41,10 @@ class Materias_paralelosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Materias_paralelos  $materias_paralelos
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function show(Materias_paralelos $materias_paralelos)
+    public function show(Period_cycles $period_cycles)
     {
         //
     }
@@ -53,10 +52,10 @@ class Materias_paralelosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Materias_paralelos  $materias_paralelos
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function edit(Materias_paralelos $materias_paralelos)
+    public function edit(Period_cycles $period_cycles)
     {
         //
     }
@@ -65,10 +64,10 @@ class Materias_paralelosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Materias_paralelos  $materias_paralelos
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materias_paralelos $materias_paralelos)
+    public function update(Request $request, Period_cycles $period_cycles)
     {
         //
     }
@@ -76,10 +75,10 @@ class Materias_paralelosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Materias_paralelos  $materias_paralelos
+     * @param  \App\Period_cycles  $period_cycles
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Materias_paralelos $materias_paralelos)
+    public function destroy(Period_cycles $period_cycles)
     {
         //
     }

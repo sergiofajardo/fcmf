@@ -13,13 +13,13 @@ class CreateHORAS extends Migration
      */
     public function up()
     {
-        Schema::create('HORAS', function (Blueprint $table) {
-            $table->increments('id_hora');
-            $table->string('desde',10)->nullable();
-            $table->string('hasta',10)->nullable();
-            $table->string('estado',10)->nullable();
-            $table->string('usuario_creacion',20)->nullable();
-            $table->string('usuario_modificacion',20)->nullable();
+        Schema::create('hours', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('since',10)->nullable();
+            $table->string('until',10)->nullable();
+            $table->string('state',10)->nullable();
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateHORAS extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('HORAS');
+        Schema::dropIfExists('hours');
     }
 }

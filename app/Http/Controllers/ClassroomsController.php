@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Horarios;
+use App\Classrooms;
 use Illuminate\Http\Request;
 
-class HorariosController extends Controller
+class ClassroomsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class HorariosController extends Controller
      */
     public function index()
     {
-         return (Horarios::all());
         //
+         return (Classrooms::all());
     }
 
     /**
@@ -42,10 +42,10 @@ class HorariosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Horarios  $horarios
+     * @param  \App\Paralelos  $paralelos
      * @return \Illuminate\Http\Response
      */
-    public function show(Horarios $horarios)
+    public function show(Classrooms $classrooms)
     {
         //
     }
@@ -53,10 +53,10 @@ class HorariosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Horarios  $horarios
+     * @param  \App\Paralelos  $paralelos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Horarios $horarios)
+    public function edit(Classrooms $classrooms)
     {
         //
     }
@@ -65,10 +65,10 @@ class HorariosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Horarios  $horarios
+     * @param  \App\Paralelos  $paralelos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Horarios $horarios)
+    public function update(Request $request, Classrooms $classrooms)
     {
         //
     }
@@ -76,10 +76,10 @@ class HorariosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Horarios  $horarios
+     * @param  \App\Paralelos  $paralelos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Horarios $horarios)
+    public function destroy(Classrooms $classrooms)
     {
         //
     }

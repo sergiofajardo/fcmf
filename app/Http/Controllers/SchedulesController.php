@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Espacios_Fisicos;
+use App\Schedules;
 use Illuminate\Http\Request;
 
-class Espacios_FisicosController extends Controller
+class SchedulesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class Espacios_FisicosController extends Controller
      */
     public function index()
     {
+         return (Schedules::all());
         //
-         return (Espacios_Fisicos::all());
     }
 
     /**
@@ -42,10 +42,10 @@ class Espacios_FisicosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
+     * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function show(Espacios_Fisicos $espacios_Fisicos)
+    public function show(Schedules $schedules)
     {
         //
     }
@@ -53,10 +53,10 @@ class Espacios_FisicosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
+     * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function edit(Espacios_Fisicos $espacios_Fisicos)
+    public function edit(Schedules $schedules)
     {
         //
     }
@@ -65,10 +65,10 @@ class Espacios_FisicosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
+     * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Espacios_Fisicos $espacios_Fisicos)
+    public function update(Request $request, Schedules $schedules)
     {
         //
     }
@@ -76,10 +76,10 @@ class Espacios_FisicosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Espacios_Fisicos  $espacios_Fisicos
+     * @param  \App\Horarios  $horarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Espacios_Fisicos $espacios_Fisicos)
+    public function destroy(Schedules $schedules)
     {
         //
     }

@@ -13,15 +13,16 @@ class CreateMATERIAPARALELO extends Migration
      */
     public function up()
     {
-        Schema::create('MATERIA_PARALELO', function (Blueprint $table) {
-            $table->increments('id_materia_paralelo');
-            $table->integer('id_docente')->unsigned();
-            $table->integer('id_materia')->unsigned();
-            $table->integer('id_paralelo')->unsigned();
-            $table->string('usuario_creacion',20)->nullable();
-            $table->string('usuario_modificacion',20)->nullable();
-            $table->foreign('id_docente')->references('id_docente')->on('docentes');
-            $table->foreign('id_paralelo')->references('id_paralelo')->on('paralelo');
+        Schema::create('subject_classrooms', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('teacher_id')->unsigned();
+            $table->integer('subject_id')->unsigned();
+            $table->integer('classroom_id')->unsigned();
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
+            $table->foreign('teacher_id')->references('id')->on('teachers');
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
            
             $table->timestamps();
         });
@@ -34,6 +35,6 @@ class CreateMATERIAPARALELO extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MATERIA_PARALELO');
+        Schema::dropIfExists('subject_classrooms');
     }
 }

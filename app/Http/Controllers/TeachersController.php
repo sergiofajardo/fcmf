@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Carreras;
+use App\Teachers;
 use Illuminate\Http\Request;
 
-class CarrerasController extends Controller
+class DocentesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CarrerasController extends Controller
     public function index()
     {
         //
-         return (Carreras::all());
+         return (Teachers::all());
     }
 
     /**
@@ -42,10 +42,10 @@ class CarrerasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Carreras  $carreras
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function show(Carreras $carreras)
+    public function show(Teachers $teachers)
     {
         //
     }
@@ -53,10 +53,10 @@ class CarrerasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Carreras  $carreras
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carreras $carreras)
+    public function edit(Teachers $teachers)
     {
         //
     }
@@ -65,10 +65,10 @@ class CarrerasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Carreras  $carreras
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carreras $carreras)
+    public function update(Request $request, Teachers $teachers)
     {
         //
     }
@@ -76,10 +76,10 @@ class CarrerasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Carreras  $carreras
+     * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carreras $carreras)
+    public function destroy(Teachers $teachers)
     {
         //
     }

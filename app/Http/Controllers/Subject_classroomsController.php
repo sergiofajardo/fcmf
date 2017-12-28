@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Paralelos;
+use App\Subject_classrooms;
 use Illuminate\Http\Request;
 
-class ParalelosController extends Controller
+class Subject_classroomsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ParalelosController extends Controller
     public function index()
     {
         //
-         return (Paralelos::all());
+         return (Subject_classrooms::all());
     }
 
     /**
@@ -42,10 +42,10 @@ class ParalelosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function show(Paralelos $paralelos)
+    public function show(Subject_classrooms $subject_classrooms)
     {
         //
     }
@@ -53,10 +53,10 @@ class ParalelosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paralelos $paralelos)
+    public function edit(Subject_classrooms $subject_classrooms)
     {
         //
     }
@@ -65,10 +65,10 @@ class ParalelosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paralelos $paralelos)
+    public function update(Request $request, Subject_classrooms $subject_classrooms)
     {
         //
     }
@@ -76,10 +76,10 @@ class ParalelosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Paralelos  $paralelos
+     * @param  \App\Materias_paralelos  $materias_paralelos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Paralelos $paralelos)
+    public function destroy(Subject_classrooms $subject_classrooms)
     {
         //
     }
