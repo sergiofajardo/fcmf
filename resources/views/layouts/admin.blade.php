@@ -26,20 +26,45 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-       
+        @if(Auth::user()->role_id ==1 || Auth::user()->role_id ==2)
         <li style="width: 30" class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>
             <span class="nav-link-text">Administración</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseComponents">
+            @if(Auth::user()->role_id ==1)
+         
             <li>
               <a href="{{ route('facultades') }}">Facultades</a>
             </li>
             <li>
-              <a href="cards.html">Carreras</a>
+              <a href="{{ route('facultades') }}">Carreras</a>
+            </li>
+             <li>
+              <a href="{{ route('facultades') }}">Docentes</a>
+            </li>
+             <li>
+              <a href="{{ route('facultades') }}">Materias</a>
+            </li>
+             <li>
+              <a href="{{ route('facultades') }}">Espacio Físico</a>
+            </li>
+             <li>
+              <a href="{{ route('facultades') }}">Periodo</a>
+            </li>
+             <li>
+              <a href="{{ route('facultades') }}">Paralelos</a>
+            </li>
+             <li>
+              <a href="{{ route('facultades') }}">Materias por paralelo</a>
+            </li>
+            @endif
+             <li>
+              <a href="{{ route('facultades') }}">Horarios por Espacio Físico</a>
             </li>
           </ul>
+          @endif
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">

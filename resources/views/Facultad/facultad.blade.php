@@ -1,18 +1,20 @@
-@extends('layouts.admin')
+@extends('admin.index')
 
 @section('content')
+
  <form>
        <div>
-        <span><b>Facultades: &nbsp;</b></span>
-        <select name="Facultad" id="cmbfacultades">
+        <span><b>Facultades &nbsp;</b></span>
+        <select style="width:auto;" name="Facultad" id="cmbfacultades">
         	<option value="0">Seleccione una Facultad</option>
              @foreach($facultades as $item)
-<option value="{{$item->id}}">{{ $item->facultad}}</option>
+<option value="{{$item->id_facultad}}">{{ $item->facultad}}</option>
 @endforeach 
 </select>&nbsp;
 <a>
     <input type="button" name="Consultar" onclick="llenarfacultades();/*se obtiene el id de la facultad*/" value="Consultar" title="Consultar">
 </a>
+<a href="{{route('facultades/mostrar', ['id_facultad'=> '$(#cmbfacultades).value'])}}">sdasdas</a>
 <a><input type="button" name="Crear" onclick="" value="Crear" title="Crear">
 </a>
 </div>
@@ -35,6 +37,7 @@
 <script type="text/javascript">
 	function llenarfacultades(){
 		
+
 $('input#facultad').val(cmbfacultades.value);
 	}
 </script>

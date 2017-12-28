@@ -46,11 +46,11 @@ class FacultadController extends Controller
      * @param  \App\Facultades  $facultades
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $id_facultad)
     {
-        $facultad_ = Facultades::find($id);
+        $facultad_ = Facultades::where('id_facultad', '=',$id_facultad->id_facultad)->get();
         if(!is_null($facultad_))
-            return view('facultad.mostrar' ,['facultad_show' => $facultad_->toarray()]);
+            return $facultad_;
         else
             return Response('no encontrado',404);
         //
@@ -94,6 +94,7 @@ class FacultadController extends Controller
         $facultades = Facultades::all();
          if(!is_null($facultades))
         return view('Facultad.facultad')->with(['facultades'=>$facultades]);
-
+    else 
+        return Response('no existen facultades',404);
     }
 }

@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/facultad', 'FacultadController@index')->name('facultad');
 
 Route::get('/facultades','FacultadController@getVista')->name('facultades');
+
+Route::get('/facultades/{id_facultad}','FacultadController@show')->name('facultades/mostrar');
 
