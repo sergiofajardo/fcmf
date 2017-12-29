@@ -19,9 +19,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/facultad', 'FacultiesController@index')->name('facultad');
+//Route::get('/facultad', 'FacultiesController@index')->name('facultad');
 
-Route::get('/facultades','FacultiesController@getVista')->name('facultades');
+//Route::get('/facultades','FacultiesController@getVista')->name('facultades');
 
-Route::get('/facultades/{id_facultad}','FacultiesController@show')->name('facultades/mostrar');
+//Route::get('/facultades/{id_facultad}','FacultiesController@show')->name('facultades/mostrar');
+
+
+
+
+Route::group(['prefix'=>'admin','middleware'=>'auth','as'=>'admin'],function(){
+
+    Route::resource('Faculties','FacultiesController');
+
+});
 

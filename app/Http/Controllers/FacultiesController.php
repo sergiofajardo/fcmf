@@ -12,10 +12,12 @@ class FacultiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-    
-        return (Faculties::all());
+
+        $faculties = Faculties::orderBy('name','asc')->where('name','like',"%$request->scope%")->paginate(5);
+
+        return view('Facultad.index')->with(['faculties'=>$faculties,'scope'=>$request->scope]);
 
     }
 
@@ -26,7 +28,7 @@ class FacultiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('Facultad.createFacultie');
     }
 
     /**

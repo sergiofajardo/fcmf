@@ -168,6 +168,9 @@ return [
          * Package Service Providers...
          */
 
+        Styde\Html\HtmlServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -225,6 +228,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Access' => Styde\Html\Facades\Access::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
