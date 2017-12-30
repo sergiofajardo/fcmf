@@ -55,7 +55,7 @@
               <a href="#">Espacio Físico</a>
             </li>
              <li>
-              <a href="#">Periodo</a>
+              <a href="{{route('admin.periodo_lectivo.index')}}">Periodo Lectivo</a>
             </li>
              <li>
               <a href="#">Paralelos</a>
