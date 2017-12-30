@@ -19,8 +19,8 @@ class CreateEspaciosFisicos extends Migration
             $table->string('type', 30)->nullable();
             $table->string('location', 300)->nullable();
             $table->string('state',10)->nullable();
-            $table->string('user_create',20);
-            $table->string('user_update',20);
+            $table->string('user_create',20)->nullable();
+            $table->string('user_update',20)->nullable();
             $table->string('name',40)->nullable();
             $table->foreign('faculties_id')->references('id')->on('faculties');
             $table->timestamps();
