@@ -11,17 +11,14 @@
                         <div class="form-group">
              
                     {!! Form::open(['route'=>['admin.facultades.update',$faculties], 'method'=>'PUT']) !!}
-                        {!! Field::text('',$faculties->id ,['style'=>'display:none;']) !!}
-<<<<<<< HEAD
-        
-=======
-                        
->>>>>>> 8a1a607fab60fac45b69909170a67552d0f8ddcc
+
                         {!! Field::text('name',$faculties->name) !!}
                         {!! Field::text('address',$faculties->address) !!}
 
                         {!! Field::text('phone',$faculties->phone) !!}
-                        
+                        {!! Field::text('mission',$faculties->mission) !!}
+                        {!! Field::text('vision',$faculties->vision) !!}
+
                         {!! Form::submit('Guardar',["class"=>"btn btn-success"]) !!}
                         {{ link_to_route('admin.facultades.index', 'Regresar',[],['class'=>'btn btn-warning btn-xs'])}}
                         {!! Form::close() !!}

@@ -15,9 +15,9 @@
 
 
   <!-- Custom fonts for this template-->
-  <link href="../../../../../FMCF/public/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href='{{ asset("admin/vendor/font-awesome/css/font-awesome.min.css")}}' rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
-  <link href="../../../../../FMCF/public/admin/css/sb-admin.css" rel="stylesheet">
+  <link href='{{ asset("admin/css/sb-admin.css")}}' rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -43,7 +43,7 @@
               <a href="{{ route('admin.facultades.index') }}">Facultades</a>
             </li>
             <li>
-              <a href="#">Carreras</a>
+              <a href="{{ route('admin.carreras.index') }}">Carreras</a>
             </li>
              <li>
               <a href="#">Docentes</a>
@@ -173,12 +173,12 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="../../../../../FMCF/public/admin/vendor/jquery/jquery.min.js"></script>
-    <script src="../../../../../FMCF/public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src='{{ asset("admin/vendor/jquery/jquery.min.js")}}'></script>
+    <script src='{{ asset("admin/vendor/bootstrap/js/bootstrap.bundle.min.js")}}'></script>
     <!-- Core plugin JavaScript-->
-    <script src="../../../../../FMCF/public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src='{{ asset("admin/vendor/jquery-easing/jquery.easing.min.js")}}'></script>
     <!-- Custom scripts for all pages-->
-    <script src="../../../../../FMCF/public/admin/js/sb-admin.min.js"></script>
+    <script src='{{ asset("admin/js/sb-admin.min.js")}}'></script>
   </div>
 </body>
 
