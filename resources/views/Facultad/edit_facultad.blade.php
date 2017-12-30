@@ -12,7 +12,11 @@
              
                     {!! Form::open(['route'=>['admin.facultades.update',$faculties], 'method'=>'PUT']) !!}
                         {!! Field::text('',$faculties->id ,['style'=>'display:none;']) !!}
+<<<<<<< HEAD
         
+=======
+                        
+>>>>>>> 8a1a607fab60fac45b69909170a67552d0f8ddcc
                         {!! Field::text('name',$faculties->name) !!}
                         {!! Field::text('address',$faculties->address) !!}
 
