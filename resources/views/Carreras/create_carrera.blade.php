@@ -6,11 +6,20 @@
     <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear Facultad</div>
+                    <div class="panel-heading">Crear Carrera</div>
                     <div class="panel-body">
                         <div class="form-group">
              
-                    {!! Form::open(['route'=>'admin.facultades.store']) !!}
+                    {!! Form::open(['route'=>'admin.carreras.store']) !!}
+
+        <span>Facultad a la que pertenece &nbsp;</span>
+
+        <select  name="faculty_id" id="faculty_id">
+             @foreach($faculties as $item)
+        <option value="{{$item->id}}">{{ $item->name}}</option>
+            @endforeach 
+            </select>&nbsp;
+            <br/><br/>
 
                          {!! Field::file('image',['class'=>'file','data-show-preview'=>false,'data-show-upload'=>false]) !!}
                         {!! Field::text('name',null,['placeholder'=>'Ingrese el nombre']) !!}
@@ -24,7 +33,7 @@
 
 
                         {!! Form::submit('Guardar',["class"=>"btn btn-success"]) !!}
-                        <a href="{{route('admin.facultades.index')}}">
+                        <a href="{{route('admin.carreras.index')}}">
                             <input type="button" class="btn btn-primary" name="Cancelar" value="Cancelar">
                         </a>
                         {!! Form::close() !!}

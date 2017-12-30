@@ -8,12 +8,12 @@
             <div  style="width: 100%; height: 100%;">
                 <div class="panel panel-default">
                           
-                    <div class="panel-heading">Facultades</div><br/>
+                    <div class="panel-heading">Carreras</div><br/>
 
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-8">
-                                  <a href="{{ route('admin.facultades.create') }}" class="btn btn-primary">Crear</a>
+                                  <a href="{{ route('admin.carreras.create') }}" class="btn btn-primary">Crear</a>
                     </div>
                  <!--   <div class="col-md-4">
                          {!! Form::open(['route'=>'admin.facultades.index','method'=>'GET']) !!}
@@ -30,24 +30,27 @@
 
                         <table class="table" style="height: 100%;width: 100%;" >
                             <thead>
-                            <th>Facultad</th>
+                            <th>Carrera</th>
                             <th>Teléfono</th>
                             <th>Dirección</th>
+                            <th>Facultad a la que pertenece</th>
                             <th>Opciones</th>
                             </thead>
                             <tbody>
-                            @foreach( $faculties as $facultie)
+                            @foreach( $careers as $career)
                                 <tr>
-                                    <td style="width: 35%">{{ $facultie->name }}</td>
-                                    <td style="width: 10%">{{ $facultie->phone }}</td>
-                                    <td style="width: 35%">{{ $facultie->address }}</td>
-                                    <td style="width: 20%">
+                                    <td style="width: 30%">{{ $career->name }}</td>
+                                    <td style="width: 10%">{{ $career->phone }}</td>
+                                    <td style="width: 30%">{{ $career->address }}</td>
+                                    <td style="width: 15%">{{$faculties->where('id',$career->faculty_id)->first()->name}}</td>
+                                   
+                                    <td style="width: 15%">
 
-                                        {{link_to_route('admin.facultades.edit','Editar',[$facultie->id],["class"=>"btn btn-warning btn-xs"])}}
+                                        {{link_to_route('admin.carreras.edit','Editar',[$career->id],["class"=>"btn btn-warning btn-xs"])}}
                                         
-                                        {{link_to_route('admin.facultades.show','Ver',[$facultie->id],["class"=>"btn btn-warning btn-xs"])}}
+                                        {{link_to_route('admin.carreras.show','Ver',[$career->id],["class"=>"btn btn-warning btn-xs"])}}
                                         <br/><br/>
-                                        {!! Form::open(['route'=>['admin.facultades.destroy',$facultie->id],'method'=>'DELETE']) !!}
+                                        {!! Form::open(['route'=>['admin.carreras.destroy',$career->id],'method'=>'DELETE']) !!}
                                         {!! Form::submit('Borrar',["class"=>"btn btn-danger btn-xs"]) !!}
                                         {!! Form::close() !!}
                                     </td>
@@ -58,8 +61,8 @@
 
                         </table>
 
-                        {!! $faculties->render() !!}
-           <p>Página {{$faculties->currentPage()}} de {{$faculties->lastPage()}}</p>
+                        {!! $careers->render() !!}
+           <p>Página {{$careers->currentPage()}} de {{$careers->lastPage()}}</p>
         </div>
 
                     </div>
