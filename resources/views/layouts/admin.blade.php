@@ -8,12 +8,16 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title> FCMF</title>
+
   <!-- Bootstrap core CSS-->
-  <link href="admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href='{{ asset("admin/vendor/bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
+
+
+
   <!-- Custom fonts for this template-->
-  <link href="admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../../../../../FMCF/public/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
-  <link href="admin//css/sb-admin.css" rel="stylesheet">
+  <link href="../../../../../FMCF/public/admin/css/sb-admin.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -36,32 +40,32 @@
             @if(Auth::user()->role_id ==1)
          
             <li>
-              <a href="{{ route('facultades') }}">Facultades</a>
+              <a href="{{ route('admin.facultades.index') }}">Facultades</a>
             </li>
             <li>
-              <a href="{{ route('facultades') }}">Carreras</a>
+              <a href="#">Carreras</a>
             </li>
              <li>
-              <a href="{{ route('facultades') }}">Docentes</a>
+              <a href="#">Docentes</a>
             </li>
              <li>
-              <a href="{{ route('facultades') }}">Materias</a>
+              <a href="#">Materias</a>
             </li>
              <li>
-              <a href="{{ route('facultades') }}">Espacio Físico</a>
+              <a href="#">Espacio Físico</a>
             </li>
              <li>
-              <a href="{{ route('facultades') }}">Periodo</a>
+              <a href="#">Periodo</a>
             </li>
              <li>
-              <a href="{{ route('facultades') }}">Paralelos</a>
+              <a href="#">Paralelos</a>
             </li>
              <li>
-              <a href="{{ route('facultades') }}">Materias por paralelo</a>
+              <a href="#">Materias por paralelo</a>
             </li>
             @endif
              <li>
-              <a href="{{ route('facultades') }}">Horarios por Espacio Físico</a>
+              <a href="#">Horarios por Espacio Físico</a>
             </li>
           </ul>
           @endif
@@ -169,12 +173,12 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="admin/vendor/jquery/jquery.min.js"></script>
-    <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../../../FMCF/public/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../../../FMCF/public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
-    <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../../../FMCF/public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
-    <script src="admin/js/sb-admin.min.js"></script>
+    <script src="../../../../../FMCF/public/admin/js/sb-admin.min.js"></script>
   </div>
 </body>
 
