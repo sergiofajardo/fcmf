@@ -11,6 +11,7 @@
                         <div class="form-group">
              
                     {!! Form::open(['route'=>['admin.facultades.update',$faculties], 'method'=>'PUT']) !!}
+
                         {!! Field::text('name',$faculties->name) !!}
                         {!! Field::text('address',$faculties->address) !!}
 
