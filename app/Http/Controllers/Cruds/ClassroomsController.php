@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cruds;
 
 use App\Classrooms;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClassroomsController extends Controller
 {
@@ -12,10 +14,12 @@ class ClassroomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-         return (Classrooms::all());
+     $classrooms = Classrooms::orderBy('code','asc')->where('code','like',"%$request->scope%")->paginate(3);
+        return view('Paralelos.index_paralelo')->with(['classrooms'=>$classrooms,'scope'=>$request->scope]);
+  
     }
 
     /**
@@ -26,6 +30,8 @@ class ClassroomsController extends Controller
     public function create()
     {
         //
+           return view('Paralelos.create_paralelo');
+   
     }
 
     /**
@@ -37,6 +43,15 @@ class ClassroomsController extends Controller
     public function store(Request $request)
     {
         //
+               $objectClassroom = new Classrooms();
+        
+        $objectClassroom->code=$request->code;
+        $objectClassroom->state=$request->state;
+        $objectClassroom->user_create= Auth::user()->id;
+        $objectClassroom->save();
+         
+        return redirect()->route('admin.paralelos.index');
+ 
     }
 
     /**
@@ -56,9 +71,12 @@ class ClassroomsController extends Controller
      * @param  \App\Paralelos  $paralelos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classrooms $classrooms)
+    public function edit( $classrooms)
     {
         //
+               $classrooms= Classrooms::findOrFail($classrooms);
+       return view('Paralelos.edit_paralelo')->with(['classroom'=>$classrooms]);
+   
     }
 
     /**
@@ -68,9 +86,15 @@ class ClassroomsController extends Controller
      * @param  \App\Paralelos  $paralelos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classrooms $classrooms)
+    public function update(Request $request,  $classrooms)
     {
         //
+               $classrooms= Classrooms::findOrFail($classrooms);
+        $classrooms->fill($request->all());
+        $classrooms->user_update= Auth::user()->id;
+        $classrooms->save();
+    return redirect()->route('admin.paralelos.index');
+  
     }
 
     /**
@@ -79,8 +103,12 @@ class ClassroomsController extends Controller
      * @param  \App\Paralelos  $paralelos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classrooms $classrooms)
+    public function destroy( $classrooms)
     {
         //
+              $classrooms= Classrooms::findOrFail($classrooms);
+        $classrooms->delete();
+    return redirect()->route('admin.paralelos.index');
+  
     }
 }
