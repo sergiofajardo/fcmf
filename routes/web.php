@@ -29,6 +29,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth', 'as'=>'admin.'], function(
 
 	Route::resource('carreras','Cruds\CareersController');
 	Route::resource('periodo_lectivo','Cruds\Period_cyclesController');
+	Route::resource('espacios_fisicos', 'Cruds\Physical_spacesController');
 	
 });
 

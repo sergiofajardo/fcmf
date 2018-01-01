@@ -52,7 +52,7 @@
               <a href="#">Materias</a>
             </li>
              <li>
-              <a href="#">Espacio Físico</a>
+              <a href="{{route('admin.espacios_fisicos.index')}}">Espacio Físico</a>
             </li>
              <li>
               <a href="{{route('admin.periodo_lectivo.index')}}">Periodo Lectivo</a>
