@@ -58,7 +58,7 @@
               <a href="{{route('admin.periodo_lectivo.index')}}">Periodo Lectivo</a>
             </li>
              <li>
-              <a href="#">Paralelos</a>
+              <a href="{{route('admin.paralelos.index')}}">Paralelos</a>
             </li>
              <li>
               <a href="#">Materias por paralelo</a>
