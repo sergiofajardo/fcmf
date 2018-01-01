@@ -139,9 +139,9 @@
                    
               <br/>
                <label style="font-size:14px;color: #045FB4; text-align:center"><b>
-                       Acerca de la Facultad de Ciencias Matemáticas y Físicas
+                       Facultad de Ciencias Matemáticas y Físicas
                    </b>
-               </label>
+               </label><br/>
                  <img src="../public/image/FCMF_entrada.png" width="70%" height="300px" alt="Facultad de Ciencias Matematicas y Físicas" />
         
                     <p>

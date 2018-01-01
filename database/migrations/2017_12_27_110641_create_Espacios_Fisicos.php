@@ -22,7 +22,7 @@ class CreateEspaciosFisicos extends Migration
             $table->string('user_create',20)->nullable();
             $table->string('user_update',20)->nullable();
             $table->string('name',40)->nullable();
-            $table->foreign('faculties_id')->references('id')->on('faculties');
+            $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->timestamps();
         });
     }
