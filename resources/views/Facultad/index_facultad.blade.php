@@ -10,7 +10,7 @@
                           
                     <div class="panel-heading">Facultades</div><br/>
 
-                    <div class="panel-body">
+                    <div class="panel-body" style="width: 100%; height: 100%;">
                         <div class="row">
                             <div class="col-md-8">
                                   <a href="{{ route('admin.facultades.create') }}" class="btn btn-primary">Crear</a>

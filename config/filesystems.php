@@ -43,9 +43,13 @@ return [
 
     'disks' => [
 
-        'local' => [
+        'imgFacultades' => [
             'driver' => 'local',
             'root' => public_path('image/facultad'),
+        ],
+        'local' => [
+            'driver' => 'local',
+            'root' => public_path('image'),
         ],
 
         'public' => [

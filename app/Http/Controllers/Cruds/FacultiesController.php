@@ -6,6 +6,7 @@ use App\Faculties;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
+use Storage;
 
 class FacultiesController extends Controller 
 {
@@ -46,8 +47,18 @@ class FacultiesController extends Controller
         $objectFacultad->name=$request->name;
         $objectFacultad->address=$request->address;
         $objectFacultad->phone=$request->phone;
-        $objectFacultad->image=$request->image;
+        $objectFacultad->mission= $request->mission;
+        $objectFacultad->vision= $request->vision;
+        if($request->image != null){
+        $img=$request->image;
+        $img_route = time().'_'.$img->getClientOriginalName();
+        Storage::disk('imgFacultades')->put($img_route, file_get_contents($img->getRealPath() ) );
          
+         $objectFacultad->image= $img_route;
+         }
+         else {
+            $objectFacultad->image = 'sin_imagen';
+         }
         $objectFacultad->save();
        // dd($request);
         return redirect()->route('admin.facultades.index');
@@ -90,10 +101,33 @@ class FacultiesController extends Controller
     public function update(Request $request, $faculties)
     {
         $facultad= Faculties::findOrFail($faculties);
-        $facultad->fill($request->all());
+        if($request->image != null){
+            $img_ant = $facultad->image;
+        $facultad->name= $request->name;
+        $facultad->address= $request->address;
+        $facultad->phone= $request->phone;
+        $facultad->mission = $request->mission;
+        $facultad->vision = $request->vision;
         $facultad->user_update= Auth::user()->id;
+
+        $img=$request->image;
+        $img_route = time().'_'.$img->getClientOriginalName();
+        Storage::disk('imgFacultades')->put($img_route, file_get_contents($img->getRealPath() ) );
+        $facultad->image= $img_route;
+        if(file_exists(public_path('image/facultad/'.$img_ant)))
+             unlink(public_path('image/facultad/'.$img_ant));
+
+       }else{
+        $facultad->name= $request->name;
+        $facultad->address= $request->address;
+        $facultad->phone= $request->phone;
+        $facultad->mission = $request->mission;
+        $facultad->vision = $request->vision;
+        $facultad->user_update= Auth::user()->id;
+             }
+
         $facultad->save();
-    return redirect()->route('admin.facultades.index');
+         return redirect()->route('admin.facultades.index');
     }
 
     /**

@@ -9,8 +9,10 @@
                     <div class="panel-heading"> Facultad</div>
                     <div class="panel-body">
                         <div class="form-group">
-             
+                    
                     {!! Form::open() !!}
+                    <img style="margin-left: 10%; margin-right: 10%;" width="80%" src="../../image/facultad/{{$faculties->image}}">
+             
                         {!! Field::text('name',$faculties->name,['readonly'=>'true']) !!}
                         {!! Field::text('address',$faculties->address,['readonly'=>'true']) !!}
 
