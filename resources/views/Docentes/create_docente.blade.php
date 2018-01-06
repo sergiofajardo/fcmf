@@ -11,7 +11,7 @@
              
                     {!! Form::open(['route'=>'admin.docentes.store','files'=>'true','enctype'=>'multipart/form-data']) !!}
 
-                            <label>Facultad:</label> 
+                            <label> Seleccione la Facultad para cargar las carreras:</label> 
                               <select  name="faculties_id" id="faculties_id" onchange="ver();" >
                                 <option value="0">Seleccione una Facultad</option>
                                    @foreach($faculties as $faculty)

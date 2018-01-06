@@ -21,7 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/facultad', 'FacultiesController@index')->name('facultad');
 
-Route::post('obtenerCarreras','Cruds\TeachersController@getcareersbyfaculty')->name('obtenerCarreras');
+Route::post('obtenerCarreras','Cruds\TeachersController@getcareersbyfaculty')->name('obtenerCarreras');//obtener las carreras de la facultad seleccionada
+
+Route::post('obtenerCarrer','Cruds\TeachersController@getcareersSelectedbyfaculty')->name('obtenerCarrerasSeleccionadas');//
+
 
 //Route::get('/facultades/{id_facultad}','FacultiesController@show')->name('facultades/mostrar');
 

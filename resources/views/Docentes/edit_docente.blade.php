@@ -12,7 +12,19 @@
              
                     {!! Form::open(['route'=>['admin.docentes.update',$teacher], 'method'=>'PUT','enctype'=>'multipart/form-data']) !!}
                         <img style="margin-left: 10%; margin-right: 10%;" width="70%" height="230px" src="../../../image/docente/{{$teacher->image}}">
-             
+                        
+             <br/><br/>
+                   <label>Facultad:</label> 
+                              <select  name="faculties_id" id="faculties_id" onchange="ver();" >
+                                   @foreach($faculties as $faculty)
+                                <option @if($carrera_pertenece->first()->faculty_id == $faculty->id) 
+                                   selected  @endif  value="{{$faculty->id}}">{{ $faculty->name}}</option>
+                                    @endforeach 
+                                 </select>&nbsp;
+                                    <br/><br/>
+                                <div id="career_id">
+                                    
+                                 </div>
                      {!! Field::file('image',['class'=>'file','data-show-preview'=>false,'data-show-upload'=>false]) !!}
                         {!! Field::text('name',$teacher->name,['placeholder'=>'Ingrese los nombres']) !!}
                         {!! Field::text('last_name',$teacher->last_name,['placeholder'=>'Ingrese los apellidos']) !!}
@@ -35,6 +47,25 @@
                     </div>
             </div>
 
+<script type="text/javascript">
 
+window.onload=ver;
+  function ver(){
+
+$.ajax({
+  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+  method: "POST",
+  url: "{{route('obtenerCarrerasSeleccionadas')}}",
+  data: {faculties_id:$('#faculties_id').val(), teacher_id: {{$teacher->id}} },
+  success: function(data){
+    $data = $(data);
+    console.log($data);
+            $('#career_id').html($data);
+        }
+  
+});
+
+}
+</script>
 
 @endsection

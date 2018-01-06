@@ -12,7 +12,17 @@
                     
                     {!! Form::open() !!}
                     <img style="margin-left: 10%; margin-right: 10%;" width="400px" height="250px" src="../../image/docente/{{$teacher->image}}">
-             
+                    <br/>
+                  <label>Facultad en la que trabaja:  </label><br/>
+                   <label> @if($faculties !=null) <b> {{$faculties->first()->name}}</b> @else  <b>No tiene asignada ninguna Facultad </b>  @endif  </label><br/>
+                 <label>Carreras en las que da clases:</label><br/>
+                 @if($teacher_careers != null )
+                    @foreach($teacher_careers as $object)
+                    <label> <b>{{$object->name}} </b></label> <br/>
+                        @endforeach
+
+                        @else <b>  No tiene asignada ninguna carrera</b>
+                            @endif
                         {!! Field::text('name',$teacher->name,['readonly'=>'true']) !!}
                         {!! Field::text('last_name',$teacher->last_name,['readonly'=>'true']) !!}
                         {!! Field::text('card',$teacher->card,['readonly'=>'true']) !!}
@@ -29,7 +39,6 @@
                 </div>
                     </div>
             </div>
-
 
 
 @endsection
