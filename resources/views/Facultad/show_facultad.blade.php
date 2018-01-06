@@ -11,7 +11,7 @@
                         <div class="form-group">
                     
                     {!! Form::open() !!}
-                    <img style="margin-left: 10%; margin-right: 10%;" width="80%" src="../../image/facultad/{{$faculties->image}}">
+                    <img style="margin-left: 10%; margin-right: 10%;" width="400px" height="250px" src="../../image/facultad/{{$faculties->image}}">
              
                         {!! Field::text('name',$faculties->name,['readonly'=>'true']) !!}
                         {!! Field::text('address',$faculties->address,['readonly'=>'true']) !!}

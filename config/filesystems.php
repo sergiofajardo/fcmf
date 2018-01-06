@@ -47,6 +47,14 @@ return [
             'driver' => 'local',
             'root' => public_path('image/facultad'),
         ],
+         'imgCarreras' => [
+            'driver' => 'local',
+            'root' => public_path('image/carrera'),
+        ],
+        'imgDocentes' => [
+            'driver' => 'local',
+            'root' => public_path('image/docente'),
+        ],
         'local' => [
             'driver' => 'local',
             'root' => public_path('image'),

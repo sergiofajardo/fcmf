@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/facultad', 'FacultiesController@index')->name('facultad');
 
+Route::post('obtenerCarreras','Cruds\TeachersController@getcareersbyfaculty')->name('obtenerCarreras');
 
 //Route::get('/facultades/{id_facultad}','FacultiesController@show')->name('facultades/mostrar');
 
@@ -31,6 +32,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth', 'as'=>'admin.'], function(
 	Route::resource('periodo_lectivo','Cruds\Period_cyclesController');
 	Route::resource('espacios_fisicos', 'Cruds\Physical_spacesController');
 	Route::resource('paralelos', 'Cruds\ClassroomsController');
+	Route::resource('docentes', 'Cruds\TeachersController');
 
 	
 });

@@ -18,6 +18,11 @@ class FacultiesController extends Controller
     public function index(Request $request)
     {
     
+     $carpeta = public_path().'/image/facultad';
+if (!file_exists($carpeta)) {
+    mkdir($carpeta, 0777, true);
+}
+
              $facultades = Faculties::orderBy('name','asc')->where('name','like',"%$request->scope%")->paginate(3);
         return view('Facultad.index_facultad')->with(['faculties'=>$facultades,'scope'=>$request->scope]);
     }

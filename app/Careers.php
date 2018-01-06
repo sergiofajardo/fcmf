@@ -16,9 +16,11 @@ class Careers extends Model
 public function Faculty(){//una ccarrera puede pertenecer a una sola facultad
     return $this->belongsTo(Faculties::class,'id','faculty_id');
 }
-public function Subjects(){//una carrera puede tener muchas materias 
-    return $this->hasMany(Subjects::class,'career_id','id');
+public function teachers_careers(){//una carrera puede tener muchas materias 
+    return $this->hasMany(teachers_careers::class,'career_id','id');
 }
+
+
 
 }
 

@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+  
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="">
   <title> FCMF</title>
 
@@ -46,10 +48,7 @@
               <a href="{{ route('admin.carreras.index') }}">Carreras</a>
             </li>
              <li>
-              <a href="#">Docentes</a>
-            </li>
-             <li>
-              <a href="#">Materias</a>
+              <a href="{{route('admin.docentes.index')}}">Docentes</a>
             </li>
              <li>
               <a href="{{route('admin.espacios_fisicos.index')}}">Espacio Físico</a>
@@ -57,13 +56,7 @@
              <li>
               <a href="{{route('admin.periodo_lectivo.index')}}">Periodo Lectivo</a>
             </li>
-             <li>
-              <a href="{{route('admin.paralelos.index')}}">Paralelos</a>
-            </li>
-             <li>
-              <a href="#">Materias por paralelo</a>
-            </li>
-            @endif
+              @endif
              <li>
               <a href="#">Horarios por Espacio Físico</a>
             </li>
@@ -77,11 +70,9 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="login.html">Asignación de aulas</a>
+              <a href="login.html">Consulta Horarios Docentes</a>
             </li>
-            <li>
-              <a href="register.html">Horarios docentes</a>
-            </li>
+            
             
           </ul>
         </li>

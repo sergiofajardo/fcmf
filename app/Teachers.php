@@ -11,10 +11,10 @@ class Teachers extends Model
     protected $table= 'teachers';
 
     protected $fillable= [
-    	'name','last_name','phone','degree','image','state','user_create','user_update'
+    	'card','name','last_name','phone','degree','image','state','user_create','user_update'
     ];
     
-    public function Subject_classrooms(){//un paralelo puede ser asignado a una materia_paralelo
-    return $this->hasMany(Subject_classrooms::class,'teacher_id','id');
+    public function teachers_careers(){//un paralelo puede ser asignado a una materia_paralelo
+    return $this->hasMany(teachers_careers::class,'teacher_id','id');
 }
 }
