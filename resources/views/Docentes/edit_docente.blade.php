@@ -4,18 +4,18 @@
 
 <div class="container">
     <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+          <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
                     <div class="panel-heading">Editar Docente</div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
              
                     {!! Form::open(['route'=>['admin.docentes.update',$teacher], 'method'=>'PUT','enctype'=>'multipart/form-data']) !!}
-                        <img style="margin-left: 10%; margin-right: 10%;" width="70%" height="230px" src="../../../image/docente/{{$teacher->image}}">
+                        <img style="margin-left: 20%; margin-right: 20%;" width="60%" height="230px" src="../../../image/docente/{{$teacher->image}}">
                         
              <br/><br/>
-                   <label>Facultad:</label> 
-                              <select  name="faculties_id" id="faculties_id" onchange="ver();" >
+                   <label>Seleccione la Facultad en la que sera asignado para cargar las carreras:</label> <br/>
+                              <select style="width: 70%;"  name="faculties_id" id="faculties_id" onchange="ver();" >
                                    @foreach($faculties as $faculty)
                                 <option @if($carrera_pertenece->first()->faculty_id == $faculty->id) 
                                    selected  @endif  value="{{$faculty->id}}">{{ $faculty->name}}</option>

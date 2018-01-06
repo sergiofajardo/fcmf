@@ -3,16 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+             <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear Docente</div>
-                    <div class="panel-body">
+                    <div class="panel-heading">Crear Docente</div><br/>
+                    <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
              
                     {!! Form::open(['route'=>'admin.docentes.store','files'=>'true','enctype'=>'multipart/form-data']) !!}
 
-                            <label> Seleccione la Facultad para cargar las carreras:</label> 
-                              <select  name="faculties_id" id="faculties_id" onchange="ver();" >
+                            <label> Seleccione la Facultad para cargar las carreras:</label><br/> 
+                              <select style="width: 70%;"  name="faculties_id" id="faculties_id" onchange="ver();" >
                                 <option value="0">Seleccione una Facultad</option>
                                    @foreach($faculties as $faculty)
                                 <option value="{{$faculty->id}}">{{ $faculty->name}}</option>
@@ -23,7 +23,7 @@
                                      <div id="career_id">
                                
                                  </div>
-                         {!! Field::file('image',['class'=>'file','data-show-preview'=>false,'data-show-upload'=>false]) !!}
+                         {!! Field::file('image',['class'=>'file','data-show-preview'=>false,'data-show-upload'=>false, 'style'=>'width:100%;']) !!}
 
                         {!! Field::text('name',null,['placeholder'=>'Ingrese los nombres']) !!}
                         {!! Field::text('last_name',null,['placeholder'=>'Ingrese los apellidos']) !!}

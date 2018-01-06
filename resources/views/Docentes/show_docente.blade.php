@@ -4,14 +4,14 @@
 
 <div class="container">
     <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
                     <div class="panel-heading"> Docente</div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
                     
                     {!! Form::open() !!}
-                    <img style="margin-left: 10%; margin-right: 10%;" width="400px" height="250px" src="../../image/docente/{{$teacher->image}}">
+                    <img style="margin-left: 20%; margin-right: 20%;" width="50%" height="250px" src="../../image/docente/{{$teacher->image}}">
                     <br/>
                   <label>Facultad en la que trabaja:  </label><br/>
                    <label> @if($faculties !=null) <b> {{$faculties->first()->name}}</b> @else  <b>No tiene asignada ninguna Facultad </b>  @endif  </label><br/>
