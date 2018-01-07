@@ -105,19 +105,16 @@ if (!file_exists($carpeta)) {
         if( count($teacher_careers) >0){ //se valida si el docente tiene asignada alguna carrera 
 
             $career_name = Careers::findOrFail($teacher_careers);//e obtiene la informacion de las carreras
-           
+            
          $faculties= new Faculties;
           $faculties = Faculties::where('id', Careers::where('id',$teacher_careers)->first()->faculty_id )->get();
         
         }
         else {
-             $teacher_careers = new Teachers_Careers;
-          
-                $teacher_careers->name= 'No tiene asignada carreras';
+             //$teacher_careers = new Teachers_Careers; 
+              //  $teacher_careers->name= 'No tiene asignada carreras';
              $faculties= new Faculties;
            $faculties=null;
-          //  dd($faculties);
-        //  $faculties->first()->name = 'No tiene facultad asignada';
          $career_name = new Careers;
           $career_name= null;
          
@@ -142,11 +139,13 @@ if (!file_exists($carpeta)) {
         
         if( count($teacher_careers) >0){ //se valida si el docente tiene asignada alguna carrera 
         $carrera_pertenece = Careers::where('id', $teacher_careers->first()->career_id)->get();
+          
         }
         else {
             $carrera_pertenece = new Careers;
             $carrera_pertenece->faculty_id = '0';
         }
+
         $faculties= Faculties::orderBy('name', 'asc')->get();
           $docente= Teachers::findOrFail($teachers);
        return view('Docentes.edit_docente')->with(['teacher'=>$docente,'faculties'=>$faculties,'teacher_careers'=>$teacher_careers,'carrera_pertenece'=>$carrera_pertenece]);
@@ -229,7 +228,7 @@ if (!file_exists($carpeta)) {
 
 
          public function getcareersSelectedbyfaculty( Request $request){
-             
+             //obtiene y muestra las carreras en las que da clase el docente
             $description = 'Seleccione la(s) carrera(s) en la que va a dar clases el docente :';
             $carrera_docente = Teachers_Careers::where('teacher_id', $request->teacher_id)->get();
             $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->get();

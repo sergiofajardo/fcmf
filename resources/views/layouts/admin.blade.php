@@ -58,7 +58,7 @@
             </li>
               @endif
              <li>
-              <a href="#">Horarios por Espacio Físico</a>
+              <a href="{{route('admin.horario.create')}}">Horarios por Espacio Físico</a>
             </li>
           </ul>
           @endif

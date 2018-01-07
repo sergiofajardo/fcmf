@@ -28,11 +28,10 @@
                         {!! Field::text('name',null,['placeholder'=>'Ingrese los nombres']) !!}
                         {!! Field::text('last_name',null,['placeholder'=>'Ingrese los apellidos']) !!}
                         {!! Field::text('phone',null,['placeholder'=>'Ingrese el número de telefono']) !!}
-
-                        {!! Field::text('card',null,['placeholder'=>'Ingrese el número de cedula']) !!}
-                        {!! Field::text('degree',null,['placeholder'=>'Ingrese el título que posee']) !!}
-
-                             <select  name="state" id="state">
+                         <label>Ingrese el número de Cedula</label><br/>   <input type="text" name="card" onkeypress="return valida(event)" style="width: 100%;" maxlength="10" class="form-control" placeholder="Ingrese el número de cédula">
+                         <label>Ingrese el título que posee</label><br/>   <input type="text" name="degree" style="width: 100%;" class="form-control" placeholder="Ingrese el título del docente">
+                            <br/>
+                           <label>Seleccione el Estado: </label>  <select  name="state" id="state">
                                 <option value="Activo">Activo</option>
                                 <option value="Inactivo">Inactivo</option>
                                  </select>&nbsp;
@@ -44,13 +43,29 @@
                         </a>
                         {!! Form::close() !!}
                         </div>
+                        <div class="table-responsive">
+   
+
+    </div>
                     </div>
                 </div>
                     </div>
             </div>
 
 <script type="text/javascript">
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
 
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+        
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
 
   function ver(){
 
