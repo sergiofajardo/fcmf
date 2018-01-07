@@ -100,15 +100,14 @@ if (!file_exists($carpeta)) {
     {
         //
              
-       $teacher_careers = Teachers_Careers::where('teacher_id',$teachers)->get();
+       $teacher_careers = Teachers_Careers::where('teacher_id',$teachers)->pluck('career_id');//obtiene el id de las carreras que tiene asignado el docente
        
         if( count($teacher_careers) >0){ //se valida si el docente tiene asignada alguna carrera 
 
-            $career_name = Careers::findOrFail($teacher_careers->first()->career_id)->get();
-           // dd($career_name);
-
+            $career_name = Careers::findOrFail($teacher_careers);//e obtiene la informacion de las carreras
+           
          $faculties= new Faculties;
-          $faculties = Faculties::where('id', Careers::where('id',$teacher_careers->first()->career_id)->first()->faculty_id )->get();
+          $faculties = Faculties::where('id', Careers::where('id',$teacher_careers)->first()->faculty_id )->get();
         
         }
         else {
