@@ -21,6 +21,7 @@ class CreateHORARIOSporEspaciosfisicos extends Migration
             $table->integer('hour_id')->unsigned();
             $table->integer('teacher_career_id')->unsigned();
             $table->string('observation',250)->nullable();
+            $table->string('reason',250)->nullable();
             $table->string('state',10)->nullable();
             $table->string('user_create',20)->nullable();
             $table->string('user_update',20)->nullable();

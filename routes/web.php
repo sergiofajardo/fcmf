@@ -32,6 +32,11 @@ Route::post('obtenerEspacios_fisicos_carrera','Cruds\Schedules_physicals_spacesC
 Route::post('obtenerDocentes','Cruds\Schedules_physicals_spacesController@getteachersbycareer')->name('obtenerDocentes');//obtener las carreras de la facultad seleccionada
 
 
+Route::post('CrearHorario','Cruds\Schedules_physicals_spacesController@CrearHorario')->name('CrearHorario');//obtener las carreras de la facultad seleccionada
+
+Route::post('verhorario','Cruds\Schedules_physicals_spacesController@verhorario')->name('verhorario');//
+
+Route::post('delete','Cruds\Schedules_physicals_spacesController@delete')->name('delete');//
 
 //Route::get('/facultades/{id_facultad}','FacultiesController@show')->name('facultades/mostrar');
 

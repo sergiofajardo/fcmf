@@ -52,7 +52,7 @@ class Schedules_physicals_spacesController extends Controller
     public function store(Request $request)
     {
         //
-        $horario= new Schedules_physicals_spaces();
+     /*   $horario= new Schedules_physicals_spaces();
         $horario->physical_space_id = $request->physical_space_id;
         $horario->hour_id = $request->hour_id;
            $horario->day_id = $request->day_id;
@@ -61,8 +61,23 @@ class Schedules_physicals_spacesController extends Controller
                 $horario->period_cycle_id = $request->period_cycle_id;
                  $horario->teacher_career_id = $request->teacher_career_id;
                  $horario->save();
-                    return;
+            return ;
+*/    }
 
+    public function CrearHorario (Request $request){
+
+         $horario= new Schedules_physicals_spaces();
+        $horario->physical_space_id = $request->physical_space_id;
+        $horario->hour_id = $request->hour_id;
+           $horario->day_id = $request->day_id;
+              $horario->observation = $request->observation;
+                 $horario->state = $request->state;
+                 $horario->reason= $request->reason;
+                 $horario->user_create = Auth::user()->id;
+                $horario->period_cycle_id = $request->period_cycle_id;
+                 $horario->teacher_career_id = $request->teacher_career_id;
+                 $horario->save();
+         return $horario;
     }
 
     /**
@@ -110,7 +125,14 @@ class Schedules_physicals_spacesController extends Controller
         //
     }
 
-
+     public function delete(Request $schedules_physicals_spaces)
+    {
+        //
+                $schedules_physicals_spaces= Schedules_physicals_spaces::findOrFail($schedules_physicals_spaces->id);
+        $schedules_physicals_spaces->delete();
+    
+  
+    }
 
     public function getphysicals_spacesbyfaculty(Request $request){
 
@@ -121,6 +143,20 @@ class Schedules_physicals_spacesController extends Controller
     }
    
       
+//funcion para cargar el horario del espacio fisico seleccionada
+                public function verhorario (Request $request){
+                 $horario_por_hora = Schedules_physicals_spaces::where('physical_space_id',$request->physical_space_id)->get();
+
+                 if($horario_por_hora == null || count($horario_por_hora)<=0)
+                    $horario_por_hora = null; 
+                     $day= Days::orderBy('id','asc')->get();
+                    $hours = Hours::orderBy('id','asc')->get();
+
+               // dd($horario_por_hora);
+        return view('mostrar_horario_espacio_fisico')->with(['days'=>$day,'hours'=>$hours,'horario_por_hora'=>$horario_por_hora]);
+
+                }
+
 
        public function getcareersbyfaculty( Request $request){
 
@@ -139,4 +175,6 @@ class Schedules_physicals_spacesController extends Controller
            return view('select_docentes')->with(['teachers'=> $teachers, 'teachers_careers'=> $carrera_docente]);
 
         }
+
+    
 }
