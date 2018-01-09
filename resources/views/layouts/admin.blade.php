@@ -10,11 +10,14 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="">
   <title> FCMF</title>
+  
+
+
+
 
   <!-- Bootstrap core CSS-->
     <link href='{{ asset("admin/vendor/bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
-
-
+  
 
   <!-- Custom fonts for this template-->
   <link href='{{ asset("admin/vendor/font-awesome/css/font-awesome.min.css")}}' rel="stylesheet" type="text/css">
@@ -70,7 +73,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="login.html">Consulta Horarios Docentes</a>
+              <a href="{{route('Horario_docente')}}">Consulta Horarios Docentes</a>
             </li>
             
             

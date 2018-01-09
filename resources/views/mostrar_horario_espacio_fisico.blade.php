@@ -26,7 +26,9 @@
                            @else
  						@if( count( $horario_por_hora->where('day_id',$day->id)->where('hour_id',$hour->id) )>0 )
  						 <td class="bg-success" >
-                        				<input type="button" id="btn-asignar{{$day->id}}{{$hour->id}}" onclick="editar({{$horario_por_hora->where('day_id',$day->id)->where('hour_id',$hour->id)->first()}});" type="button" class="btn btn-warning" data-toggle="modal" data-target="#Schedule_modal_edit" value="Editar" >
+ 						 			<input type="button" id="btn-asignar{{$day->id}}{{$hour->id}}" onclick="editar({{$horario_por_hora->where('day_id',$day->id)->where('hour_id',$hour->id)->first()}});"
+ 						 			 type="button" class="btn btn-warning" 
+                              				data-toggle="modal" data-target="#Schedule_modal_edit" value="Editar" >
 
 										<input type="button" id="btn-eliminar{{$day->id}}{{$hour->id}}" onclick="eliminar({{$horario_por_hora->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->id}});" type="button" class="btn btn-danger" value="Eliminar" >
                         				
