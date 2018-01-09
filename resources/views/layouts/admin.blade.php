@@ -73,7 +73,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="{{route('Horario_docente')}}">Consulta Horarios Docentes</a>
+              <a href="{{route('Horario_docente')}}">Consulta Horarios por Docente</a>
             </li>
             
             

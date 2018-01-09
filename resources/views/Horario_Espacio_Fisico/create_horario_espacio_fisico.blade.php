@@ -215,7 +215,7 @@ function crearHorario(){
   data: {day_id:$('#day_id').val(),
     hour_id:$('#hour_id').val(),
     teacher_career_id:$('#teacher_career_id_').val(),
-    period_cycle_id:$('#period_cycle').val(),
+    period_cycle_id:$('#period_cycle_id').val(),
     physical_space_id:$('#physical_space_id').val(),
     observation:$('#observation').val(),
     reason:  $('#reason').val(),

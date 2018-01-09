@@ -4,7 +4,7 @@
 <form style="border: solid; width: 100%;">
   <div style="text-align: center;">
 <label><b><h1>Foto</h1></b></label><br/>
-<img src="../image/docente/{{$datos_docente[0]->IMAGE}}" style="width: 40%; height: 150px;"><br/>
+<img src="../image/docente/{{$datos_docente[0]->IMAGE}}" style="width: 40%; height: 180px;"><br/>
   </div>
   <br/>
   <table style="width: 60%;">
@@ -36,7 +36,7 @@
               
 	                    		
                 @foreach($days as $day)
-                <th >{{$day->name}}</th>
+                <th style="text-align: center;" >{{$day->name}}</th>
                 @endforeach
             </tr>
             </thead>
@@ -45,7 +45,7 @@
             		  	
                 @foreach($hours as $hour)
                     <tr>
-                        <td class="hora bg-inverse">{{ $hour->since }}-{{ $hour->until }}</td>
+                        <td class="hora bg-inverse" style="text-align: center; vertical-align: middle;">{{ $hour->since }}-{{ $hour->until }}</td>
                         
                            @foreach($days as $day)
 
@@ -56,7 +56,7 @@
                              </td>
                            @else
  						@if( count( $horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id) )>0 )
- 						 <td class="bg-success" style="height:150px; width: 16%;" >
+ 						 <td class="bg-info" style="height:auto; width: 16%;" >
  						 			<label><b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->reason}}</b></label><br/><nr/>
 
  		
@@ -68,7 +68,7 @@
  						 			@endif
                              </td>
                             @else
-						 <td class="bg-warning" style="height: 200px; width: 16%" >
+						 <td class="bg-success" style="height: auto; width: 16%" >
                         				
                            	 	
                              </td>
