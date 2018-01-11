@@ -35,11 +35,7 @@
                                 <div id="divselect_horario"></div>
                                        
         <br/>
-                 <div style="text-align: center; ">
-                    <a  href="{{route('admin.horario.index')}}">
-                            <input type="button" class="btn btn-primary" name="Cancelar" value="Regresar">
-                        </a>
-                    </div>
+             
                         {!! Form::close() !!}
       
 
@@ -73,8 +69,7 @@
                          <br/><br/>     
                     </div>
               <input type="text" style="display: none;"   name="physical_space_id" id="physical_space_id" value="">
-              <input type="text"  style="display: none;" name="period_cycle_id" id="period_cycle_id">
-                    
+             
                       {!! Field::text('reason',null,['placeholder'=>'Ingrese el motivo de la asignación', 'id'=>'reason']) !!}
 
                   {!! Field::text('observation',null,['placeholder'=>'Ingrese una observacion (Opcional)', 'id'=>'observation']) !!}
@@ -111,10 +106,10 @@
 
     }
         function asignar( d,h){
-
+          ver_docente_();  
       $('#day_id').val(d);
       $('#hour_id').val(h);
-      $('#period_cycle_id').val($('#period_cycle').val());
+    
     }
 
     function eliminar(id){
@@ -132,17 +127,28 @@
   
 });
     }
+
+    
     function editar(espacio_fisico){
-           
+            ver_docente(espacio_fisico.teacher_career_id);
             $('#observation_edit').val(espacio_fisico.observation);
             $('#reason_edit').val(espacio_fisico.reason);
             $('#state_edit').val(espacio_fisico.state);
-            var ss= $('#teacher_career_id_edit option:selected').val();
-            $('#teacher_career_id_edit  option:selected').val(espacio_fisico.teacher_career_id);
-            var s=  $('#teacher_career_id_edit option:selected').val();
+            $('#schedule_id').val(espacio_fisico.id);
+                $("#teacher_career_id_edit option").each(function(){
+       var idS=$(this).attr('value');
+       var idP=espacio_fisico.teacher_career_id;
+       if ($(this).attr('value')==espacio_fisico.teacher_career_id)
+       {
+        $(this).text('Asignado a '+$(this).text());
+        $(this).attr('selected', 'selected');
+       }else{
 
-           
+$(this).removeAttr('selected');
 
+       }
+    });
+        
     }
 
 
@@ -154,7 +160,7 @@
   method: "POST",
   url: "{{route('verhorario')}}",
   data: {physical_space_id:$('#physical_space_id').val(),
-        period_cycle_id: $('#period_cycle_id_').val()
+        period_cycle_id: $('#period_cycle').val()
         },
   success: function(data){
     $data = $(data);
@@ -175,6 +181,31 @@ function limpiarModal(){
     $('#day_id').val();
 }
 
+function EditarHorario(){
+    
+     
+
+           $.ajax({
+  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+  method: "POST",
+  url: "{{route('EditarHorario')}}",
+  data: {id: $('#schedule_id').val(),
+    teacher_career_id:$('#teacher_career_id_edit').val(),
+    observation:$('#observation_edit').val(),
+    reason:  $('#reason_edit').val(),
+    state: $('#state_edit').val()},
+  success: function(data){
+    $data = $(data);
+    console.log($data);
+            ver_horario();
+            
+        }
+  
+});
+
+      $('#escondermodal_edit').click();
+}
+
 function crearHorario(){
 
    $.ajax({
@@ -184,7 +215,7 @@ function crearHorario(){
   data: {day_id:$('#day_id').val(),
     hour_id:$('#hour_id').val(),
     teacher_career_id:$('#teacher_career_id_').val(),
-    period_cycle_id:$('#period_cycle_id').val(),
+    period_cycle_id:$('#period_cycle').val(),
     physical_space_id:$('#physical_space_id').val(),
     observation:$('#observation').val(),
     reason:  $('#reason').val(),
@@ -192,7 +223,6 @@ function crearHorario(){
   success: function(data){
     $data = $(data);
     console.log($data);
-            limpiarModal();
             ver_horario();
              $('#escondermodal').click();
 
@@ -202,21 +232,40 @@ function crearHorario(){
 
 }
 
-function ver_docente(){
+function ver_docente_(){
     $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
   url: "{{route('obtenerDocentes')}}",
-  data: {career_id:$('#career_id').val()},
+  data: {career_id:$('#career_id').val(),
+        teacher_career_id: ''},
   success: function(data){
     $data = $(data);
     $data_edit= $(data);
     console.log($data);
-              $('select#teacher_career_id_').html($data_edit);
-             $('select#teacher_career_id_edit').html($data);
+              $('#teacher_career_id_ ').html($data);
+             
+        },
+    async: false
+  
+});
+}
+
+function ver_docente(id_docente_actual){
+    $.ajax({
+  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+  method: "POST",
+  url: "{{route('obtenerDocentes')}}",
+  data: {career_id:$('#career_id').val(),
+        teacher_career_id: id_docente_actual},
+  success: function(data){
+    $data = $(data);
+    console.log($data);
+             $('#teacher_career_id_edit').html($data);
             
            
-        }
+        },
+    async: false
   
 });
 }
@@ -232,7 +281,8 @@ $.ajax({
     $data = $(data);
     console.log($data);
             $('#divselect_espacio_fisico').html($data);
-        }
+        },
+    async: false
   
 });
 
@@ -246,7 +296,8 @@ $.ajax({
     $data = $(data);
     console.log($data);
             $('#divselect_carrera').html($data);
-        }
+        },
+    async: false
   
 });
 }
@@ -268,10 +319,10 @@ $.ajax({
       <div class="modal-body">
             {!! Form::open() !!}
                    <div id="divselect_docente_edit">
-                      <label> Seleccione un docente:</label><br/> 
+                    <input type="text" name="schedule_id" id="schedule_id" style="display: none;">
+                     <label> Seleccione un docente:</label><br/> 
                        <select style="width: 70%;"   name="teacher_career_id_edit" id="teacher_career_id_edit" >
-
-                        </select>&nbsp;
+                        </select>
                          <br/><br/>   
                      
                     </div>       
@@ -286,7 +337,7 @@ $.ajax({
                   </div>
       <div class="modal-footer">
         <button id="escondermodal_edit" onclick="limpiarModal();" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-         {!! Form::button('Guardar',["class"=>"btn btn-success", 'onclick'=> 'crearHorario();']) !!}
+         {!! Form::button('Guardar',["class"=>"btn btn-success", 'onclick'=> 'EditarHorario();']) !!}
       </div>
          {!!Form::close()!!}     
     </div>

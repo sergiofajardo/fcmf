@@ -13,8 +13,7 @@
 
   <!-- Bootstrap core CSS-->
     <link href='{{ asset("admin/vendor/bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
-
-
+   
 
   <!-- Custom fonts for this template-->
   <link href='{{ asset("admin/vendor/font-awesome/css/font-awesome.min.css")}}' rel="stylesheet" type="text/css">
@@ -33,7 +32,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         @if(Auth::user()->role_id ==1 || Auth::user()->role_id ==2)
-        <li style="width: 30" class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <li style="width: 30" class="nav-item" data-toggle="tooltip" data-placement="right" title="Administración">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>
             <span class="nav-link-text">Administración</span>
@@ -63,16 +62,18 @@
           </ul>
           @endif
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Consultas">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
             <span class="nav-link-text">Consultas</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="login.html">Consulta Horarios Docentes</a>
+              <a href="{{route('Horario_docente')}}">Horarios Docentes</a>
             </li>
-            
+            <li>
+              <a href="{{route('Horario_docente')}}">Horario por Espacio Físico</a>
+            </li>
             
           </ul>
         </li>

@@ -32,11 +32,23 @@ Route::post('obtenerEspacios_fisicos_carrera','Cruds\Schedules_physicals_spacesC
 Route::post('obtenerDocentes','Cruds\Schedules_physicals_spacesController@getteachersbycareer')->name('obtenerDocentes');//obtener las carreras de la facultad seleccionada
 
 
+
+
 Route::post('CrearHorario','Cruds\Schedules_physicals_spacesController@CrearHorario')->name('CrearHorario');//obtener las carreras de la facultad seleccionada
 
 Route::post('verhorario','Cruds\Schedules_physicals_spacesController@verhorario')->name('verhorario');//
 
 Route::post('delete','Cruds\Schedules_physicals_spacesController@delete')->name('delete');//
+
+Route::post('EditarHorario','Cruds\Schedules_physicals_spacesController@update_schedule')->name('EditarHorario');
+
+
+
+Route::post('/Consultas/Consultar_horario','Cruds\Schedules_physicals_spacesController@Consultar_horario_por_docente')->name('Consultar_horario_por_docente');
+
+Route::post('/Consultas/Consultar_Carreras','Cruds\Schedules_physicals_spacesController@Consultar_Carreras')->name('Consultar_Carreras');
+
+Route::get('/Consultas/Consultar_Horario_docente','Cruds\Schedules_physicals_spacesController@Consultar_Horario_docente')->name('Horario_docente');	
 
 //Route::get('/facultades/{id_facultad}','FacultiesController@show')->name('facultades/mostrar');
 
@@ -52,4 +64,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth', 'as'=>'admin.'], function(
 
 	
 });
+
+
+//Exportar PDF
+
+Route::POST('pdf_horario_docente', 'PDFController@horario_docente')->name('pdf_horario_docente');
 
