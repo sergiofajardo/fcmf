@@ -72,14 +72,8 @@
     }
 </style>
 <script type="text/javascript">
-
-
-
-    function Consultar_horario(){
-
-      
-
-               $.ajax({
+ function Consultar_horario(){
+  $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
   url: "{{route('Consultar_horario_por_docente')}}",
@@ -90,7 +84,6 @@
         },
   success: function(data){
     $data = $(data);
-    console.log($data);
             $('#divhorario').html($data);
 
             $('#teacher_career_id_pdf').val($('#divselect_docente').val());
@@ -98,15 +91,8 @@
             $('#generar_pdf').show();
             $('#ocultar_horario').show();
         }
-  
-});
-
-
-    }
-
-
-  
-
+    });
+ }
 
  function setear_periodo(){
             $('#period_cycle').val('0');
@@ -114,9 +100,7 @@
              $('#generar_pdf').hide();
             $('#form_horario').hide();
              ver_espacio_fisico();
-
-
-    }
+            }
 
         function ver_horario(){
            
@@ -137,10 +121,6 @@
 
         }
 
-
-
-
-
 function ver_docente_(){
     $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -151,13 +131,11 @@ function ver_docente_(){
   success: function(data){
     $data = $(data);
     $data_edit= $(data);
-    console.log($data);
               $('#divselect_docente').html($data);
               $('#docente').show();
                $('#generar_pdf').hide();
              
-        },
-    async: false
+        }
   
 });
 }
@@ -172,26 +150,17 @@ $.ajax({
   data: {faculties_id:$('#faculties_id').val()},
   success: function(data){
     $data = $(data);
-    console.log($data);
             $('#divselect_carrera').html($data);
             $('#docente').hide();
              $('#generar_pdf').hide();
             $('#form_horario').hide();
 
-        },
-    async: false
+        } 
   
 });
 }
-
 function ocl(){
   $('#generar_pdf').hide();
 }
 </script>
-
-
-
-
-
-
 @endsection

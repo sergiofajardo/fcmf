@@ -1,5 +1,5 @@
   <label> Seleccione la carrera:</label><br/> 
-   <select style="width: 70%;"   name="career_id" id="career_id" >
+   <select style="width: 70%;"  onchange="ver_espacio_fisico();"  name="career_id" id="career_id" >
 <option value="">Seleccione una carrera</option>
 @foreach($careers as $object)
 <option value="{{$object->id}}"> {{$object->name}}</option> 

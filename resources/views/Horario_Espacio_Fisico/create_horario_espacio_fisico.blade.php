@@ -21,7 +21,7 @@
                                     <br/>
                                    
                                  <label> Seleccione el periodo al que pertenece:</label><br/> 
-                                  <select style="width: 70%;"  name="period_cycle" id="period_cycle" onchange="ver_espacio_fisico();" >
+                                  <select style="width: 70%;"  name="period_cycle" id="period_cycle" onchange="ver_carrera();" >
                                 <option value="0">Seleccione un Periodo Lectivo</option>
                                    @foreach($period_cycles as $period)
                                 <option value="{{$period->id}}">{{ $period->year}} {{$period->cycle}}</option>
@@ -102,8 +102,6 @@
 
     function setear_periodo(){
             $('#period_cycle').val('0');
-            ver_espacio_fisico();
-
     }
         function asignar( d,h){
           ver_docente_();  
@@ -166,6 +164,7 @@ $(this).removeAttr('selected');
     $data = $(data);
     console.log($data);
             $('#divhorario').html($data);
+            $('#divhorario').show();
         }
   
 });
@@ -246,7 +245,7 @@ function ver_docente_(){
               $('#teacher_career_id_ ').html($data);
              
         },
-    async: false
+    async: true
   
 });
 }
@@ -270,6 +269,31 @@ function ver_docente(id_docente_actual){
 });
 }
 
+function ver_carrera(){
+
+  if( $('#period_cycle').val()!='0'){
+   $('#divhorario').hide();
+   $('#divselect_espacio_fisico').hide();
+$.ajax({
+  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+  method: "POST",
+  url: "{{route('obtenerEspacios_fisicos_carrera')}}",
+  data: {faculties_id:$('#faculties_id').val()},
+  success: function(data){
+    $data = $(data);
+    console.log($data);
+            $('#divselect_carrera').html($data);
+            $('#divselect_carrera').show();
+        },
+    async: true
+  
+});
+}else{
+  $('#divselect_carrera').hide();
+}
+
+}
+
   function ver_espacio_fisico(){
 
 $.ajax({
@@ -281,25 +305,14 @@ $.ajax({
     $data = $(data);
     console.log($data);
             $('#divselect_espacio_fisico').html($data);
+            $('#divselect_espacio_fisico').show();
+            $('#divhorario').hide();
+
         },
-    async: false
+    async: true
   
 });
 
-
-$.ajax({
-  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-  method: "POST",
-  url: "{{route('obtenerEspacios_fisicos_carrera')}}",
-  data: {faculties_id:$('#faculties_id').val()},
-  success: function(data){
-    $data = $(data);
-    console.log($data);
-            $('#divselect_carrera').html($data);
-        },
-    async: false
-  
-});
 }
 </script>
 
