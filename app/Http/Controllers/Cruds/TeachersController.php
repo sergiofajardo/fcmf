@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cruds;
 
+use App\Schedules_physicals_spaces;
 use App\Teachers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,10 @@ use Storage;
 use App\Faculties;
 use App\Careers;
 use App\Teachers_Careers;
+use DataTables;
+use DB;
+use Session;
+use redirect;
 
 class TeachersController extends Controller
 {
@@ -26,7 +31,7 @@ if (!file_exists($carpeta)) {
     mkdir($carpeta, 0777, true);
 }
         
-        $teachers = Teachers::orderBy('name','asc')->where('name','like',"%$request->scope%")->paginate(3);
+        $teachers = Teachers::orderBy('name','asc')->get();
          return view('Docentes.index_docentes')->with(['teachers'=> $teachers]);
     }
 
@@ -163,8 +168,7 @@ if (!file_exists($carpeta)) {
     {
         //
             $carreras_docente = $request->carrera;
-
-           $docente= Teachers::findOrFail($teachers);
+             $docente= Teachers::findOrFail($teachers);
         if($request->image != null){
             $img_ant = $docente->image;
         $docente->name= $request->name;
@@ -194,20 +198,46 @@ if (!file_exists($carpeta)) {
 
         $docente->save();
 
+            if($carreras_docente != null){
+        //Eliminar Carrera_docente
+    $objectTeachers_ = Teachers_Careers::where('teacher_id', $docente->id)->whereNotIn('career_id',$carreras_docente)->pluck('id'); //se obtienen los id de las carreras_docente a eliminar
 
-            $objects_delete_carrera_docente = Teachers_Careers::where('teacher_id', $docente->id);
-            $objects_delete_carrera_docente->delete();
-            
-  for ($i=0; $i <count($carreras_docente) ; $i++) { 
-                $objectTeachers_careers = new Teachers_Careers();
+           $valida_delete = Schedules_physicals_spaces::wherein('teacher_career_id', $objectTeachers_)->get();
+           
+           if(count($valida_delete)<=0 ){
+                $borrar = Teachers_Careers::wherein('id',$objectTeachers_);
+             $borrar->delete(); 
+        //end eliminar carrera_docente
+           }else{
+            Session::flash('error','La carrera que desea quitar tiene asignado un horario ');
+            return redirect()->back();
+           }
 
-                $objectTeachers_careers->teacher_id = $docente->id;
-                $objectTeachers_careers->career_id = $carreras_docente[$i];
-                $objectTeachers_careers->user_create = Auth::user()->id;
-                $objectTeachers_careers->save();
+  foreach ($carreras_docente as $carrera) { 
+                $objectTeachers_careers = Teachers_Careers::where('teacher_id', $docente->id)->where('career_id',$carrera)->first();
+
+                 if($objectTeachers_careers== null || count($objectTeachers_careers)<=0){
+              //si el docente no tiene creada una carrera que se envia, se la crea
+                $crear = new Teachers_Careers();
+                $crear->teacher_id = $docente->id;
+                $crear->career_id = $carrera;
+                $crear->user_create = Auth::user()->id;
+                $crear->save();
+                   }
+                    else{
+
+                      
+                }
 
             }
-         return redirect()->route('admin.docentes.index');
+     Session::flash('ok_docente','Docente Actualizado Correctamente');
+             return redirect()->route('admin.docentes.index');
+        }else{
+            Session::flash('message','Debe elegir al menos una carrera');
+            return redirect()->back();
+        }
+        
+        
     }
 
     /**

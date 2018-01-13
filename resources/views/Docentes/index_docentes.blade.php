@@ -7,7 +7,12 @@
  <div class="row">
             <div  style="width: 100%; height: 100%;">
                 <div class="panel panel-default">
-                          
+       @if(Session::has('ok_docente'))
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  {{Session::get('ok_docente')}}
+</div>    
+@endif               
                     <div class="panel-heading">Docentes</div><br/>
 
                     <div class="panel-body">
@@ -17,8 +22,8 @@
                     </div>
           
                         </div>  
-
-                        <table class="table" style="height: 100%;width: 100%;" >
+                            <br/>
+                        <table class="table" id="tbl" style="height: 100%;width: 100%;" >
                             <thead>
                             <th>Nombres</th>
                             <th>Apellidos</th>
@@ -50,14 +55,16 @@
 
                         </table>
 
-                        {!! $teachers->render() !!}
-           <p>Página {{$teachers->currentPage()}} de {{$teachers->lastPage()}}</p>
-        </div>
+           </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#tbl').DataTable();
+    })
+</script>
 @endsection
