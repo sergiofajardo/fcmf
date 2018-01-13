@@ -27,7 +27,7 @@ if (!file_exists($carpeta)) {
 
 
         $facultades = Faculties::all();
-         $carreras = Careers::orderBy('name','asc')->where('name','like',"%$request->scope%")->paginate(3);
+         $carreras = Careers::orderBy('name','asc')->get();
         return view('Carreras.index_carrera')->with(['careers'=>$carreras,'scope'=>$request->scope,'faculties'=>$facultades]);
     }
 

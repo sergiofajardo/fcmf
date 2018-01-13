@@ -18,7 +18,7 @@ class Physical_spacesController extends Controller
     public function index(Request $request)
     {
         //
-     $espacio_fisico = Physical_spaces::orderBy('name','asc')->where('name','like',"%$request->scope%")->paginate(3);
+     $espacio_fisico = Physical_spaces::orderBy('name','asc')->get();
      $facultades = Faculties::all();
         return view('Espacios_fisicos.index_espacio_fisico')->with(['physicals_spaces'=>$espacio_fisico, 'faculties'=>$facultades]);
     }

@@ -1,24 +1,13 @@
 @extends('admin.index')
 
 @section('content')
+<link href ="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <div class="container">
     <div class="row">
           <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
-@if(Session::has('message'))
-<div class="alert alert-warning alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  {{Session::get('message')}}
-</div>
-@endif
-@if(Session::has('error'))
-<div class="alert alert-danger alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  {{Session::get('error')}}
-</div>
-@endif
-
+                 
                     <div class="panel-heading">Editar Docente</div>
                     <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
@@ -80,5 +69,6 @@ $.ajax({
 
 }
 </script>
+
 
 @endsection

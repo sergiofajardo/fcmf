@@ -27,8 +27,8 @@
                 -->
                    
                         </div>  
-
-                        <table class="table" style="height: 100%;width: 100%;" >
+<br/>
+                     <table class="table" id="tbl_facultades" style="height: 100%;width: 100%;" >
                             <thead>
                             <th>Facultad</th>
                             <th>Teléfono</th>
@@ -43,11 +43,12 @@
                                     <td style="width: 35%">{{ $facultie->address }}</td>
                                     <td style="width: 20%">
 
-                                        {{link_to_route('admin.facultades.edit','Editar',[$facultie->id],["class"=>"btn btn-warning btn-xs"])}}
-                                        
-                                        {{link_to_route('admin.facultades.show','Ver',[$facultie->id],["class"=>"btn btn-warning btn-xs"])}}
-                                        <br/><br/>
+                                      
                                         {!! Form::open(['route'=>['admin.facultades.destroy',$facultie->id],'method'=>'DELETE']) !!}
+                                          {{link_to_route('admin.facultades.edit','Editar',[$facultie->id],["class"=>"btn btn-warning btn-xs"])}}
+                                        
+                                        {{link_to_route('admin.facultades.show','Ver',[$facultie->id],["class"=>"btn btn-info btn-xs"])}}
+                                       
                                         {!! Form::submit('Borrar',["class"=>"btn btn-danger btn-xs"]) !!}
                                         {!! Form::close() !!}
                                     </td>
@@ -57,15 +58,16 @@
                             </tbody>
 
                         </table>
-
-                        {!! $faculties->render() !!}
-           <p>Página {{$faculties->currentPage()}} de {{$faculties->lastPage()}}</p>
-        </div>
+                     </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#tbl_facultades').DataTable();
+    })
+</script>
 @endsection

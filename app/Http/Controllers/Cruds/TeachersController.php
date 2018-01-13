@@ -209,7 +209,8 @@ if (!file_exists($carpeta)) {
              $borrar->delete(); 
         //end eliminar carrera_docente
            }else{
-            Session::flash('error','La carrera que desea quitar tiene asignado un horario ');
+            flash('Una de las carreras que desea quitar tiene asignado un horario')->error()->important();
+            
             return redirect()->back();
            }
 
@@ -230,11 +231,11 @@ if (!file_exists($carpeta)) {
                 }
 
             }
-     Session::flash('ok_docente','Docente Actualizado Correctamente');
+     flash('Docente Actualizado Correctamente')->success();
              return redirect()->route('admin.docentes.index');
         }else{
-            Session::flash('message','Debe elegir al menos una carrera');
-            return redirect()->back();
+            flash('Debe elegir al menos una carrera')->warning();
+            return redirect()->back()->withInput();
         }
         
         
@@ -249,11 +250,23 @@ if (!file_exists($carpeta)) {
     public function destroy( $teachers)
     {
         //
+        $validar_carrera = Teachers_Careers::where('teacher_id', $teachers)->pluck('id');
+$validar_horario = Schedules_physicals_spaces::whereIn('teacher_career_id', $validar_carrera)->get();
+                if(count($validar_horario)<=0 ){
         $carrera_docente = Teachers_Careers::where('teacher_id',$teachers);
         $carrera_docente->delete();
         $teacher = Teachers::findOrFail($teachers);
+        $img_ant = $teacher->first()->image;
+        if(file_exists(public_path('image/docente/'.$img_ant)))
+             unlink(public_path('image/docente/'.$img_ant));
+
         $teacher->delete();
+        flash('Docente Eliminado Correctamente')->warning();
         return redirect()->route('admin.docentes.index');
+        }else{
+        flash('El Docente tiene asignado un horario. No fue elimimnado!!')->warning();
+        return redirect()->route('admin.docentes.index');   
+        }
     }
 
 

@@ -138,6 +138,10 @@
       
       <div class="row" >
         <div class="col-12" >
+           @include('flash::message')
+           <script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
        @yield('content')
          </div>
       </div>

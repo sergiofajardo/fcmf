@@ -23,7 +23,7 @@ if (!file_exists($carpeta)) {
     mkdir($carpeta, 0777, true);
 }
 
-             $facultades = Faculties::orderBy('name','asc')->where('name','like',"%$request->scope%")->paginate(3);
+             $facultades = Faculties::orderBy('name','asc')->get();
         return view('Facultad.index_facultad')->with(['faculties'=>$facultades,'scope'=>$request->scope]);
     }
 
