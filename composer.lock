@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "75aca702e0e8c2f64a44596b47522e27",
+=======
+    "content-hash": "7c2c65761f0d1ed01a82562478b7836a",
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2645,6 +2649,7 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
+<<<<<<< HEAD
             "version": "v8.3.3",
             "source": {
                 "type": "git",
@@ -2655,6 +2660,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/2c475a5e0f13e9b61740a4bb0c59bdb4607ee48d",
                 "reference": "2c475a5e0f13e9b61740a4bb0c59bdb4607ee48d",
+=======
+            "version": "v8.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yajra/laravel-datatables.git",
+                "reference": "8c3490d7a810824da147161033d6ef272d7c8726"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/8c3490d7a810824da147161033d6ef272d7c8726",
+                "reference": "8c3490d7a810824da147161033d6ef272d7c8726",
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
                 "shasum": ""
             },
             "require": {
@@ -2711,7 +2728,11 @@
                 "jquery",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2018-01-11T01:35:04+00:00"
+=======
+            "time": "2017-11-02T02:30:46+00:00"
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
         }
     ],
     "packages-dev": [

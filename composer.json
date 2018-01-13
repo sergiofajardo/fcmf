@@ -12,7 +12,11 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "styde/html": "~1.3",
+<<<<<<< HEAD
         "yajra/laravel-datatables-oracle": "^8.3"
+=======
+        "yajra/laravel-datatables-oracle": "~8.0"
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
     },
     "require-dev": {
         "filp/whoops": "~2.0",

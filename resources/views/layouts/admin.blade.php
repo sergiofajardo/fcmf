@@ -10,10 +10,20 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="">
   <title> FCMF</title>
+  
 
+
+<<<<<<< HEAD
   <!-- Bootstrap core CSS-->
     <link href='{{ asset("admin/vendor/bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
    
+=======
+
+
+  <!-- Bootstrap core CSS-->
+    <link href='{{ asset("admin/vendor/bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
+  
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
 
   <!-- Custom fonts for this template-->
   <link href='{{ asset("admin/vendor/font-awesome/css/font-awesome.min.css")}}' rel="stylesheet" type="text/css">
@@ -79,10 +89,14 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
+<<<<<<< HEAD
               <a href="{{route('Horario_docente')}}">Horarios Docentes</a>
             </li>
             <li>
               <a href="{{route('Horario_docente')}}">Horario por Espacio Físico</a>
+=======
+              <a href="{{route('Horario_docente')}}">Consulta Horarios por Docente</a>
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
             </li>
             
           </ul>
