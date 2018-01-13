@@ -15,6 +15,7 @@ class CreateDOCENTES extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('card',10)->unique();
             $table->string('name', 30)->nullable();
             $table->string('last_name', 30)->nullable();
             $table->string('phone', 10)->nullable();

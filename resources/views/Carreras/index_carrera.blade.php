@@ -28,7 +28,7 @@
                    
                         </div>  
 
-                        <table class="table" style="height: 100%;width: 100%;" >
+                        <table class="table" id="tbl_carreras" style="height: 100%;width: 100%;" >
                             <thead>
                             <th>Carrera</th>
                             <th>Teléfono</th>
@@ -39,18 +39,17 @@
                             <tbody>
                             @foreach( $careers as $career)
                                 <tr>
-                                    <td style="width: 30%">{{ $career->name }}</td>
+                                    <td style="width: 25%">{{ $career->name }}</td>
                                     <td style="width: 10%">{{ $career->phone }}</td>
-                                    <td style="width: 30%">{{ $career->address }}</td>
-                                    <td style="width: 15%">{{$faculties->where('id',$career->faculty_id)->first()->name}}</td>
+                                    <td style="width: 20%">{{ $career->address }}</td>
+                                    <td style="width: 25%">{{$faculties->where('id',$career->faculty_id)->first()->name}}</td>
                                    
-                                    <td style="width: 15%">
-
-                                        {{link_to_route('admin.carreras.edit','Editar',[$career->id],["class"=>"btn btn-warning btn-xs"])}}
+                                    <td style="width: 20%">
+                                     {!! Form::open(['route'=>['admin.carreras.destroy',$career->id],'method'=>'DELETE']) !!}
+                                     {{link_to_route('admin.carreras.edit','Editar',[$career->id],["class"=>"btn btn-warning btn-xs"])}}
                                         
-                                        {{link_to_route('admin.carreras.show','Ver',[$career->id],["class"=>"btn btn-warning btn-xs"])}}
-                                        <br/><br/>
-                                        {!! Form::open(['route'=>['admin.carreras.destroy',$career->id],'method'=>'DELETE']) !!}
+                                        {{link_to_route('admin.carreras.show','Ver',[$career->id],["class"=>"btn btn-info btn-xs"])}}
+                                        
                                         {!! Form::submit('Borrar',["class"=>"btn btn-danger btn-xs"]) !!}
                                         {!! Form::close() !!}
                                     </td>
@@ -61,8 +60,6 @@
 
                         </table>
 
-                        {!! $careers->render() !!}
-           <p>Página {{$careers->currentPage()}} de {{$careers->lastPage()}}</p>
         </div>
 
                     </div>
@@ -70,5 +67,9 @@
             </div>
         </div>
     </div>
-
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#tbl_carreras').DataTable();
+    })
+</script>
 @endsection

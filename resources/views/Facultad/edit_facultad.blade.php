@@ -10,8 +10,11 @@
                     <div class="panel-body">
                         <div class="form-group">
              
-                    {!! Form::open(['route'=>['admin.facultades.update',$faculties], 'method'=>'PUT']) !!}
-
+                    {!! Form::open(['route'=>['admin.facultades.update',$faculties], 'method'=>'PUT','enctype'=>'multipart/form-data']) !!}
+                        <img style="margin-left: 10%; margin-right: 10%;" width="400px" height="250px" src="../../../image/facultad/{{$faculties->image}}">
+             
+                     {!! Field::file('image',['class'=>'file','data-show-preview'=>false,'data-show-upload'=>false]) !!}
+                       
                         {!! Field::text('name',$faculties->name) !!}
                         {!! Field::text('address',$faculties->address) !!}
 

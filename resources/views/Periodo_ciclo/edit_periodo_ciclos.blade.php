@@ -14,15 +14,15 @@
                         {!! Field::text('year',$period_cycle->year,['placeholder'=>'Ingrese el año']) !!}
                         <label>Ciclo:</label>
                           <select  name="cycle" id="cycle">
-        <option @if($period_cycle->cycle== '1')
+        <option @if($period_cycle->cycle== 'CI')
             selected 
             @endif
-         value="1">1</option>
+         value="CI">1</option>
            
-            <option @if($period_cycle->cycle== '2')
+            <option @if($period_cycle->cycle== 'CII')
             selected 
             @endif
-         value="2">2</option>
+         value="CII">2</option>
         
             </select>&nbsp;
             <br/><br/>

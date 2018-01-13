@@ -14,8 +14,8 @@
 
                         {!! Field::text('year',null,['placeholder'=>'Ingrese el año']) !!}
                           <label>Ciclo:</label> {{ Form::select('cycle', [
-                               '1' => '1',
-                               '2' => '2']
+                               'CI' => '1',
+                               'CII' => '2']
                             ) }}
                             <br/>
                           <label>Estado:</label> {{ Form::select('state', [

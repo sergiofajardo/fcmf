@@ -11,6 +11,7 @@
                         <div class="form-group">
              
                     {!! Form::open() !!}
+                     <img style="margin-left: 10%; margin-right: 10%;" width="400px" height="250px" src="../../image/carrera/{{$careers->image}}">
                         {!! Field::text('Nombre',$careers->name,['readonly'=>'true']) !!}
                         {!! Field::text('Dirección',$careers->address,['readonly'=>'true']) !!}
                          {!! Field::text('Facultad a la que pertenece',$faculty,['readonly'=>'true']) !!}

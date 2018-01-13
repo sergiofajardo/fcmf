@@ -15,7 +15,7 @@ class CreateEspaciosFisicos extends Migration
     {
         Schema::create('physical_spaces', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('faculties_id')->unsigned();
+            $table->integer('faculty_id')->unsigned();
             $table->string('type', 30)->nullable();
             $table->string('location', 300)->nullable();
             $table->string('state',10)->nullable();

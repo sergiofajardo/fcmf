@@ -6,22 +6,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+  
+<meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="">
   <title> FCMF</title>
+  
+
+
+<<<<<<< HEAD
+  <!-- Bootstrap core CSS-->
+    <link href='{{ asset("admin/vendor/bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
+   
+=======
+
 
   <!-- Bootstrap core CSS-->
     <link href='{{ asset("admin/vendor/bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
-
-
+  
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
 
   <!-- Custom fonts for this template-->
   <link href='{{ asset("admin/vendor/font-awesome/css/font-awesome.min.css")}}' rel="stylesheet" type="text/css">
+       <link rel="stylesheet" type="text/css" href='{{ asset("admin/vendor/datatables/jquery.dataTables.css")}}'>
+
+
+
   <!-- Custom styles for this template-->
   <link href='{{ asset("admin/css/sb-admin.css")}}' rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
+<script src='{{ asset("admin/vendor/jquery/jquery.min.js")}}'></script>
+   <script src='{{ asset("admin/vendor/datatables/jquery.dataTables.js")}}'></script>
+  <script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       
     <a class="navbar-brand" href="{{ url('/home') }}">FCMF</a>
@@ -31,7 +52,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         @if(Auth::user()->role_id ==1 || Auth::user()->role_id ==2)
-        <li style="width: 30" class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <li style="width: 30" class="nav-item" data-toggle="tooltip" data-placement="right" title="Administración">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>
             <span class="nav-link-text">Administración</span>
@@ -46,10 +67,7 @@
               <a href="{{ route('admin.carreras.index') }}">Carreras</a>
             </li>
              <li>
-              <a href="#">Docentes</a>
-            </li>
-             <li>
-              <a href="#">Materias</a>
+              <a href="{{route('admin.docentes.index')}}">Docentes</a>
             </li>
              <li>
               <a href="{{route('admin.espacios_fisicos.index')}}">Espacio Físico</a>
@@ -57,30 +75,28 @@
              <li>
               <a href="{{route('admin.periodo_lectivo.index')}}">Periodo Lectivo</a>
             </li>
+              @endif
              <li>
-              <a href="{{route('admin.paralelos.index')}}">Paralelos</a>
-            </li>
-             <li>
-              <a href="#">Materias por paralelo</a>
-            </li>
-            @endif
-             <li>
-              <a href="#">Horarios por Espacio Físico</a>
+              <a href="{{route('admin.horario.create')}}">Horarios por Espacio Físico</a>
             </li>
           </ul>
           @endif
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Consultas">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
             <span class="nav-link-text">Consultas</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="login.html">Asignación de aulas</a>
+<<<<<<< HEAD
+              <a href="{{route('Horario_docente')}}">Horarios Docentes</a>
             </li>
             <li>
-              <a href="register.html">Horarios docentes</a>
+              <a href="{{route('Horario_docente')}}">Horario por Espacio Físico</a>
+=======
+              <a href="{{route('Horario_docente')}}">Consulta Horarios por Docente</a>
+>>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
             </li>
             
           </ul>
@@ -137,6 +153,8 @@
       
       <div class="row" >
         <div class="col-12" >
+           @include('flash::message')
+         
        @yield('content')
          </div>
       </div>
@@ -173,7 +191,6 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src='{{ asset("admin/vendor/jquery/jquery.min.js")}}'></script>
     <script src='{{ asset("admin/vendor/bootstrap/js/bootstrap.bundle.min.js")}}'></script>
     <!-- Core plugin JavaScript-->
     <script src='{{ asset("admin/vendor/jquery-easing/jquery.easing.min.js")}}'></script>

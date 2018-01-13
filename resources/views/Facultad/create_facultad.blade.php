@@ -10,8 +10,7 @@
                     <div class="panel-body">
                         <div class="form-group">
              
-                    {!! Form::open(['route'=>'admin.facultades.store']) !!}
-
+                    {!! Form::open(['route'=>'admin.facultades.store','files'=>'true','enctype'=>'multipart/form-data']) !!}
                          {!! Field::file('image',['class'=>'file','data-show-preview'=>false,'data-show-upload'=>false]) !!}
                         {!! Field::text('name',null,['placeholder'=>'Ingrese el nombre']) !!}
                         {!! Field::text('address',null,['placeholder'=>'Ingrese la Dirección']) !!}

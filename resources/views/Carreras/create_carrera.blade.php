@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         <div class="form-group">
              
-                    {!! Form::open(['route'=>'admin.carreras.store']) !!}
+                    {!! Form::open(['route'=>'admin.carreras.store','files'=>'true','enctype'=>'multipart/form-data']) !!}
 
         <span>Facultad a la que pertenece &nbsp;</span>
 

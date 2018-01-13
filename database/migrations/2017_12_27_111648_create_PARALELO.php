@@ -15,10 +15,13 @@ class CreatePARALELO extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('career_id')->unsigned();
             $table->string('code',10)->nullable();
             $table->string('state', 10)->nullable();
             $table->string('user_create',20)->nullable();
             $table->string('user_update',20)->nullable();
+            $table->foreign('career_id')->references('id')->on('careers');
+        
             $table->timestamps();
         });
     }

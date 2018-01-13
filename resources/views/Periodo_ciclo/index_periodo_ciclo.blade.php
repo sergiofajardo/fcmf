@@ -27,8 +27,8 @@
                 -->
                    
                         </div>  
-
-                        <table class="table" style="height: 100%;width: 100%;" >
+                        <br/>
+                        <table class="table" id="tbl_periodo_lectivo" style="height: 80%;width: 100%;" >
                             <thead>
                             <th>Periodo </th>
                             <th>Ciclo</th>
@@ -41,12 +41,12 @@
                                     <td style="width: 35%">{{ $period_cycle->year }}</td>
                                     <td style="width: 10%">{{ $period_cycle->cycle }}</td>
                                     <td style="width: 35%">{{ $period_cycle->state }}</td>
-                                    <td style="width: 20%">
+                                    <td style="width: 40%">
 
+                                        
+                                        {!! Form::open(['route'=>['admin.periodo_lectivo.destroy',$period_cycle->id],'method'=>'DELETE']) !!}
                                         {{link_to_route('admin.periodo_lectivo.edit','Editar',[$period_cycle->id],["class"=>"btn btn-warning btn-xs"])}}
                                         
-                                        <br/><br/>
-                                        {!! Form::open(['route'=>['admin.periodo_lectivo.destroy',$period_cycle->id],'method'=>'DELETE']) !!}
                                         {!! Form::submit('Borrar',["class"=>"btn btn-danger btn-xs"]) !!}
                                         {!! Form::close() !!}
                                     </td>
@@ -66,5 +66,9 @@
             </div>
         </div>
     </div>
-
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#tbl_periodo_lectivo').DataTable();
+    })
+</script>
 @endsection

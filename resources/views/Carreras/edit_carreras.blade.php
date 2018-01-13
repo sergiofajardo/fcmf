@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         <div class="form-group">
              
-                    {!! Form::open(['route'=>['admin.carreras.update',$careers], 'method'=>'PUT']) !!}
+                    {!! Form::open(['route'=>['admin.carreras.update',$careers], 'method'=>'PUT','enctype'=>'multipart/form-data']) !!}
                       <span>Facultad a la que pertenece &nbsp;</span>
 
         <select  name="faculty_id" id="faculty_id">
@@ -22,6 +22,7 @@
             @endforeach 
             </select>&nbsp;
             <br/><br/>
+               <img style="margin-left: 10%; margin-right: 10%;" width="400px" height="250px" src="../../../image/carrera/{{$careers->image}}">
                     {!! Field::file('image',['class'=>'file','data-show-preview'=>false,'data-show-upload'=>false]) !!}
                        {!! Field::text('name',$careers->name) !!}
                         {!! Field::text('address',$careers->address) !!}

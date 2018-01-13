@@ -23,7 +23,7 @@ class CreateMATERIAPARALELO extends Migration
             $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('classroom_id')->references('id')->on('classrooms');
-           
+
             $table->timestamps();
         });
     }

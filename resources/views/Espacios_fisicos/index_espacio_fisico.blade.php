@@ -17,8 +17,8 @@
                     </div>
           
                         </div>  
-
-                        <table class="table" style="height: 100%;width: 100%;" >
+                            <br/>
+                        <table class="table" id="tbl_espacio_fisico" style="height: 100%;width: 100%;" >
                             <thead>
                             <th>Espacio Físico</th>
                             <th>Facultad a la que pertenece</th>
@@ -29,19 +29,18 @@
                             <tbody>
                             @foreach( $physicals_spaces as $physical_space)
                                 <tr>
-                                    <td style="width: 30%">{{ $physical_space->name }}</td>
-                                    <td style="width: 10%">{{ $faculties->where('id',$physical_space->faculty_id)->first()->name }}</td>
-                                    <td style="width: 30%">{{ $physical_space->type }}</td>
-                                    <td style="width: 15%">{{$physical_space->state}}</td>
+                                    <td style="width: 15%">{{ $physical_space->name }}</td>
+                                    <td style="width: 45%">{{ $faculties->where('id',$physical_space->faculty_id)->first()->name }}</td>
+                                    <td style="width: 10%">{{ $physical_space->type }}</td>
+                                    <td style="width: 10%">{{$physical_space->state}}</td>
                                    
-                                    <td style="width: 15%">
-
-                                        {{link_to_route('admin.espacios_fisicos.edit','Editar',[$physical_space->id],["class"=>"btn btn-warning btn-xs"])}}
+                                    <td style="width: 20%">
+                 {!! Form::open(['route'=>['admin.espacios_fisicos.destroy',$physical_space->id],'method'=>'DELETE']) !!}
+                 {{link_to_route('admin.espacios_fisicos.edit','Editar',[$physical_space->id],["class"=>"btn btn-warning btn-xs"])}}
                                         
-                                        {{link_to_route('admin.espacios_fisicos.show','Ver',[$physical_space->id],["class"=>"btn btn-warning btn-xs"])}}
-                                        <br/><br/>
-                                        {!! Form::open(['route'=>['admin.espacios_fisicos.destroy',$physical_space->id],'method'=>'DELETE']) !!}
-                                        {!! Form::submit('Borrar',["class"=>"btn btn-danger btn-xs"]) !!}
+                  {{link_to_route('admin.espacios_fisicos.show','Ver',[$physical_space->id],["class"=>"btn btn-info btn-xs"])}}
+                                       
+                 {!! Form::submit('Borrar',["class"=>"btn btn-danger btn-xs"]) !!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
@@ -50,15 +49,16 @@
                             </tbody>
 
                         </table>
-
-                        {!! $physicals_spaces->render() !!}
-           <p>Página {{$physicals_spaces->currentPage()}} de {{$physicals_spaces->lastPage()}}</p>
-        </div>
+                       </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#tbl_espacio_fisico').DataTable();
+    })
+</script>
 @endsection
