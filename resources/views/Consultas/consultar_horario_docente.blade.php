@@ -35,8 +35,9 @@
                                              <div id="docente" style="display: none;">
                                    <label>Seleccione un Docente:</label><br/>
                                     <select id="divselect_docente" onchange="ocl();" name="teacher_career_id" style="width: 70%;"></select><br/><br/>
-                                    <input type="button" value="Consultar" onclick="Consultar_horario();" class="btn btn-success">
+                                    
                                 </div>
+                                <input style="display: none;" type="button" id="btn_consultar" value="Consultar" onclick="Consultar_horario();" class="btn btn-success">
                                 <div id="generar_pdf" style="display: none;"> 
                                   <br/>
                       {!! Form::open(['route'=>'pdf_horario_docente','method'=>'POST']) !!}
@@ -99,7 +100,9 @@
             $('#docente').hide();
              $('#generar_pdf').hide();
             $('#form_horario').hide();
-             ver_espacio_fisico();
+            $('#divselect_carrera').hide();
+           $('#btn_consultar').hide();
+
             }
 
         function ver_horario(){
@@ -134,8 +137,9 @@ function ver_docente_(){
               $('#divselect_docente').html($data);
               $('#docente').show();
                $('#generar_pdf').hide();
-             
-        }
+              $('#ocultar_horario').hide();
+                $('#btn_consultar').hide();
+            }
   
 });
 }
@@ -151,9 +155,13 @@ $.ajax({
   success: function(data){
     $data = $(data);
             $('#divselect_carrera').html($data);
+            $('#divselect_carrera').hide();
             $('#docente').hide();
              $('#generar_pdf').hide();
             $('#form_horario').hide();
+            $('#divselect_carrera').show();
+              $('#btn_consultar').hide();
+            
 
         } 
   
@@ -161,6 +169,8 @@ $.ajax({
 }
 function ocl(){
   $('#generar_pdf').hide();
+  $('#ocultar_horario').hide();
+  $('#btn_consultar').show();
 }
 </script>
 @endsection

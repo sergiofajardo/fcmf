@@ -27,7 +27,13 @@ Route::post('obtenerCarrer','Cruds\TeachersController@getcareersSelectedbyfacult
 
 Route::post('obtenerEspacios_fisicos','Cruds\Schedules_physicals_spacesController@getphysicals_spacesbyfaculty')->name('obtenerEspacios_fisicos');//obtener las carreras de la facultad seleccionada
 
+Route::post('getphysicals_spacesbyfaculty_consult','Cruds\Schedules_physicals_spacesController@getphysicals_spacesbyfaculty_consult')->name('getphysicals_spacesbyfaculty_consult');//obtener las carreras de la facultad seleccionada
+
+
+
 Route::post('obtenerEspacios_fisicos_carrera','Cruds\Schedules_physicals_spacesController@getcareersbyfaculty')->name('obtenerEspacios_fisicos_carrera');//obtener las carreras de la facultad seleccionada
+
+
 
 Route::post('obtenerDocentes','Cruds\Schedules_physicals_spacesController@getteachersbycareer')->name('obtenerDocentes');//obtener las carreras de la facultad seleccionada
 
@@ -49,6 +55,15 @@ Route::post('/Consultas/Consultar_horario','Cruds\Schedules_physicals_spacesCont
 Route::post('/Consultas/Consultar_Carreras','Cruds\Schedules_physicals_spacesController@Consultar_Carreras')->name('Consultar_Carreras');
 
 Route::get('/Consultas/Consultar_Horario_docente','Cruds\Schedules_physicals_spacesController@Consultar_Horario_docente')->name('Horario_docente');	
+
+Route::get('/Consultas/Consultar_Horario_espacio_fisico','Cruds\Schedules_physicals_spacesController@Consultar_Horario_espacio_fisico')->name('Horario_espacio_fisico');	
+
+
+Route::get('/Consultas/Consultar_horario_por_espacio_fisico','Cruds\Schedules_physicals_spacesController@Consultar_horario_por_espacio_fisico')->name('Consultar_horario_por_espacio_fisico');	
+
+
+
+
 
 //Route::get('/facultades/{id_facultad}','FacultiesController@show')->name('facultades/mostrar');
 
@@ -72,4 +87,6 @@ Route::get('/consulta_docente','Cruds\TeachersController@consulta_docente')->nam
 //Exportar PDF
 
 Route::POST('pdf_horario_docente', 'PDFController@horario_docente')->name('pdf_horario_docente');
+
+Route::POST('pdf_horario_espacio_fisico', 'PDFController@horario_espacio_fisico')->name('pdf_horario_espacio_fisico');
 

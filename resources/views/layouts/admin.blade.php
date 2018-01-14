@@ -82,7 +82,7 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
               <a href="{{route('Horario_docente')}}">Horarios Docentes</a>
             </li>
             <li>
-              <a href="{{route('Horario_docente')}}">Horario por Espacio Físico</a>
+              <a href="{{route('Horario_espacio_fisico')}}">Horario por Espacio Físico</a>
             </li>
             
           </ul>
