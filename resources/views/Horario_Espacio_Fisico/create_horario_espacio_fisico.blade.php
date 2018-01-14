@@ -245,11 +245,7 @@ function ver_docente_(){
               $('#teacher_career_id_ ').html($data);
              
         },
-<<<<<<< HEAD
     async: true
-=======
-    async: false
->>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
   
 });
 }
@@ -286,16 +282,10 @@ $.ajax({
   success: function(data){
     $data = $(data);
     console.log($data);
-<<<<<<< HEAD
             $('#divselect_carrera').html($data);
             $('#divselect_carrera').show();
         },
     async: true
-=======
-            $('#divselect_espacio_fisico').html($data);
-        },
-    async: false
->>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
   
 });
 }else{
@@ -314,27 +304,17 @@ $.ajax({
   success: function(data){
     $data = $(data);
     console.log($data);
-<<<<<<< HEAD
             $('#divselect_espacio_fisico').html($data);
             $('#divselect_espacio_fisico').show();
             $('#divhorario').hide();
 
         },
     async: true
-=======
-            $('#divselect_carrera').html($data);
-        },
-    async: false
->>>>>>> c424f0b55bce8643c77177beeb3885d0ee7d9c34
   
 });
 
 }
 </script>
-
-
-
-
 <!-- Modal Editar Horario -->
 <div class="modal fade" id="Schedule_modal_edit" tabindex="-1"  aria-hidden="true">
   <div class="modal-dialog" >

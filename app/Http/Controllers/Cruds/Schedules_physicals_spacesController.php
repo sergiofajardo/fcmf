@@ -142,10 +142,18 @@ class Schedules_physicals_spacesController extends Controller
 
 
             $physicals_spaces = Physical_spaces::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->get();
-           return view('select_espaciofisico')->with(['physicals_spaces'=>$physicals_spaces]);
 
+           $description= 'Seleccione el espacio físico para asignar el horario:';
+           return view('select_espaciofisico')->with(['physicals_spaces'=>$physicals_spaces, 'description'=>$description]);
     }
    
+   public function getphysicals_spacesbyfaculty_consult(Request $request){
+
+        $physicals_spaces = DB::table('Physical_spaces as A')->select('A.name','A.id','A.location')->join('Schedules_physicals_spaces as B','B.physical_space_id','=','A.ID')->where('A.faculty_id', $request->faculties_id)->distinct()->get();
+
+           $description= 'Seleccione el espacio físico:';
+           return view('select_espaciofisico')->with(['physicals_spaces'=>$physicals_spaces, 'description'=>$description]);
+    }
       
 //funcion para cargar el horario del espacio fisico seleccionada
                 public function verhorario (Request $request){
@@ -177,14 +185,7 @@ class Schedules_physicals_spacesController extends Controller
 
             public function  getteachersbycareer( Request $request){
 
-                    /*$carrera_docente = Teachers_Careers::where('career_id', $request->career_id)->
-                    orWhere('id', $request->teacher_career_id)->distinct()->get();
-                   $docente_id = Teachers_Careers::where('career_id', $request->career_id)->
-                    orWhere('id', $request->teacher_career_id)->distinct()->get()->pluck('teacher_id');
-                     // dd($carrera_docente);
-                    $teachers = Teachers::findOrFail($docente_id);
-*/
-                    $object = DB::table('TEACHERS_CAREERS as A')->select('A.ID','B.NAME', 'B.LAST_NAME')->join('TEACHERS as B','B.ID','=','A.TEACHER_ID')->where('A.career_id', $request->career_id)->orWhere('A.id',$request->teacher_career_id)->get();
+                   $object = DB::table('TEACHERS_CAREERS as A')->select('A.ID','B.NAME', 'B.LAST_NAME')->join('TEACHERS as B','B.ID','=','A.TEACHER_ID')->where('A.career_id', $request->career_id)->orWhere('A.id',$request->teacher_career_id)->get();
             
         
 
@@ -240,6 +241,30 @@ class Schedules_physicals_spacesController extends Controller
          $datos_docente = DB::table('teachers_careers as A')->select('B.NAME', 'B.LAST_NAME', 'B.DEGREE', 'B.IMAGE','B.PHONE')->join('teachers as B','B.ID','=','A.teacher_id')->where('A.id', $request->teacher_career_id)->where('B.state','Activo')->get();
          
             return view('Consultar_horario_por_docente')->with(['horario_docente'=>$horario_docente,'days'=>$days,'hours'=>$hours, 'datos_docente'=>$datos_docente]);
+        }
+
+
+          public function Consultar_Horario_espacio_fisico(Request $request){
+  $period_cycle = Period_cycles::where('state','Activo')->get();
+               $day= Days::orderBy('id','asc')->get();
+        $hours = Hours::orderBy('since','asc')->get();
+        $faculties = Faculties::orderBy('name', 'asc')->get();
+        
+  
+        return view('Consultas.consultar_horario_espacio_fisico')->with(['days'=>$day,'hours'=>$hours,'faculties'=>$faculties, 'period_cycles'=>$period_cycle]);
+
+    }
+
+
+
+         public function Consultar_horario_por_espacio_fisico(Request $request){
+                     $days= Days::orderBy('id','asc')->get();
+                    $hours = Hours::orderBy('id','asc')->get();
+
+         $horario_docente = DB::table('schedules_physicals_spaces as A')->select('A.day_id', 'A.hour_id','A.observation','A.reason','B.NAME', 'B.LAST_NAME', 'D.NAME AS AULA_NAME','D.LOCATION')->join('teachers_careers as C','c.id','=','A.teacher_career_id')->join('teachers as B','B.ID','=','C.teacher_id')->join('physical_spaces as D','D.ID','=','A.physical_space_id' )->Where('A.period_cycle_id',$request->period_cycle_id)->where('A.state','Activo')->where('D.id',$request->physical_space_id)->get();
+                
+
+            return view('Consultar_horario_por_espacio_fisico')->with(['horario_docente'=>$horario_docente,'days'=>$days,'hours'=>$hours]);
         }
 
 }
