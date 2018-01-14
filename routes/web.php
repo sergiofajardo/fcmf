@@ -66,6 +66,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth', 'as'=>'admin.'], function(
 });
 
 
+//docente
+Route::get('/consulta_docente','Cruds\TeachersController@consulta_docente')->name('consulta_docente');
+
 //Exportar PDF
 
 Route::POST('pdf_horario_docente', 'PDFController@horario_docente')->name('pdf_horario_docente');

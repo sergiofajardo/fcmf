@@ -247,6 +247,15 @@ if (!file_exists($carpeta)) {
      * @param  \App\Docentes  $docentes
      * @return \Illuminate\Http\Response
      */
+
+
+ public function consulta_docente()
+    {
+        //
+         return DataTables::of(Teachers::orderBy('name','asc')->get())->make(true);
+    }
+
+
     public function destroy( $teachers)
     {
         //
