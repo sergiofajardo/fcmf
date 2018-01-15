@@ -29,9 +29,7 @@
   <!-- Navigation-->
 <script src='{{ asset("admin/vendor/jquery/jquery.min.js")}}'></script>
    <script src='{{ asset("admin/vendor/datatables/jquery.dataTables.js")}}'></script>
-  <script>
-$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-</script>
+ 
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       
@@ -139,9 +137,8 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
       
       <div class="row" >
         <div class="col-12" >
-           @include('flash::message')
-         
        @yield('content')
+      
          </div>
       </div>
     </div>
@@ -182,6 +179,9 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     <script src='{{ asset("admin/vendor/jquery-easing/jquery.easing.min.js")}}'></script>
     <!-- Custom scripts for all pages-->
     <script src='{{ asset("admin/js/sb-admin.min.js")}}'></script>
+     <script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
   </div>
 </body>
 

@@ -16,6 +16,7 @@ use App\Teachers_Careers;
 use App\Physical_spaces;
 use Illuminate\Support\Facades\Auth;
 
+
 class Schedules_physicals_spacesController extends Controller
 {
     /**
@@ -52,21 +53,16 @@ class Schedules_physicals_spacesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-     /*   $horario= new Schedules_physicals_spaces();
-        $horario->physical_space_id = $request->physical_space_id;
-        $horario->hour_id = $request->hour_id;
-           $horario->day_id = $request->day_id;
-              $horario->observation = $request->observation;
-                 $horario->state = $request->state;
-                $horario->period_cycle_id = $request->period_cycle_id;
-                 $horario->teacher_career_id = $request->teacher_career_id;
-                 $horario->save();
-            return ;
-*/    }
+          }
 
     public function CrearHorario (Request $request){
 
+
+            $valida_registro = Schedules_physicals_spaces::where('hour_id',$request->hour_id)->where('day_id',$request->day_id)->where('teacher_career_id', $request->teacher_career_id)->where('period_cycle_id', $request->period_cycle_id)->get();
+            if(count($valida_registro)>0 ){
+            return 'El docente tiene asignado este horario en otro espacio físico';
+          }
+            else{
          $horario= new Schedules_physicals_spaces();
         $horario->physical_space_id = $request->physical_space_id;
         $horario->hour_id = $request->hour_id;
@@ -79,6 +75,7 @@ class Schedules_physicals_spacesController extends Controller
                  $horario->teacher_career_id = $request->teacher_career_id;
                  $horario->save();
          return $horario;
+         }
     }
 
     /**

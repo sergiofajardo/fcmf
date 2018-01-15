@@ -4,6 +4,7 @@
 <link href ="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <div class="container">
+  @include('flash::message')
     <div class="row">
           <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">

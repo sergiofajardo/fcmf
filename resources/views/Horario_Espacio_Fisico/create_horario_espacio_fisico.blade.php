@@ -1,12 +1,14 @@
 @extends('admin.index')
 
 @section('content')
-<div class="container">
 
+
+ 
+<div class="container">
     <div class="row">
+   
              <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear Horario por Espacio Físico</div><br/>
                     <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
              
@@ -125,9 +127,7 @@
   
 });
     }
-
-    
-    function editar(espacio_fisico){
+  function editar(espacio_fisico){
             ver_docente(espacio_fisico.teacher_career_id);
             $('#observation_edit').val(espacio_fisico.observation);
             $('#reason_edit').val(espacio_fisico.reason);
@@ -141,19 +141,13 @@
         $(this).text('Asignado a '+$(this).text());
         $(this).attr('selected', 'selected');
        }else{
-
 $(this).removeAttr('selected');
-
        }
     });
         
     }
-
-
-
         function ver_horario(){
-           
-                  $.ajax({
+            $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
   url: "{{route('verhorario')}}",
@@ -165,10 +159,8 @@ $(this).removeAttr('selected');
     console.log($data);
             $('#divhorario').html($data);
             $('#divhorario').show();
-        }
-  
+        }  
 });
-
         }
 
 function limpiarModal(){
@@ -181,10 +173,7 @@ function limpiarModal(){
 }
 
 function EditarHorario(){
-    
-     
-
-           $.ajax({
+         $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
   url: "{{route('EditarHorario')}}",
@@ -196,13 +185,11 @@ function EditarHorario(){
   success: function(data){
     $data = $(data);
     console.log($data);
-            ver_horario();
-            
+            ver_horario();           
         }
   
 });
-
-      $('#escondermodal_edit').click();
+  $('#escondermodal_edit').click();
 }
 
 function crearHorario(){
@@ -221,10 +208,14 @@ function crearHorario(){
     state: $('#state').val()},
   success: function(data){
     $data = $(data);
-    console.log($data);
             ver_horario();
+            if( data=='El docente tiene asignado este horario en otro espacio físico')
+              alert(data);
+            else
              $('#escondermodal').click();
 
+                
+           
         }
   
 });
@@ -352,8 +343,5 @@ $.ajax({
     </div>
   </div>
 </div>
-
-
-
 
 @endsection

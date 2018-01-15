@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+  @include('flash::message')
     <div class="row">
              <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
