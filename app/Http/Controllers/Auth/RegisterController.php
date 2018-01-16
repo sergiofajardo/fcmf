@@ -34,11 +34,15 @@ class RegisterController extends Controller
      *
      * @return void
      */
+ 
+
     public function __construct()
     {
         $this->middleware('guest');
     }
 
+
+    
     /**
      * Get a validator for an incoming registration request.
      *
@@ -62,11 +66,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= new User([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'role_id'=> "3"
+            
         ]);
+            $user->role_id= '3';
+            $user->save();
+            return $user;
     }
 }

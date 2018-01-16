@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Carreras;
-
+use Illuminate\Support\Facades\Auth;
+use Redirect;
 class HomeController extends Controller
 {
     /**
@@ -26,4 +27,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
 }

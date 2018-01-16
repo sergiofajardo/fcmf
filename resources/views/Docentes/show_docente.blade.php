@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-
+@if(Auth::user()->role_id ==1)
 <div class="container">
     <div class="row">
             <div style="width: 100%;height: 100%;">
@@ -39,6 +39,8 @@
                 </div>
                     </div>
             </div>
-
+@else
+<div style="text-align: center; color:red;"><h1>Acceso denegado</h1></div>
+@endif
 
 @endsection

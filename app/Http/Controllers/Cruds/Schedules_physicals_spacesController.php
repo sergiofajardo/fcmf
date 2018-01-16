@@ -264,5 +264,11 @@ class Schedules_physicals_spacesController extends Controller
             return view('Consultar_horario_por_espacio_fisico')->with(['horario_docente'=>$horario_docente,'days'=>$days,'hours'=>$hours]);
         }
 
+         public function __construct()
+    {
+        Auth::check();
+        $this->middleware('auth');
+    }
+
 }
 

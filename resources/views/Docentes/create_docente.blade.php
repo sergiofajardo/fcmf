@@ -1,6 +1,9 @@
 @extends('admin.index')
 
 @section('content')
+
+@if(Auth::user()->role_id ==1)
+
 <div class="container">
   @include('flash::message')
     <div class="row">
@@ -85,5 +88,8 @@ $.ajax({
 
 }
 </script>
+@else
+<div style="text-align: center; color:red;"><h1>Acceso denegado</h1></div>
+@endif
 
 @endsection

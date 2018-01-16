@@ -2,6 +2,7 @@
 
 @section('content')
 
+@if(Auth::user()->role_id ==1)
 <div class="container">
     <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -34,6 +35,8 @@
                     </div>
             </div>
 
-
+@else
+<div style="text-align: center; color:red;"><h1>Acceso denegado</h1></div>
+@endif
 
 @endsection

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>sdfdfdsf</title>
+  <title>Horario por Docente</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <style>
 #horario_docente {
@@ -32,15 +32,21 @@
 <body>
 
   <div style="text-align: center;">
-<label><b><h3>Reporte de Horario del Docente </h3></b></label>
-<img src="{$currentsite}/../image/docente/{{$datos_docente[0]->IMAGE}}" style="width: 140px; height: 140px;">
+     <img src="{$currentsite}/../image/ug.png" style="width: 60px;height: 80px;"><br/>
+ <label>Universidad de Guayaquil</label><br/>
+ <label>{{$horario_docente[0]->FACULTY_NAME}}</label> <br/> <br/>
+<b><label>Reporte de Horario del Docente </label></b><br/>
+<img src="{$currentsite}/../image/docente/{{$datos_docente[0]->IMAGE}}" style="width: 100px; height: 120px;"><br/>
   </div>
+  
+
   <table style="width: 100%;">
     <thead>
       <tr>
         <th style="font-weight: normal;">
-      &nbsp;  <label><b>Docente: </b>{{$datos_docente[0]->LAST_NAME}} {{$datos_docente[0]->NAME}} </label><br/> 
+           &nbsp; <label><b>Docente: </b>{{$datos_docente[0]->LAST_NAME}} {{$datos_docente[0]->NAME}} </label>
         </th>
+        <th></th>
       </tr>
       <tr>
         <th style="font-weight: normal;">
@@ -93,5 +99,13 @@
                  
             </tbody>
             </table>
+            <br/>
+            <footer class="sticky-footer">
+      <div class="container">
+        <div style="text-align: center;">
+          <small>Reporte generado con fines académicos.</small>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>

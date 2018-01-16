@@ -1,3 +1,9 @@
+<?php
+header("Last-Modified: " . gmdate("D, d M Y H:i ") . " GMT"); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); 
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +12,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+  
   
 <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="">

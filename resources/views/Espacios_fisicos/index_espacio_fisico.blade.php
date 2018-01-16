@@ -3,6 +3,7 @@
 
 @section('content')
 
+@if(Auth::user()->role_id ==1)
     <div class="container">
  <div class="row">
             <div  style="width: 100%; height: 100%;">
@@ -23,18 +24,18 @@
                             <th>Espacio Físico</th>
                             <th>Facultad a la que pertenece</th>
                             <th>Tipo de Espacio</th>
-                            <th>Facultad a la que pertenece</th>
+                            <th>Estado</th>
                             <th>Opciones</th>
                             </thead>
                             <tbody>
                             @foreach( $physicals_spaces as $physical_space)
                                 <tr>
                                     <td style="width: 15%">{{ $physical_space->name }}</td>
-                                    <td style="width: 45%">{{ $faculties->where('id',$physical_space->faculty_id)->first()->name }}</td>
-                                    <td style="width: 10%">{{ $physical_space->type }}</td>
+                                    <td style="width: 40%">{{ $faculties->where('id',$physical_space->faculty_id)->first()->name }}</td>
+                                    <td style="width: 13%">{{ $physical_space->type }}</td>
                                     <td style="width: 10%">{{$physical_space->state}}</td>
                                    
-                                    <td style="width: 20%">
+                                    <td style="width: 22%">
                  {!! Form::open(['route'=>['admin.espacios_fisicos.destroy',$physical_space->id],'method'=>'DELETE']) !!}
                  {{link_to_route('admin.espacios_fisicos.edit','Editar',[$physical_space->id],["class"=>"btn btn-warning btn-xs"])}}
                                         
@@ -61,4 +62,9 @@
         $('#tbl_espacio_fisico').DataTable();
     })
 </script>
+
+@else
+<div style="text-align: center; color:red;"><h1>Acceso denegado</h1></div>
+@endif
+
 @endsection
