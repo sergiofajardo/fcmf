@@ -28,8 +28,8 @@
    
   </table>
    
-    <table id="horario_" class="table table-bordered" style="width: 100%; height: 100%; border: double;" >
-            <thead style="width: auto;">
+    <table id="horario_" class="table table-bordered" style="width: 100%;font-size: 10px; height: 100%; border: double;" >
+            <thead style="width: 10%;">
             <tr>
                 <th> Horas\Días</th>
               
@@ -64,7 +64,7 @@
                            </div>
                              </td>
                             @else
-             <td class="bg-warning" style="width:13%;" >
+             <td class="bg-warning" style="width:15%;" >
                              </td>
                             @endif
                             @endif

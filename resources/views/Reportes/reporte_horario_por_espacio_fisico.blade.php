@@ -56,19 +56,19 @@
                         <td style="width: 10%;">{{ $hour->since }}-{{ $hour->until }}</td>
                          @foreach($days as $day)
                            @if($horario_espacio_fisico == null)
-                             <td class="bg-warning" >
+                             <td class="bg-warning" style="width: 10%;" >
                               </td>
                            @else
             @if( count( $horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id) )>0 )
-             <td style="width: auto;" >
-                <div style="text-align: center; font-size: 15px;"> <b>{{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->reason}}</b></div>
-                <div style="font-size: 13px;"><b>Asignado a: </b>{{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->LAST_NAME}}  {{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->NAME}}</div>
+             <td style="width: 15%;" >
+                <div style="font-size: 14px;"> <b>{{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->reason}}</b></div>
+                <div style="font-size: 11px;"><b>Asignado a: </b>{{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->LAST_NAME}}  {{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->NAME}}</div>
                   @if($horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !='' || $horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !=null)
-                  <div style="font-size:13px;"><b>Observación:</b><br/> {{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation}}</div>
+                  <div style="font-size:11px;"><b>Observación:</b><br/> {{$horario_espacio_fisico->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation}}</div>
                   @endif
                              </td>
                             @else
-             <td class="bg-warning" style=" width: auto;" >
+             <td class="bg-warning" style=" width: 15%;" >
                               </td>
                             @endif
                             @endif

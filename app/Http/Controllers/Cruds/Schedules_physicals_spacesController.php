@@ -57,8 +57,13 @@ class Schedules_physicals_spacesController extends Controller
 
     public function CrearHorario (Request $request){
 
-
-            $valida_registro = Schedules_physicals_spaces::where('hour_id',$request->hour_id)->where('day_id',$request->day_id)->where('teacher_career_id', $request->teacher_career_id)->where('period_cycle_id', $request->period_cycle_id)->get();
+        //se obtiene el id del docente
+    $docente_id = Teachers_Careers::where('id',$request->teacher_career_id)->pluck('teacher_id');
+        //se obtiene el teacher_career_id de ese docente   
+    $valida_docente = Teachers_Careers::where('teacher_id',$docente_id)->pluck('id');
+          
+        //se valida si el docente ya tiene ese dia y hora asignado en otro horario
+           $valida_registro = DB::table('Schedules_physicals_spaces as S')->select('S.id')->join('Teachers_Careers as T', 'T.id','=','S.teacher_career_id')->wherein('T.id',$valida_docente)->where('S.hour_id',$request->hour_id)->where('S.day_id',$request->day_id)->where('S.period_cycle_id', $request->period_cycle_id)->get();
             if(count($valida_registro)>0 ){
             return 'El docente tiene asignado este horario en otro espacio físico';
           }
@@ -192,14 +197,29 @@ class Schedules_physicals_spacesController extends Controller
 
         public function update_schedule( Request $request){
 
-            $schedule = Schedules_physicals_spaces::findOrFail($request->id);
+     $schedule = Schedules_physicals_spaces::findOrFail($request->id);
                 if($schedule != null || count($schedule)>0  ){
-            $schedule->teacher_career_id = $request->teacher_career_id;
+          
+   $docente_id = Teachers_Careers::where('id',$request->teacher_career_id)->pluck('teacher_id');
+        //se obtiene el teacher_career_id de ese docente 
+
+    $valida_docente = Teachers_Careers::where('teacher_id',$docente_id)->pluck('id');  
+        //se valida si el docente ya tiene ese dia y hora asignado en otro horario
+
+           $valida_registro = DB::table('Schedules_physicals_spaces as S')->select('S.id')->join('Teachers_Careers as T', 'T.id','=','S.teacher_career_id')->wherein('T.id',$valida_docente)->where('S.hour_id',$schedule->hour_id)->where('S.day_id',$schedule->day_id)->where('S.period_cycle_id', $schedule->period_cycle_id)->get();
+
+            if(count($valida_registro)>0 && $valida_registro != '$schedule->id'){
+            return 'El docente tiene asignado este horario en otro espacio físico';
+          }
+          else{
+             $schedule->teacher_career_id = $request->teacher_career_id;
             $schedule->observation = $request->observation;
             $schedule->state= $request->state;
             $schedule->reason = $request->reason;
 
             $schedule->save();
+                }
+
                 }
 
                     }

@@ -59,7 +59,9 @@
         </button>
       </div>
       <div class="modal-body">
+
             {!! Form::open() !!}
+            <div class="alert alert-warning" id="alert_error"></div>
                 <input type="text"  style="display: none;" name="day_id" id="day_id" value="">
                 <input type="text"  style="display: none;"  name="hour_id" id="hour_id" value="">
                 
@@ -185,11 +187,17 @@ function EditarHorario(){
   success: function(data){
     $data = $(data);
     console.log($data);
-            ver_horario();           
+            ver_horario();  
+             if( data=='El docente tiene asignado este horario en otro espacio físico'){
+              $('#alert_create').html(data);
+              $('#alert_create').show();
+              $('div.alert').delay(3000).fadeOut(350);//tiempo q se muestra la alerta
+            }
+            else
+             $('#escondermodal_edit').click();            
         }
   
 });
-  $('#escondermodal_edit').click();
 }
 
 function crearHorario(){
@@ -209,13 +217,14 @@ function crearHorario(){
   success: function(data){
     $data = $(data);
             ver_horario();
-            if( data=='El docente tiene asignado este horario en otro espacio físico')
-              alert(data);
-            else
-             $('#escondermodal').click();
+            if( data=='El docente tiene asignado este horario en otro espacio físico'){
+              $('#alert_error').html(data);
+              $('#alert_error').show();
+              $('div.alert').delay(3000).fadeOut(350);//tiempo q se muestra la alerta
 
-                
-           
+            }
+            else
+             $('#escondermodal').click();    
         }
   
 });
@@ -306,6 +315,9 @@ $.ajax({
 
 }
 </script>
+
+
+
 <!-- Modal Editar Horario -->
 <div class="modal fade" id="Schedule_modal_edit" tabindex="-1"  aria-hidden="true">
   <div class="modal-dialog" >
@@ -317,6 +329,7 @@ $.ajax({
         </button>
       </div>
       <div class="modal-body">
+                   <div class="alert alert-warning" id="alert_create"></div>
             {!! Form::open() !!}
                    <div id="divselect_docente_edit">
                     <input type="text" name="schedule_id" id="schedule_id" style="display: none;">

@@ -4,18 +4,16 @@
   <label><b>Aula:</b> {{$horario_docente->first()->AULA_NAME}}</label><br/>
    <label><b>Ubicacíon:</b> {{$horario_docente->first()->LOCATION}}</label>
                
-    <table id="horario_"  class="table table-bordered" style="width: 100%; height: 100%;" >
+    <table id="horario_"  class="table table-bordered" style="width: 100%;font-size:10px; height: 100%;" >
             <thead style="width: auto;">
             <tr>
                 <th> Horas\Días</th>
-              
-                          
-                @foreach($days as $day)
+              @foreach($days as $day)
                 <th >{{$day->name}}</th>
                 @endforeach
             </tr>
             </thead>
-            <tbody style="width:auto;">
+            <tbody style="width:10%;">
         @foreach($hours as $hour)
                     <tr>
                         <td class="hora bg-inverse">{{ $hour->since }}-{{ $hour->until }}</td>
@@ -29,7 +27,7 @@
                              </td>
                            @else
             @if( count( $horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id) )>0 )
-             <td class="bg-success" style="width: auto;" >
+             <td class="bg-success" style="width: 15%;" >
                   <label><b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->reason}}</b></label><br/>
               <label><b>Docente:</b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->LAST_NAME}} {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->NAME}}</label><br/>
             @if($horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !='' || $horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !=null)
@@ -37,7 +35,7 @@
                   @endif
                              </td>
                             @else
-             <td class="bg-warning" style="width: auto;" >
+             <td class="bg-warning" style="width: 15%;" >
                              </td>
                             @endif
                             @endif

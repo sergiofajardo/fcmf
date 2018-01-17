@@ -22,8 +22,8 @@ class CreateCarrerasTable extends Migration
             $table->string('image',300)->nullable();
             $table->string('user_create',50)->nullable();
             $table->string('user_update',50)->nullable();
-            $table->string('mission',300)->nullable();
-            $table->string('vision',300)->nullable();
+            $table->string('mission',500)->nullable();
+            $table->string('vision',800)->nullable();
             $table->string('state',10)->nullable();
             $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->timestamps();
