@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Cruds;
 
 use App\Faculties;
+use App\Careers;
+use App\Physical_spaces;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
@@ -48,6 +50,15 @@ if (!file_exists($carpeta)) {
     public function store(Request $request)
     {
         //
+        $valida_nombre = Faculties::where('name',$request->name)->get();
+
+        if( count($valida_nombre)>0)
+        {
+            flash('Ya existe una Facultad con ese nombre')->warning();
+                return back()->withInput();
+        }
+        else
+        {
         $objectFacultad = new Faculties();
         $objectFacultad->name=$request->name;
         $objectFacultad->address=$request->address;
@@ -66,7 +77,9 @@ if (!file_exists($carpeta)) {
          }
         $objectFacultad->save();
        // dd($request);
+        flash('Facultad creada Correctamente')->success();
         return redirect()->route('admin.facultades.index');
+        }
     }
 
     /**
@@ -105,6 +118,12 @@ if (!file_exists($carpeta)) {
      */
     public function update(Request $request, $faculties)
     {
+            $valida_nombre = Faculties::where('name',$request->name)->where('id','!=',$faculties)->get();
+            if( count($valida_nombre)>0){
+                flash('Ya existe el nombre de la Facultad Registrado, Favor ingrese otro')->warning();
+            return back()->withInput();
+            }
+            else{
         $facultad= Faculties::findOrFail($faculties);
         if($request->image != null){
             $img_ant = $facultad->image;
@@ -132,7 +151,9 @@ if (!file_exists($carpeta)) {
              }
 
         $facultad->save();
+        flash('Facultad Actualizada con Exito')->success();
          return redirect()->route('admin.facultades.index');
+         }
     }
 
     /**
@@ -143,10 +164,17 @@ if (!file_exists($carpeta)) {
      */
     public function destroy($faculties)
     {
-        
+                $valida_eliminacion = Careers::where('faculty_id',$faculties)->get();
+                $valida_espacio_fisico= Physical_spaces::where('faculty_id',$faculties)->get();
+                if( count($valida_eliminacion)>0 || count($valida_espacio_fisico)>0){
+                    flash('No se puede Eliminar la Facultad. Tiene asignada una Carrera o Un Espacio Físico')->warning();
+                    return redirect()->route('admin.facultades.index');
+                }else{
         $facultad= Faculties::findOrFail($faculties);
         $facultad->delete();
+        flash('Facultad Eliminada sin problemas')->info();
     return redirect()->route('admin.facultades.index');
+                }
             }
    
 

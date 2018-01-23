@@ -15,7 +15,7 @@ class CreatePERIODOCICLO extends Migration
     {
         Schema::create('period_cycles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('year',4)->nullable();
+            $table->string('year',9)->nullable();
             $table->string('cycle',8)->nullable();
             $table->string('state',10)->nullable();
             $table->string('user_create',20)->nullable();

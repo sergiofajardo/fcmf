@@ -19,7 +19,7 @@ class CreateDOCENTES extends Migration
             $table->string('name', 30)->nullable();
             $table->string('last_name', 30)->nullable();
             $table->string('phone', 10)->nullable();
-            $table->string('degree', 40)->nullable();
+            $table->string('degree', 150)->nullable();
             $table->string('image', 300)->nullable();
             $table->string('state', 10)->nullable();
             $table->string('user_create',20)->nullable();

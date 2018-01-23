@@ -2,31 +2,34 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+
+@if(Auth::user()->role_id ==1)
+ <div class="row">
+             <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Datos de la Carrera</div>
-                    <div class="panel-body">
+         @include('flash::message')
+                   <div class="alert alert-warning" style="display: none;" id="alert_error"></div>
+                    <div class="panel-heading" style="margin-left:4%;">Datos del Espacio Físico</div><br/>
+                    <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
              
-                    {!! Form::open() !!}
-                        {!! Field::text('Nombre',$careers->name,['readonly'=>'true']) !!}
-                        {!! Field::text('Dirección',$careers->address,['readonly'=>'true']) !!}
-                         {!! Field::text('Facultad a la que pertenece',$faculty,['readonly'=>'true']) !!}
-                        {!! Field::text('Teléfono',$careers->phone,['readonly'=>'true']) !!}
-                         {!! Field::textarea('Misión',$careers->mission,['readonly'=>'true', 'rows'=>'4', 'style'=>'resize:none']) !!}
+                    {!! Form::open(['style'=>'width:80%;margin-left:10%;margin-right:10%;']) !!}
+                     {!! Field::text('Facultad a la que pertenece',$faculties->first()->name,['readonly'=>'true']) !!}
+            {!! Field::text('Nombre',$physical_space->first()->name,['readonly'=>'true']) !!}
+            {!! Field::text('Dirección',$physical_space->first()->location,['readonly'=>'true']) !!}
+    {!! Field::text('Tipo de espacio Físico',$physical_space->first()->type,['readonly'=>'true']) !!}
+    {!! Field::text('Estado del espacio Físico',$physical_space->first()->state,['readonly'=>'true']) !!}
+                      
 
-                        {!! Field::textarea('Visión',$careers->vision,['readonly'=>'true', 'rows'=>'5', 'style'=>'resize:none']) !!}
-
-                        {{ link_to_route('admin.carreras.index', 'Regresar',[],['class'=>'btn btn-warning btn-xs'])}}
+                        {{ link_to_route('admin.espacios_fisicos.index', 'Regresar',[],['class'=>'btn btn-warning btn-xs'])}}
                         {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
                     </div>
             </div>
-
-
+@else
+<div style="text-align: center; color:red;"><h1>Acceso denegado</h1></div>
+@endif
 
 @endsection

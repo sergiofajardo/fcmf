@@ -1,3 +1,9 @@
+<?php
+header("Last-Modified: " . gmdate("D, d M Y H:i ") . " GMT"); 
+header("Cache-Control: no-store, no-cache, must-revalidate"); 
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +12,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+  
   
 <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="author" content="">
@@ -23,15 +30,22 @@
 
   <!-- Custom styles for this template-->
   <link href='{{ asset("admin/css/sb-admin.css")}}' rel="stylesheet">
+
+
+
+<link rel="stylesheet" href='{{ asset("js/alertifycss/alertify.min.css")}}'/>
+
+<link rel="stylesheet" href='{{ asset("js/alertifycss/themes/default.min.css")}}'/>
+
+<script src='{{ asset("js/alertify.min.js")}}'></script>
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
 <script src='{{ asset("admin/vendor/jquery/jquery.min.js")}}'></script>
    <script src='{{ asset("admin/vendor/datatables/jquery.dataTables.js")}}'></script>
-  <script>
-$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-</script>
+ 
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       
@@ -134,14 +148,14 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </div>
   </nav>
   <div class="content-wrapper">
-    <div class="container-fluid"  style="width: 100%;">
+    <div class="container-fluid"  style="width: 100%; height: 100%;">
       <!-- Breadcrumbs-->
       
       <div class="row" >
         <div class="col-12" >
-           @include('flash::message')
-         
+           
        @yield('content')
+      
          </div>
       </div>
     </div>
@@ -182,6 +196,9 @@ $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     <script src='{{ asset("admin/vendor/jquery-easing/jquery.easing.min.js")}}'></script>
     <!-- Custom scripts for all pages-->
     <script src='{{ asset("admin/js/sb-admin.min.js")}}'></script>
+     <script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
   </div>
 </body>
 

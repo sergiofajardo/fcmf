@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cruds;
 
 use App\Careers;
 use App\Faculties;
+use App\Teachers_Careers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
@@ -40,7 +41,8 @@ if (!file_exists($carpeta)) {
     {
         //
 
-            $faculties= Faculties::orderBy('name','asc')->get();
+            $faculties= Faculties::orderBy('name','asc')->pluck('name','id');
+            $faculties= array('0'=>'Seleccione una facultad')+$faculties->toArray();
         return view('Carreras.create_carrera')->with(['faculties'=>$faculties]);
     }
 
@@ -53,6 +55,15 @@ if (!file_exists($carpeta)) {
     public function store(Request $request)
     {
         //
+         $valida_nombre = Careers::where('name',$request->name)->get();
+
+        if( count($valida_nombre)>0)
+        {
+            flash('Ya existe una Carrera con ese nombre')->warning();
+                return back()->withInput();
+        }
+        else
+        {
           $objectCarrera = new Careers();
         $objectCarrera->name=$request->name;
         $objectCarrera->address=$request->address;
@@ -75,7 +86,10 @@ if (!file_exists($carpeta)) {
 
         $objectCarrera->save();
        // dd($request);
+        flash('Carrera creada correctamente')->success();
         return redirect()->route('admin.carreras.index');
+
+    }
     }
 
     /**
@@ -103,8 +117,8 @@ if (!file_exists($carpeta)) {
     public function edit( $careers)
     {
         //
-        $faculties = Faculties::orderBy('name','asc')->get();
-             $carrera= Careers::findOrFail($careers);
+        $faculties = Faculties::orderBy('name','asc')->pluck('name','id');
+        $carrera= Careers::findOrFail($careers);
        return view('Carreras.edit_carreras')->with(['careers'=>$carrera,'faculties'=>$faculties]);
    
     }
@@ -119,6 +133,12 @@ if (!file_exists($carpeta)) {
     public function update(Request $request, $careers)
     {
         //
+        $valida_name = Careers::where('name',$request->name)->where('id','!=',$careers)->get();
+
+        if( count($valida_name)>0){
+            flash('Ya existe una carrera con ese Nombre.')->warning();
+             return back()->withInput();
+        }else{
            $carrera= Careers::findOrFail($careers);
          if($request->image != null){
             $img_ant = $carrera->image;
@@ -146,7 +166,10 @@ if (!file_exists($carpeta)) {
              }
 
         $carrera->save();
+         flash('Carrera Actualizada')->success();
+           
     return redirect()->route('admin.carreras.index');
+    }
   
     }
 
@@ -159,9 +182,16 @@ if (!file_exists($carpeta)) {
     public function destroy($careers)
     {
         //
-          $careers= Careers::findOrFail($careers);
-        $careers->delete();
+        $teacher_career = Teachers_Careers::where('career_id',$careers);
+        if( count($teacher_career)>0){
+       flash('La carrera tiene asignado a uno o mas docentes. No se puede eliminar')->error();
     return redirect()->route('admin.carreras.index');
+        }else{
+        $careers= Careers::findOrFail($careers);
+        $careers->delete();
+        flash('Carrera Eliminada De manera correcta')->warning();
+    return redirect()->route('admin.carreras.index');
+    }
     
     }
 }

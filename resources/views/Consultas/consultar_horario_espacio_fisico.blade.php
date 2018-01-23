@@ -27,15 +27,13 @@
                                 <option value="{{$period->id}}">{{ $period->year}} {{$period->cycle}}</option>
                                     @endforeach 
                                  </select>&nbsp;
-                                   <div id="divselect_espacio"></div>
-                                  
+                                   <div style="width: 100%;" id="divselect_espacio"></div>
+                                  <input style="display: none;" type="button" id="btn_consultar" value="Consultar" onclick="Consultar_horario();" class="btn btn-success"><br/><br/>
                                 <div id="generar_pdf" style="display: none;"> 
-                                  <br/>
-                                 
                       {!! Form::open(['route'=>'pdf_horario_espacio_fisico','method'=>'POST']) !!}
                          <input type="text" style="display: none; " name="physical_space_id_pdf" id="physical_space_id_pdf">
                          <input type="text" style="display: none;" name="period_cycle_id_pdf" id="period_cycle_id_pdf">
-                        <input type="submit" class="btn btn-info" name="GENERAR PDF" value="GENERAR PDF">
+                        <input type="submit" class="btn btn-info" name="GENERAR PDF" value="GENERAR PDF"> <br/> <br/>
                        
                        {!! Form::close() !!}
                       </div>
@@ -69,11 +67,16 @@
             $('#period_cycle').val('0');
              $('#generar_pdf').hide();
             $('#divhorario').hide();
-           
+             $('#btn_consultar').hide();
+             $('#divselect_espacio').hide();          
             }
 
-            
-        function ver_horario(){      
+       function ver_horario(){
+          $('#btn_consultar').show();
+           $('#divhorario').hide();
+            $('#generar_pdf').hide();
+       }     
+        function Consultar_horario(){      
                   $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "GET",
@@ -102,7 +105,7 @@
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
   url: "{{route('getphysicals_spacesbyfaculty_consult')}}",
-  data: {faculties_id:$('#faculties_id').val(),
+  data: {faculties_id:$('#faculties_id').val()
         },
   success: function(data){
     $data = $(data);
@@ -110,6 +113,9 @@
             $('#divselect_espacio').html($data);
             $('#divhorario').hide();
             $('#generar_pdf').hide();
+            $('#btn_consultar').hide();
+             $('#divselect_espacio').show();
+
         }
   
 });

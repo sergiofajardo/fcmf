@@ -2,64 +2,42 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+
+@if(Auth::user()->role_id ==1)
+
+@include('flash::message')
+         <div class="alert alert-warning" style="display: none;" id="alert_error"></div>
+ <div class="row">
+             <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Editar Carrera</div>
-                    <div class="panel-body">
+         
+                    <div class="panel-heading" style="margin-left:4%;">Editar Espacio Físico</div><br/>
+                    <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
              
-                    {!! Form::open(['route'=>['admin.espacios_fisicos.update',$physical_space], 'method'=>'PUT']) !!}
-       <br/> <span> Tipo de espacio:</span>
-             <select  name="type" id="type">
-        <option @if($physical_space->type== 'Aula')
-            selected 
-            @endif value="Aula">Aula</option>
-        <option @if($physical_space->type== 'Laboratorio')
-            selected 
-            @endif value="Laboratorio">Laboratorio</option>
-         <option @if($physical_space->type== 'Sala de profesores')
-            selected 
-            @endif value="Sala de Profesores">Sala de profesores</option>
-         </select>&nbsp;
-            <br/><br/>
-         {!! Field::text('name',$physical_space->name,['placeholder'=>'Ingrese el nombre']) !!}
-                       
-        <span>Facultad a la que pertenece &nbsp;</span>
+                    {!! Form::open(['route'=>['admin.espacios_fisicos.update',$physical_space], 'method'=>'PUT','style'=>'width:80%;margin-left:10%;margin-right:10%;']) !!}
 
-         <select  name="faculty_id" id="faculty_id">
-             @foreach($faculties as $item)
-        <option @if($item->id== $physical_space->faculty_id)
-            selected 
-            @endif
-         value="{{$item->id}}">{{ $item->name}}</option>
-            @endforeach 
-            </select>&nbsp;
-            <br/><br/>
-               {!! Field::text('location',$physical_space->location,['placeholder'=>'Ingrese la Ubicación del espacio fisico']) !!}
-
- <br/> <span> Estado:</span>
-             <select  name="state" id="state">
-        <option @if($physical_space->state== 'Activo')
-            selected 
-            @endif value="Activo">Activo</option>
-        <option @if($physical_space->state== 'Inactivo')
-            selected 
-            @endif value="Inactivo">Inactivo</option>
-         </select>&nbsp;
-            <br/><br/>
+        {!!Form::label('Seleccione la Facultad a la que pertenece')!!}
+        {!!Form::select('faculties_id',$faculties,$physical_space->faculty_id,["class"=>"form-control",'id'=>'faculties_id'])!!} 
+                   {!!Form::label('Seleccione el Tipo de Espacio Físico',null)!!}
+                   {!!Form::select('type',array_merge(['Aula'=>'Aula','Laboratorio'=>'Laboratorio','Sala de Profesores'=>'Sala de Profesores']),$physical_space->type,["class"=>"form-control"])!!}
+      
+                {!! Field::text('name',$physical_space->name,['label'=>'Ingrese el nombre o Código del espacio físico','placeholder'=>'Ingrese el nombre']) !!}
+                {!! Field::text('location',$physical_space->location,['placeholder'=>'Ingrese la Ubicación del espacio fisico','label'=>'Ubicación del espacio físico']) !!}
+                {!!Form::label('Seleccione el Estado',null)!!}
+                   {!!Form::select('state',array_merge(['Activo'=>'Activo','Inactivo'=>'Inactivo']),$physical_space->state,["class"=>"form-control"])!!}<br/>
                         {!! Form::submit('Guardar',["class"=>"btn btn-success"]) !!}
-                        <a href="{{route('admin.espacios_fisicos.index')}}">
-                            <input type="button" class="btn btn-primary" name="Cancelar" value="Cancelar">
-                        </a>
-                          {!! Form::close() !!}
+                        {{link_to_route('admin.espacios_fisicos.index','Cancelar',[],["class"=>"btn btn-primary"])}}
+                       {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
                     </div>
             </div>
 
+@else
+<div style="text-align: center; color:red;"><h1>Acceso denegado</h1></div>
+@endif
 
 
 @endsection

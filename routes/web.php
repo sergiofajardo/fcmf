@@ -25,6 +25,9 @@ Route::post('obtenerCarreras','Cruds\TeachersController@getcareersbyfaculty')->n
 
 Route::post('obtenerCarrer','Cruds\TeachersController@getcareersSelectedbyfaculty')->name('obtenerCarrerasSeleccionadas');//
 
+
+//Rutas para admin de horario espacios fisicos
+
 Route::post('obtenerEspacios_fisicos','Cruds\Schedules_physicals_spacesController@getphysicals_spacesbyfaculty')->name('obtenerEspacios_fisicos');//obtener las carreras de la facultad seleccionada
 
 Route::post('getphysicals_spacesbyfaculty_consult','Cruds\Schedules_physicals_spacesController@getphysicals_spacesbyfaculty_consult')->name('getphysicals_spacesbyfaculty_consult');//obtener las carreras de la facultad seleccionada
@@ -37,6 +40,7 @@ Route::post('obtenerEspacios_fisicos_carrera','Cruds\Schedules_physicals_spacesC
 
 Route::post('obtenerDocentes','Cruds\Schedules_physicals_spacesController@getteachersbycareer')->name('obtenerDocentes');//obtener las carreras de la facultad seleccionada
 
+Route::post('obtenerDocentes_consulta','Cruds\Schedules_physicals_spacesController@getteachersbycareer_consult')->name('obtenerDocentes_consulta');
 
 
 
@@ -56,6 +60,8 @@ Route::post('/Consultas/Consultar_Carreras','Cruds\Schedules_physicals_spacesCon
 
 Route::get('/Consultas/Consultar_Horario_docente','Cruds\Schedules_physicals_spacesController@Consultar_Horario_docente')->name('Horario_docente');	
 
+
+//horario por espacio fisico
 Route::get('/Consultas/Consultar_Horario_espacio_fisico','Cruds\Schedules_physicals_spacesController@Consultar_Horario_espacio_fisico')->name('Horario_espacio_fisico');	
 
 
