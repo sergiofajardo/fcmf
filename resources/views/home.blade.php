@@ -11,12 +11,13 @@
     }
    
 </style>
-<form style="background-color: #A9F5BC; height: 100%; width: 100%;">
+<form style="background-color: white; height: 100%; width: 100%;">
 <div class="container" style="width:100; height: 100%; ">
    
-                <div style="text-align: center; vertical-align: center; width: 100%;"><b>FACULTAD DE CIENCIAS MATEMÁTICAS Y FÍSICAS DE LA UNIVERSIDAD DE GUAYAQUIL</b></div>
+                <div style="text-align: center; vertical-align: center; width: 100%;"><b>FACULTAD DE CIENCIAS MATEMÁTICAS Y FÍSICAS DE LA UNIVERSIDAD DE GUAYAQUIL</b></div><br/>
                   <div style="text-align: center;">
                    <img src="../public/image/FCMF_entrada.png" width="30%" height="30%" alt="Facultad de Ciencias Matematicas y Físicas" /></div>
+                   
                    <p>
                     <div style="text-align: center;"><b>Misión</b></div>
                     <div style="margin-left: 50px; margin-right: 50px;">
@@ -26,7 +27,7 @@
                     <div style="margin-left: 50px; margin-right: 50px;">
                     La Facultad de Ciencias Matemáticas y Físicas será una institución líder, en la formación científico – técnico de profesionales e investigadores, en las ramas de: Ingeniería Civil, Sistemas Computacionales y Networking, con altos valores morales y éticos que coadyuven a la transformación y desarrollo de la sociedad, sin olvidar el cuidado del medio ambiente.  
                     </div> 
-                   </p>
+                   </p><br/>
 
 </div>
 

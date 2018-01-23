@@ -30,6 +30,15 @@ header("Pragma: no-cache");
 
   <!-- Custom styles for this template-->
   <link href='{{ asset("admin/css/sb-admin.css")}}' rel="stylesheet">
+
+
+
+<link rel="stylesheet" href='{{ asset("js/alertifycss/alertify.min.css")}}'/>
+
+<link rel="stylesheet" href='{{ asset("js/alertifycss/themes/default.min.css")}}'/>
+
+<script src='{{ asset("js/alertify.min.js")}}'></script>
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -139,11 +148,12 @@ header("Pragma: no-cache");
     </div>
   </nav>
   <div class="content-wrapper">
-    <div class="container-fluid"  style="width: 100%;">
+    <div class="container-fluid"  style="width: 100%; height: 100%;">
       <!-- Breadcrumbs-->
       
       <div class="row" >
         <div class="col-12" >
+           
        @yield('content')
       
          </div>

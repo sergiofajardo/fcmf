@@ -5,6 +5,7 @@
 
 @if(Auth::user()->role_id ==1)
     <div class="container">
+      @include('flash::message')
  <div class="row">
             <div  style="width: 100%; height: 100%;">
                 <div class="panel panel-default">
@@ -40,9 +41,8 @@
                  {{link_to_route('admin.espacios_fisicos.edit','Editar',[$physical_space->id],["class"=>"btn btn-warning btn-xs"])}}
                                         
                   {{link_to_route('admin.espacios_fisicos.show','Ver',[$physical_space->id],["class"=>"btn btn-info btn-xs"])}}
-                                       
-                 {!! Form::submit('Borrar',["class"=>"btn btn-danger btn-xs"]) !!}
-                                        {!! Form::close() !!}
+                     {!! Form::button('Eliminar',['style'=>'cursor:pointer;',"class"=>"btn btn-danger btn-xs",'onclick'=>'eliminar_espacio_fisico(this)','cursor:pointer;']) !!}                      
+                               {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach
@@ -58,6 +58,16 @@
         </div>
     </div>
 <script type="text/javascript">
+      function eliminar_espacio_fisico(e){
+   var confirm= alertify.confirm('Eliminar Espacio Físico','Seguro desea eliminar el espacio físico, este cambio es irreversible?',null,null).set('labels', {ok:'Confirmar', cancel:'Cancelar'});   
+ 
+confirm.set({transition:'slide'});      
+ 
+confirm.set('onok', function(){ //callbak al pulsar botón positivo
+         e.form.submit();
+});
+
+}
     $(document).ready(function (){
         $('#tbl_espacio_fisico').DataTable();
     })

@@ -1,3 +1,4 @@
+ @if(count($horario_docente)>0)
  <br/>
  <div id="form_horario" style="width: 100%;">
  
@@ -7,11 +8,14 @@
 <img src="../image/docente/{{$datos_docente[0]->IMAGE}}" style="width: 30%; height: 120px;"><br/>
   </div>
   <br/>
-  <table style="width: 60%;">
+  <table style="width: 100%;">
     <thead>
       <tr>
         <th style="font-weight: normal;">
-      &nbsp;  <label><b>Docente: </b>{{$datos_docente[0]->LAST_NAME}} {{$datos_docente[0]->NAME}} </label><br/> 
+      &nbsp;  <label><b>Docente: </b>{{$datos_docente[0]->LAST_NAME}} {{$datos_docente[0]->NAME}} </label>
+        </th>
+        <th style="font-weight: normal;">
+      &nbsp;  <label><b>Cédula: </b>{{$datos_docente[0]->CARD}} </label>
         </th>
       </tr>
       <tr>
@@ -28,7 +32,7 @@
    
   </table>
    
-    <table id="horario_" class="table table-bordered" style="width: 100%;font-size: 10px; height: 100%; border: double;" >
+    <table id="horario_" class="table-bordered" style="width: 100%;font-size: 13px; height: 100%; border: solid;" >
             <thead style="width: 10%;">
             <tr>
                 <th> Horas\Días</th>
@@ -51,20 +55,20 @@
                            @else
             @if( count( $horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id) )>0 )
              <td class="bg-success" style="width: 15%;" >
-              <div style="font-size: 12px; ">
-                  <label><b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->reason}}</b></label><br/><nr/>
+              <div style="">
+        <div style="text-align: center;"><b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->reason}}</b></div>
 
-    
-                  <label><b>Aula:</b> {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->AULA_NAME}}</label>
-                  <label><b>Ubicacíon:</b> {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->LOCATION}}</label>
+                <div style="text-align: center;">
+                  <label><b>Aula:</b> {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->AULA_NAME}}</label></div>
+                 <div style="text-align: center;"> <b>Ubicacíon:</b> {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->LOCATION}}</div>
                                 
                                 @if($horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !='' || $horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !=null)
-                  <label><b>Observación:</b> {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation}}</label>
+                 <b>Observación:</b> {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation}}
                   @endif
                            </div>
                              </td>
                             @else
-             <td class="bg-warning" style="width:15%;" >
+             <td class="bg-warning" style="width:15%; height:30px;" >
                              </td>
                             @endif
                             @endif
@@ -77,3 +81,6 @@
 
     </form>
     </div>
+    @else
+     <h1>No tiene asignado un horario</h1>
+      @endif

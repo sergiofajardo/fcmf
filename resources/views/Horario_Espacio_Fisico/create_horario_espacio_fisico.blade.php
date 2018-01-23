@@ -61,7 +61,7 @@
       <div class="modal-body">
 
             {!! Form::open() !!}
-            <div class="alert alert-warning" id="alert_error"></div>
+            <div class="alert alert-warning" style="display: none;" id="alert_error"></div>
                 <input type="text"  style="display: none;" name="day_id" id="day_id" value="">
                 <input type="text"  style="display: none;"  name="hour_id" id="hour_id" value="">
                 
@@ -125,6 +125,8 @@
     $data = $(data);
     console.log($data);
           ver_horario();
+            alertify.notify('Registro eliminado correctamente','error',5, null);         
+           
         }
   
 });
@@ -193,8 +195,10 @@ function EditarHorario(){
               $('#alert_create').show();
               $('div.alert').delay(3000).fadeOut(350);//tiempo q se muestra la alerta
             }
-            else
-             $('#escondermodal_edit').click();            
+            else{
+             $('#escondermodal_edit').click();   
+             alertify.notify('Registro actualizado correctamente','success',5, null);         
+            }
         }
   
 });
@@ -223,8 +227,10 @@ function crearHorario(){
               $('div.alert').delay(3000).fadeOut(350);//tiempo q se muestra la alerta
 
             }
-            else
-             $('#escondermodal').click();    
+            else{
+             $('#escondermodal').click();  
+               alertify.notify('Registro realizado correctamente','success',5, null);         
+            }
         }
   
 });
@@ -329,7 +335,7 @@ $.ajax({
         </button>
       </div>
       <div class="modal-body">
-                   <div class="alert alert-warning" id="alert_create"></div>
+                   <div class="alert alert-warning" style="display: none;" id="alert_create"></div>
             {!! Form::open() !!}
                    <div id="divselect_docente_edit">
                     <input type="text" name="schedule_id" id="schedule_id" style="display: none;">

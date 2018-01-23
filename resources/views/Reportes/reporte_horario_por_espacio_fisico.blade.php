@@ -39,9 +39,10 @@
 <div style="text-align: left; margin-left: 5%;">
   <label><b>Código:</b> {{$horario_espacio_fisico->first()->AULA_NAME}}</label><br/>
   <label><b>Tipo:</b> {{$horario_espacio_fisico->first()->AULA_TYPE}}</label><br/>
-   <label><b>Ubicacíon:</b> {{$horario_espacio_fisico->first()->LOCATION}}</label>
+   <label><b>Ubicacíon:</b> {{$horario_espacio_fisico->first()->LOCATION}}</label><br/>
+   <label><b>Periodo Lectivo:</b> {{$periodo_lectivo[0]->year}} {{$periodo_lectivo[0]->cycle}}</label>
  </div>
-            <table id="horario_espacio_fisico" class="rwd-table" style="width: 100%;">
+            <table id="horario_espacio_fisico" class="rwd-table" style="width: 100%; font-size: 11px;">
                <thead style="width: 100%;">
             <tr>
                 <th> Horas\Días</th>

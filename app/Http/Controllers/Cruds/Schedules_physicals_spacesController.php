@@ -151,8 +151,8 @@ class Schedules_physicals_spacesController extends Controller
    
    public function getphysicals_spacesbyfaculty_consult(Request $request){
 
-        $physicals_spaces = DB::table('Physical_spaces as A')->select('A.name','A.id','A.location')->join('Schedules_physicals_spaces as B','B.physical_space_id','=','A.ID')->where('A.faculty_id', $request->faculties_id)->distinct()->get();
-
+        $physicals_spaces = DB::table('Physical_spaces as A')->select('A.name','A.id','A.location')->join('Schedules_physicals_spaces as B','B.physical_space_id','=','A.ID')->where('A.faculty_id', $request->faculties_id)->where('A.state','Activo')->distinct()->get();
+            
            $description= 'Seleccione el espacio físico:';
            return view('select_espaciofisico')->with(['physicals_spaces'=>$physicals_spaces, 'description'=>$description]);
     }
@@ -195,9 +195,18 @@ class Schedules_physicals_spacesController extends Controller
 
         }
 
+              public function  getteachersbycareer_consult( Request $request){
+
+        
+          $object = DB::table('TEACHERS_CAREERS as A')->select('A.ID','B.NAME', 'B.LAST_NAME')->join('TEACHERS as B','B.ID','=','A.TEACHER_ID')->where('A.career_id', $request->career_id)->orWhere('A.id',$request->teacher_career_id)->get();
+            
+           return view('select_docentes')->with(['teachers'=> $object]);
+
+        }
+
         public function update_schedule( Request $request){
 
-     $schedule = Schedules_physicals_spaces::findOrFail($request->id);
+     $schedule = Schedules_physicals_spaces::where('id',$request->id)->get();
                 if($schedule != null || count($schedule)>0  ){
           
    $docente_id = Teachers_Careers::where('id',$request->teacher_career_id)->pluck('teacher_id');
@@ -206,18 +215,20 @@ class Schedules_physicals_spacesController extends Controller
     $valida_docente = Teachers_Careers::where('teacher_id',$docente_id)->pluck('id');  
         //se valida si el docente ya tiene ese dia y hora asignado en otro horario
 
-           $valida_registro = DB::table('Schedules_physicals_spaces as S')->select('S.id')->join('Teachers_Careers as T', 'T.id','=','S.teacher_career_id')->wherein('T.id',$valida_docente)->where('S.hour_id',$schedule->hour_id)->where('S.day_id',$schedule->day_id)->where('S.period_cycle_id', $schedule->period_cycle_id)->get();
+           $valida_registro = DB::table('Schedules_physicals_spaces as S')->join('Teachers_Careers as T', 'T.id','=','S.teacher_career_id')->wherein('T.id',$valida_docente)->where('S.hour_id',$schedule->first()->hour_id)->where('S.day_id',$schedule->first()->day_id)->where('S.period_cycle_id', $schedule->first()->period_cycle_id)->select('S.id')->get();
 
-            if(count($valida_registro)>0 && $valida_registro != '$schedule->id'){
+           $tiene_horario = $valida_registro->where('id','!=',$schedule->first()->id);
+          if(count($valida_registro)>0 && count($tiene_horario)>0){
             return 'El docente tiene asignado este horario en otro espacio físico';
           }
           else{
-             $schedule->teacher_career_id = $request->teacher_career_id;
-            $schedule->observation = $request->observation;
-            $schedule->state= $request->state;
-            $schedule->reason = $request->reason;
+            $schedule_ = Schedules_physicals_spaces::findOrFail($request->id);
+             $schedule_->teacher_career_id = $request->teacher_career_id;
+            $schedule_->observation = $request->observation;
+            $schedule_->state= $request->state;
+            $schedule_->reason = $request->reason;
 
-            $schedule->save();
+            $schedule_->save();
                 }
 
                 }
@@ -255,7 +266,7 @@ class Schedules_physicals_spacesController extends Controller
          $horario_docente = DB::table('schedules_physicals_spaces as A')->select('A.day_id', 'A.hour_id'
             ,'A.observation','A.reason','B.NAME', 'B.LAST_NAME', 'D.NAME AS AULA_NAME','D.LOCATION')->join('teachers_careers as C','c.id','=','A.teacher_career_id')->join('teachers as B','B.ID','=','C.teacher_id')->join('physical_spaces as D','D.ID','=','A.physical_space_id' )->where('A.teacher_career_id', $request->teacher_career_id)->Where('A.period_cycle_id',$request->period_cycle_id)->where('A.state','Activo')->get();
           
-         $datos_docente = DB::table('teachers_careers as A')->select('B.NAME', 'B.LAST_NAME', 'B.DEGREE', 'B.IMAGE','B.PHONE')->join('teachers as B','B.ID','=','A.teacher_id')->where('A.id', $request->teacher_career_id)->where('B.state','Activo')->get();
+         $datos_docente = DB::table('teachers_careers as A')->select('B.NAME', 'B.LAST_NAME', 'B.DEGREE', 'B.IMAGE','B.PHONE','B.CARD')->join('teachers as B','B.ID','=','A.teacher_id')->where('A.id', $request->teacher_career_id)->where('B.state','Activo')->get();
          
             return view('Consultar_horario_por_docente')->with(['horario_docente'=>$horario_docente,'days'=>$days,'hours'=>$hours, 'datos_docente'=>$datos_docente]);
         }
@@ -278,9 +289,8 @@ class Schedules_physicals_spacesController extends Controller
                      $days= Days::orderBy('id','asc')->get();
                     $hours = Hours::orderBy('id','asc')->get();
 
-         $horario_docente = DB::table('schedules_physicals_spaces as A')->select('A.day_id', 'A.hour_id','A.observation','A.reason','B.NAME', 'B.LAST_NAME', 'D.NAME AS AULA_NAME','D.LOCATION')->join('teachers_careers as C','c.id','=','A.teacher_career_id')->join('teachers as B','B.ID','=','C.teacher_id')->join('physical_spaces as D','D.ID','=','A.physical_space_id' )->Where('A.period_cycle_id',$request->period_cycle_id)->where('A.state','Activo')->where('D.id',$request->physical_space_id)->get();
-                
-
+         $horario_docente = DB::table('schedules_physicals_spaces as A')->select('A.day_id', 'A.hour_id','A.observation','A.reason','B.NAME', 'B.LAST_NAME', 'D.NAME AS AULA_NAME','D.LOCATION')->join('teachers_careers as C','c.id','=','A.teacher_career_id')->join('teachers as B','B.ID','=','C.teacher_id')->join('physical_spaces as D','D.ID','=','A.physical_space_id' )->Where('A.period_cycle_id',$request->period_cycle_id)->where('A.state','=','Activo')->where('D.id',$request->physical_space_id)->where('D.state','=','Activo')->get();
+              
             return view('Consultar_horario_por_espacio_fisico')->with(['horario_docente'=>$horario_docente,'days'=>$days,'hours'=>$hours]);
         }
 

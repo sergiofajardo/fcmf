@@ -48,10 +48,9 @@
                        {!! Form::close() !!}
                       </div>
 
-                                <div id="ocultar_horario" style="display: none;">
-                                   <div id="divhorario"></div> </div>
-                                <div id="divselect_horario"></div>
-                                       
+                                
+                                   <div id="divhorario" style="display: none;"></div> </div>
+                               
         <br/>
              
                        
@@ -66,11 +65,7 @@
 
 
 <style type="text/css">
-    td{
-        padding: 8px;
-        width: 20px;
-        text-align: center;
-    }
+   
 </style>
 <script type="text/javascript">
  function Consultar_horario(){
@@ -86,11 +81,13 @@
   success: function(data){
     $data = $(data);
             $('#divhorario').html($data);
-
             $('#teacher_career_id_pdf').val($('#divselect_docente').val());
             $('#period_cycle_id_pdf').val($('#period_cycle').val());
-            $('#generar_pdf').show();
-            $('#ocultar_horario').show();
+           $('#divhorario').show();
+         if($data["0"].innerText == "No tiene asignado un horario")//se valida si existe un horario o no
+            $('#generar_pdf').hide();
+          else
+             $('#generar_pdf').show();
         }
     });
  }
@@ -111,13 +108,13 @@
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
   url: "{{route('verhorario')}}",
-  data: {physical_space_id:$('#physical_space_id').val(),
-        period_cycle_id: $('#period_cycle').val()
+  data: {physical_space_id:$('#physical_space_id').val()
         },
   success: function(data){
     $data = $(data);
     console.log($data);
             $('#divhorario').html($data);
+        
         }
   
 });
@@ -128,9 +125,10 @@ function ver_docente_(){
     $.ajax({
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
-  url: "{{route('obtenerDocentes')}}",
+  url: "{{route('obtenerDocentes_consulta')}}",
   data: {career_id:$('#career_id').val(),
-        teacher_career_id: ''},
+  period_cycle_id: $('#period_cycle').val()
+       },
   success: function(data){
     $data = $(data);
     $data_edit= $(data);

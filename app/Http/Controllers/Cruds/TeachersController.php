@@ -43,8 +43,11 @@ if (!file_exists($carpeta)) {
     public function create()
     {
         //
-        $faculties = Faculties::orderBy('name', 'asc')->get();
-        $careers = Careers::orderBy('name', 'asc')->get();
+        $faculties = DB::table('Faculties as F')->pluck('name','id');
+        $faculties = array("0" => "Seleccione la Facultad") + $faculties->toArray();
+      
+      //$facultades = array($faculties->id => $faculties->name );
+       $careers = Careers::orderBy('name', 'asc')->get();
         return view('Docentes.create_docente')->with(['faculties'=>$faculties, 'careers'=>$careers]);
     }
 
@@ -58,7 +61,14 @@ if (!file_exists($carpeta)) {
     public function store(Request $request)
     {
         //
+        $valida_cedula = Teachers::where('card',$request->card)->get();
+            if( count($valida_cedula)>0){
+                    flash('Ya existe un docente registrado con esa cédula')->warning();
+                    return back()->withInput();
+            }
+            else{
            $carreras = $request->carrera; //lee los checkbox seleccionados 
+       if( count($carreras)>0){
        $docente = new Teachers();
         $docente->name=$request->name;
         $docente->last_name=$request->last_name;
@@ -90,9 +100,10 @@ if (!file_exists($carpeta)) {
 
             }
 
-               
-       // dd($request);
+                 flash('Docente creado Correctamente')->warning();
         return redirect()->route('admin.docentes.index');
+        }
+        }
     }
 
     /**
@@ -141,20 +152,20 @@ if (!file_exists($carpeta)) {
     {
         //
         $teacher_careers = Teachers_Careers::where('teacher_id',$teachers)->get();
-        
         if( count($teacher_careers) >0){ //se valida si el docente tiene asignada alguna carrera 
-        $carrera_pertenece = Careers::where('id', $teacher_careers->first()->career_id)->get();
-          
+        $carrera_pertenece = Careers::where('id', $teacher_careers->first()->career_id)->pluck('faculty_id');          
         }
         else {
             $carrera_pertenece = new Careers;
             $carrera_pertenece->faculty_id = '0';
         }
+        $faculties= Faculties::orderBy('name', 'asc')->pluck('name','id');
+         $faculties = $faculties->toArray();
+        $select_facultad = Faculties::where('id',$carrera_pertenece[0])->pluck('id');
+        $docente= Teachers::where('id',$teacher_careers->first()->teacher_id);
+        
+       return view('Docentes.edit_docente')->with(['teacher'=>$docente,'faculties'=>$faculties,'teacher_careers'=>$teacher_careers,'carrera_pertenece'=>$select_facultad]);
 
-        $faculties= Faculties::orderBy('name', 'asc')->get();
-          $docente= Teachers::findOrFail($teachers);
-       return view('Docentes.edit_docente')->with(['teacher'=>$docente,'faculties'=>$faculties,'teacher_careers'=>$teacher_careers,'carrera_pertenece'=>$carrera_pertenece]);
-      
     }
 
     /**
@@ -167,6 +178,13 @@ if (!file_exists($carpeta)) {
     public function update(Request $request, $teachers)
     {
         //
+
+           $valida_cedula = Teachers::where('card',$request->card)->where('id','!=',$teachers)->get();
+            if( count($valida_cedula)>0){
+                    flash('Ya existe un docente registrado con esa cédula')->warning();
+                    return back()->withInput();
+            }
+            else{
             $carreras_docente = $request->carrera;
              $docente= Teachers::findOrFail($teachers);
         if($request->image != null){
@@ -238,7 +256,7 @@ if (!file_exists($carpeta)) {
             return redirect()->back()->withInput();
         }
         
-        
+        }
     }
 
     /**
@@ -260,6 +278,7 @@ if (!file_exists($carpeta)) {
     {
         //
         $validar_carrera = Teachers_Careers::where('teacher_id', $teachers)->pluck('id');
+      
 $validar_horario = Schedules_physicals_spaces::whereIn('teacher_career_id', $validar_carrera)->get();
                 if(count($validar_horario)<=0 ){
         $carrera_docente = Teachers_Careers::where('teacher_id',$teachers);
@@ -282,9 +301,9 @@ $validar_horario = Schedules_physicals_spaces::whereIn('teacher_career_id', $val
          public function getcareersSelectedbyfaculty( Request $request){
              //obtiene y muestra las carreras en las que da clase el docente
             $description = 'Seleccione la(s) carrera(s) en la que va a dar clases el docente :';
-            $carrera_docente = Teachers_Careers::where('teacher_id', $request->teacher_id)->get();
-            $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->get();
-          
+            $carrera_docente = Teachers_Careers::where('teacher_id', $request->teacher_id)->pluck('career_id');
+         $carrera_docente= $carrera_docente->toArray();
+            $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->pluck('name','id');
             return view('select_carreras_seleccionadas')->with(['objects'=> $careers, 'description'=>$description, 'carrera_docente'=>$carrera_docente]);
 
         }
@@ -292,8 +311,8 @@ $validar_horario = Schedules_physicals_spaces::whereIn('teacher_career_id', $val
 
         public function getcareersbyfaculty( Request $request){
 
-            $description = 'Seleccione las carreras en las que va a dar clases el docente :';
-            $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->get();
+            $description = 'Seleccione la(s) carrera(s) en la que va a dar clases el docente';
+         $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->pluck('name','id');
            return view('select_carreras')->with(['objects'=> $careers, 'description'=>$description]);
 
         }

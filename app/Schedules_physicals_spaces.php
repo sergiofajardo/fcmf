@@ -10,7 +10,7 @@ class Schedules_physicals_spaces extends Model
     protected $table= 'schedules_physicals_spaces';
 
     protected $fillable= [
-    	'pyshical_space_id', 'teacher_career_id','period_cycle_id','day_id','hour_id','observation','state','user_create','user_update','reason'
+    	'pyshical_space_id','teacher_career_id','period_cycle_id','day_id','hour_id','observation','state','user_create','user_update','reason'
     ];
 
     public function Physical_spaces(){

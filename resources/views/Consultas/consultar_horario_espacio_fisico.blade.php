@@ -27,7 +27,7 @@
                                 <option value="{{$period->id}}">{{ $period->year}} {{$period->cycle}}</option>
                                     @endforeach 
                                  </select>&nbsp;
-                                   <div id="divselect_espacio"></div>
+                                   <div style="width: 100%;" id="divselect_espacio"></div>
                                   <input style="display: none;" type="button" id="btn_consultar" value="Consultar" onclick="Consultar_horario();" class="btn btn-success"><br/><br/>
                                 <div id="generar_pdf" style="display: none;"> 
                       {!! Form::open(['route'=>'pdf_horario_espacio_fisico','method'=>'POST']) !!}
@@ -105,7 +105,7 @@
   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
   method: "POST",
   url: "{{route('getphysicals_spacesbyfaculty_consult')}}",
-  data: {faculties_id:$('#faculties_id').val(),
+  data: {faculties_id:$('#faculties_id').val()
         },
   success: function(data){
     $data = $(data);

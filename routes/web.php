@@ -40,6 +40,7 @@ Route::post('obtenerEspacios_fisicos_carrera','Cruds\Schedules_physicals_spacesC
 
 Route::post('obtenerDocentes','Cruds\Schedules_physicals_spacesController@getteachersbycareer')->name('obtenerDocentes');//obtener las carreras de la facultad seleccionada
 
+Route::post('obtenerDocentes_consulta','Cruds\Schedules_physicals_spacesController@getteachersbycareer_consult')->name('obtenerDocentes_consulta');
 
 
 
