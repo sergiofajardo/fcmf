@@ -12,7 +12,7 @@
                         <div class="form-group">
              
                            <label> Seleccione la Facultad para cargar las carreras:</label><br/> 
-                              <select style="width: 70%;"  name="faculties_id" id="faculties_id" onchange="setear_periodo();" >
+                              <select style="width: 100%;" class="form-control"  name="faculties_id" id="faculties_id" onchange="setear_periodo();" >
                                 <option value="0">Seleccione una Facultad</option>
                                    @foreach($faculties as $faculty)
                                 <option value="{{$faculty->id}}">{{ $faculty->name}}</option>
@@ -21,22 +21,24 @@
                                     <br/>
                                    
                                  <label> Seleccione el periodo al que pertenece:</label><br/> 
-                                  <select style="width: 70%;"  name="period_cycle" id="period_cycle" onchange="ver_espacio_fisico();" >
+                                  <select style="width: 100%;" class="form-control"  name="period_cycle" id="period_cycle" onchange="ver_espacio_fisico();" >
                                 <option value="0">Seleccione un Periodo Lectivo</option>
                                    @foreach($period_cycles as $period)
                                 <option value="{{$period->id}}">{{ $period->year}} {{$period->cycle}}</option>
                                     @endforeach 
                                  </select>&nbsp;
                                    <div style="width: 100%;" id="divselect_espacio"></div>
-                                  <input style="display: none;" type="button" id="btn_consultar" value="Consultar" onclick="Consultar_horario();" class="btn btn-success"><br/><br/>
-                                <div id="generar_pdf" style="display: none;"> 
+                                 
+                                
                       {!! Form::open(['route'=>'pdf_horario_espacio_fisico','method'=>'POST']) !!}
+                       <input style="display: none;" type="button" id="btn_consultar" value="Consultar" onclick="Consultar_horario();" class="btn btn-success">
+                       
                          <input type="text" style="display: none; " name="physical_space_id_pdf" id="physical_space_id_pdf">
                          <input type="text" style="display: none;" name="period_cycle_id_pdf" id="period_cycle_id_pdf">
-                        <input type="submit" class="btn btn-info" name="GENERAR PDF" value="GENERAR PDF"> <br/> <br/>
-                       
+                        <input type="submit" class="btn btn-info" style="display: none;" name="GENERAR PDF" value="GENERAR PDF" id="generar_pdf"> <br/> <br/>
+                         
                        {!! Form::close() !!}
-                      </div>
+                    
 
                                    <div id="divhorario"></div>
                                

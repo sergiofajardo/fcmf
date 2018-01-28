@@ -7,49 +7,38 @@
              <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="margin-left: 5%"><h3>
-                        <b>Consultar Horario por Docente</b></h3></div><br/>
+                        <b>Consultar Horario por Docente</b></h3></div>
                     <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
-             
-                           <label> Seleccione la Facultad para cargar las carreras:</label><br/> 
-                              <select style="width: 70%;"  name="faculties_id" id="faculties_id" onchange="setear_periodo();" >
+                             {!!Form::label('Seleccione la Facultad para cargar las carreras')!!}
+                              <select style="width: 100%;" class="form-control"  name="faculties_id" id="faculties_id" onchange="setear_periodo();" >
                                 <option value="0">Seleccione una Facultad</option>
                                    @foreach($faculties as $faculty)
                                 <option value="{{$faculty->id}}">{{ $faculty->name}}</option>
                                     @endforeach 
-                                 </select>&nbsp;
-                                    <br/>
-                                   
-                                 <label> Seleccione el periodo al que pertenece:</label><br/> 
-                                  <select style="width: 70%;"  name="period_cycle" id="period_cycle" onchange="ver_espacio_fisico();" >
+                                 </select>
+                                
+                                {!!Form::label('Seleccione el periodo al que pertenece')!!}
+                                  <select style="width: 100%;" class="form-control"  name="period_cycle" id="period_cycle" onchange="ver_espacio_fisico();" >
                                 <option value="0">Seleccione un Periodo Lectivo</option>
                                    @foreach($period_cycles as $period)
                                 <option value="{{$period->id}}">{{ $period->year}} {{$period->cycle}}</option>
                                     @endforeach 
-                                 </select>&nbsp;
-                                   
+                                 </select>
                                          <div id="divselect_carrera">
-
-                                           </div>
-                                           
-                                             <div id="docente" style="display: none;">
-                                   <label>Seleccione un Docente:</label><br/>
-                                    <select id="divselect_docente" onchange="ocl();" name="teacher_career_id" style="width: 70%;"></select><br/><br/>
+                                 </div>
+                                 <div id="docente" style="display: none;">
+                                 {!!Form::label('Seleccione un docente')!!}
+                                    <select id="divselect_docente" class="form-control" onchange="ocl();" name="teacher_career_id" style="width: 100%;"></select>
                                     
-                                </div>
-                                <input style="display: none;" type="button" id="btn_consultar" value="Consultar" onclick="Consultar_horario();" class="btn btn-success">
-                                <div id="generar_pdf" style="display: none;"> 
-                                  <br/>
-                      {!! Form::open(['route'=>'pdf_horario_docente','method'=>'POST']) !!}
+                                </div><br/>
+                        {!! Form::open(['route'=>'pdf_horario_docente','method'=>'POST']) !!}
+                       <input style="display: none;" type="button" id="btn_consultar" value="Consultar" onclick="Consultar_horario();" class="btn btn-success">
                          <input type="text" style="display: none; " name="teacher_career_id_pdf" id="teacher_career_id_pdf">
                          <input type="text" style="display: none;" name="period_cycle_id_pdf" id="period_cycle_id_pdf">
-                        <input type="submit" class="btn btn-info" name="GENERAR PDF" value="GENERAR PDF">
-                       
+                        <input type="submit" id="generar_pdf" style="display: none;" class="btn btn-info" name="GENERAR PDF" value="GENERAR PDF">
                        {!! Form::close() !!}
-                      </div>
-
-                                
-                                   <div id="divhorario" style="display: none;"></div> </div>
+                    <div id="divhorario" style="display: none;"></div> </div>
                                
         <br/>
              
@@ -99,6 +88,7 @@
             $('#form_horario').hide();
             $('#divselect_carrera').hide();
            $('#btn_consultar').hide();
+            $('#divhorario').hide();
 
             }
 
@@ -136,6 +126,7 @@ function ver_docente_(){
               $('#docente').show();
                $('#generar_pdf').hide();
               $('#ocultar_horario').hide();
+              $('#divhorario').hide();
                 $('#btn_consultar').hide();
             }
   
@@ -159,6 +150,7 @@ $.ajax({
             $('#form_horario').hide();
             $('#divselect_carrera').show();
               $('#btn_consultar').hide();
+               $('#divhorario').hide();
             
 
         } 
@@ -169,6 +161,7 @@ function ocl(){
   $('#generar_pdf').hide();
   $('#ocultar_horario').hide();
   $('#btn_consultar').show();
+   $('#divhorario').hide();
 }
 </script>
 @endsection

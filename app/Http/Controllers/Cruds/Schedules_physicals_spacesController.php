@@ -143,7 +143,8 @@ class Schedules_physicals_spacesController extends Controller
     public function getphysicals_spacesbyfaculty(Request $request){
 
 
-            $physicals_spaces = Physical_spaces::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->get();
+            $physicals_spaces = Physical_spaces::orderBy('name','asc')->select('id', DB::raw('CONCAT(name, " ", location) AS name'))->where('faculty_id', $request->faculties_id)->pluck('name','id');
+            $physicals_spaces = array("0"=>"Seleccione un espacio Físico")+$physicals_spaces->toArray();
 
            $description= 'Seleccione el espacio físico para asignar el horario:';
            return view('select_espaciofisico')->with(['physicals_spaces'=>$physicals_spaces, 'description'=>$description]);
@@ -151,8 +152,9 @@ class Schedules_physicals_spacesController extends Controller
    
    public function getphysicals_spacesbyfaculty_consult(Request $request){
 
-        $physicals_spaces = DB::table('Physical_spaces as A')->select('A.name','A.id','A.location')->join('Schedules_physicals_spaces as B','B.physical_space_id','=','A.ID')->where('A.faculty_id', $request->faculties_id)->where('A.state','Activo')->distinct()->get();
+        $physicals_spaces = DB::table('Physical_spaces as A')->select('A.id', DB::raw('CONCAT(A.name, " ", A.location) AS full_name'))->join('Schedules_physicals_spaces as B','B.physical_space_id','=','A.ID')->where('A.faculty_id', $request->faculties_id)->where('A.state','Activo')->distinct()->pluck('full_name', 'id');
             
+             $physicals_spaces = array("0"=>"Seleccione un espacio Físico")+$physicals_spaces->toArray();
            $description= 'Seleccione el espacio físico:';
            return view('select_espaciofisico')->with(['physicals_spaces'=>$physicals_spaces, 'description'=>$description]);
     }
@@ -160,12 +162,7 @@ class Schedules_physicals_spacesController extends Controller
 //funcion para cargar el horario del espacio fisico seleccionada
                 public function verhorario (Request $request){
                  $horario_por_hora = Schedules_physicals_spaces::where('physical_space_id',$request->physical_space_id)->where('period_cycle_id',$request->period_cycle_id)->get();
-              /*   $horario_ = Schedules_physicals_spaces::where('physical_space_id',$request->physical_space_id)->pluck('teacher_career_id'); */
-               /*
-                $docente = DB::table('teachers')->select('teachers.name', 'teachers.last_name', 'teachers_careers.id')->join('teachers_careers','teacher_id','=','teachers.id')->
-                    join('schedules_physicals_spaces','teacher_career_id','=','teachers_careers.id')->where('schedules_physicals_spaces.physical_space_id' ,$request->physical_space_id)->get();
-                ;*/
-               
+            
                  if($horario_por_hora == null || count($horario_por_hora)<=0)
                     $horario_por_hora = null; 
                      $day= Days::orderBy('id','asc')->get();
@@ -179,7 +176,8 @@ class Schedules_physicals_spacesController extends Controller
 
        public function getcareersbyfaculty( Request $request){
 
-            $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->get();
+            $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->pluck('name','id');
+            $careers = array("0"=>"Seleccione una Carrera")+ $careers->toArray();
            
            return view('select_espaciofisico_carrera')->with(['careers'=> $careers]);
 
@@ -252,7 +250,8 @@ class Schedules_physicals_spacesController extends Controller
 
      public function Consultar_Carreras( Request $request){
 
-            $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->get();
+            $careers = Careers::orderBy('name','asc')->where('faculty_id', $request->faculties_id)->pluck('name','id');
+            $careers = array("0"=>"Seleccione una Carrera")+$careers->toArray();
            
            return view('consultar_carreras')->with(['careers'=> $careers]);
 

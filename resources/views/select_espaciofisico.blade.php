@@ -1,8 +1,3 @@
-  <label> {{$description}}</label><br/> 
-   <select style="width: 70%;" onchange="ver_horario();"  name="physical_space_id" id="physical_space_id" >
-<option value="">Seleccione un espacio físico</option>
-@foreach($physicals_spaces as $object)
-<option value="{{$object->id}}"> {{$object->name}} {{$object->location}}</option> 
-@endforeach
-    </select>&nbsp;
-     <br/><br/>
+  {!!Form::label("$description")!!}
+ {!!Form::select('physical_space_id',$physicals_spaces,"0",["class"=>"form-control",'id'=>'physical_space_id','name'=>'physical_space_id','onchange'=>'ver_horario();','style'=>'wigth:100%;'])!!} 
+ <br/>

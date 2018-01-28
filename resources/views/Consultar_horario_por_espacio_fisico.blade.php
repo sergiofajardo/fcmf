@@ -24,7 +24,7 @@
             @if( count( $horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id) )>0 )
              <td class="bg-success" style="width: 15%;" >
                   <label><b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->reason}}</b></label><br/>
-              <label><b>Docente:</b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->LAST_NAME}} {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->NAME}}</label><br/>
+              <label><b>Docente: </b>{{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->LAST_NAME}} {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->NAME}}</label><br/>
             @if($horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !='' || $horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation !=null)
                   <label><b>Observación:</b> {{$horario_docente->where('day_id',$day->id)->where('hour_id',$hour->id)->first()->observation}}</label>
                   @endif

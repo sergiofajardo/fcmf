@@ -4,33 +4,32 @@
 
 @if(Auth::user()->role_id ==1)
  
-<div class="container">
-    <div class="row">
-   
+    <div class="alert alert-warning" style="display: none;" id="alert_error"></div>
+ <div class="row">
              <div style="width: 100%;height: 100%;">
                 <div class="panel panel-default">
+
+                    <div class="panel-heading" style="margin-left:4%;"><h3>Asignar Horario a Espacio Físico</h3></div><br/>
                     <div class="panel-body" style="align-content: center; width:90%; margin-right: 5%; margin-left: 5%; ">
                         <div class="form-group">
              
                     {!! Form::open(['route'=>'admin.horario.store','files'=>'true','enctype'=>'multipart/form-data']) !!}
                            <label> Seleccione la Facultad para cargar las carreras:</label><br/> 
-                              <select style="width: 70%;"  name="faculties_id" id="faculties_id" onchange="setear_periodo();" >
+                              <select style="width: 100%;" class="form-control"  name="faculties_id" id="faculties_id" onchange="setear_periodo();" >
                                 <option value="0">Seleccione una Facultad</option>
                                    @foreach($faculties as $faculty)
                                 <option value="{{$faculty->id}}">{{ $faculty->name}}</option>
                                     @endforeach 
                                  </select>&nbsp;
-                                    <br/>
                                    
                                  <label> Seleccione el periodo al que pertenece:</label><br/> 
-                                  <select style="width: 70%;"  name="period_cycle" id="period_cycle" onchange="ver_carrera();" >
+                                  <select style="width: 100%;" class="form-control"  name="period_cycle" id="period_cycle" onchange="ver_carrera();" >
                                 <option value="0">Seleccione un Periodo Lectivo</option>
                                    @foreach($period_cycles as $period)
                                 <option value="{{$period->id}}">{{ $period->year}} {{$period->cycle}}</option>
                                     @endforeach 
-                                 </select>&nbsp;
-                                    <br/>
-                                          <div id="divselect_carrera"> </div>
+                                 </select> 
+                                          <div id="divselect_carrera"></div>
                                     <div id="divselect_espacio_fisico">
                                     </div>
                                     <div id="divhorario"></div>

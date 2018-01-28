@@ -1,8 +1,3 @@
-  <label> Seleccione la carrera:</label><br/> 
-   <select style="width: 70%;"  onchange="ver_espacio_fisico();"  name="career_id" id="career_id" >
-<option value="">Seleccione una carrera</option>
-@foreach($careers as $object)
-<option value="{{$object->id}}"> {{$object->name}}</option> 
-@endforeach
-    </select>&nbsp;
-     <br/>
+{!!Form::label('Seleccione la carrera para cargar los docentes')!!}
+   {!!Form::select('faculty_id',$careers,"0",["class"=>"form-control",'id'=>'career_id','name'=>'career_id','onchange'=>'ver_espacio_fisico();','style'=>'wigth:100%;'])!!} 
+  

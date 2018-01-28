@@ -24,13 +24,13 @@
 
                         @else <b>  No tiene asignada ninguna carrera</b>
                             @endif
-                        {!! Field::text('name',$teacher->name,['readonly'=>'true']) !!}
-                        {!! Field::text('last_name',$teacher->last_name,['readonly'=>'true']) !!}
-                        {!! Field::text('card',$teacher->card,['readonly'=>'true']) !!}
-                        {!! Field::text('phone',$teacher->phone,['readonly'=>'true']) !!}
-                        {!! Field::text('degree',$teacher->degree,['readonly'=>'true']) !!}
-                        {!! Field::text('state',$teacher->state,['readonly'=>'true']) !!}
-                        {{ link_to_route('admin.docentes.index', 'Regresar',[],['class'=>'btn btn-warning btn-xs'])}}
+         {!! Field::text('name',$teacher->name,['readonly'=>'true','label'=>'Nombres']) !!}
+         {!! Field::text('last_name',$teacher->last_name,['readonly'=>'true','label'=>'Apellidos']) !!}
+         {!! Field::text('card',$teacher->card,['readonly'=>'true','label'=>'Cédula']) !!}
+         {!! Field::text('phone',$teacher->phone,['readonly'=>'true','label'=>'Teléfono']) !!}
+         {!! Field::text('degree',$teacher->degree,['readonly'=>'true','label'=>'Título']) !!}
+         {!! Field::text('state',$teacher->state,['readonly'=>'true','label'=>'Estado']) !!}
+         {{ link_to_route('admin.docentes.index', 'Regresar',[],['class'=>'btn btn-warning btn-xs'])}}
                         {!! Form::close() !!}
                         </div>
                     </div>
